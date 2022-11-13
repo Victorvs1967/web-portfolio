@@ -1,0 +1,43 @@
+.container {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, .1);
+}
+
+.login-form {
+  width: 500px;
+  margin: 2rem auto 1rem;
+  padding: 2rem;
+}
+
+.form-inputs {
+  width: 100%;
+  padding: 2rem 0 2rem;
+
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+.fields-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+
+}
+
+.btn-group {
+  position: absolute;
+  right: 2rem;
+  bottom: .25rem;
+}
+
+.btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}

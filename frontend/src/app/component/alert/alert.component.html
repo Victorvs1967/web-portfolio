@@ -1,0 +1,21 @@
+<div class="container">
+  <mat-card class="alert" role="alert">
+    <mat-card-title class="alert-heading">
+      <span><mat-icon color="warn">pan_tool</mat-icon>&nbsp;&nbsp;A you sure?</span>
+      <button mat-icon-button class="alert-close" *ngIf="isAdmin | async" aria-label="Close" routerLink="/admin">
+        <mat-icon>close</mat-icon>
+      </button>
+      <button mat-icon-button class="alert-close" *ngIf="!(isAdmin | async)" aria-label="Close" routerLink="/home">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-card-title>
+    <mat-card-content class="alert-message">
+      If you want to logout current user,&nbsp;
+      <a href="" class="alert-link" (click)="logout()">click here</a>.
+      <mat-divider inset></mat-divider>
+    </mat-card-content>
+    <mat-card-footer class="alert-footer">
+      You can login again when you want.
+    </mat-card-footer>
+  </mat-card>
+</div>

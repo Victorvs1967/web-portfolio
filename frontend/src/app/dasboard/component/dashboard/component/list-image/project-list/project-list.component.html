@@ -1,0 +1,6 @@
+<mat-nav-list>
+  <a *ngFor="let project of projects" mat-list-item (click)="toProject(project.id!)">
+    <span mat-line>{{ project.name }}: </span>
+    <span>{{ project.description }}</span>
+  </a>
+</mat-nav-list>

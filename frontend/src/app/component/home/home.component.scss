@@ -1,0 +1,20 @@
+@import "/src/assets/themes/theme.scss";
+
+.container {
+  width: 90%;
+  height: 60%;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, calc(-50% + 40px));
+
+  mat-card-title,
+  mat-card-content {
+    padding: 1rem;
+  }
+}
+
+.file-upload {
+  font-size: 1rem;
+}

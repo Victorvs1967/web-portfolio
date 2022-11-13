@@ -1,0 +1,32 @@
+<section class="container sec-03 portfolio active" id="portfolio">
+  <div class="main-title">
+    <h2>My <span>Portfolio</span><span class="bg-text">MyWorks</span></h2>
+  </div>
+  <p class="portfolio-text">
+    Here is some of my projects that I've done in various programming languages.
+  </p>
+  <div class="portfolio-container">
+    <div class="portfolios">
+      <div class="portfolio-item" *ngFor="let project of projects;">
+        <div class="image" id="{{ project.image.id }}"></div>
+        <div class="hover-items">
+          <h3>{{ project.name }}</h3>
+          <div class="icons">
+            <a class="icon" *ngIf="project.links[0]" href="{{ project.links[0] }}" target="_blank">
+            <!-- <a class="icon" href="https://www.github.com" target="_blank"> -->
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a class="icon" *ngIf="project.links[1]" href="{{ project.links[1] }}" target="_blank">
+            <!-- <a class="icon" href="https://www.youtube.com" target="_blank"> -->
+              <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a class="icon"*ngIf="project.links[2]"  href="{{ project.links[2] }}" target="_blank">
+            <!-- <a class="icon" href="https://www.behance.net" target="_blank"> -->
+              <i class="fa-brands fa-behance"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,36 @@
+<div class="container">
+  <mat-card class="login-form">
+    <button mat-icon-button class="btn-close" routerLink="/admin">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-title>Add Skill</mat-card-title>
+    <mat-divider inset></mat-divider>
+    <form *ngIf="createForm" [formGroup]="createForm" (ngSubmit)="submitSkill()">
+
+      <mat-card-content class="form-inputs">
+        <mat-form-field appearance="legacy">
+          <mat-label>Skill name</mat-label>
+          <input matInput placeholder="Enter project name..." type="text" formControlName="name" required>
+          <mat-hint>skill name</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+          <mat-label>Description</mat-label>
+          <input matInput placeholder="Enter description..." type="text" formControlName="description" required>
+          <mat-hint>description</mat-hint>
+        </mat-form-field>
+
+        <mat-form-field appearance="legacy">
+          <mat-label>Percent</mat-label>
+          <input matInput placeholder="Enter percent..." type="text" formControlName="percent">
+          <mat-hint>percent</mat-hint>
+        </mat-form-field>
+
+      </mat-card-content>
+      <mat-card-actions class="btn-group">
+        <button mat-stroked-button color="primary" type="submit" [disabled]="createForm.invalid">Submit</button>
+      </mat-card-actions>
+
+    </form>
+  </mat-card>
+</div>

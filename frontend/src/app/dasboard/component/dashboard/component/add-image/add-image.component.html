@@ -1,0 +1,18 @@
+<div class="container">
+  <mat-card class="login-form">
+    <button mat-icon-button class="btn-close" routerLink="/admin">
+      <mat-icon>close</mat-icon>
+    </button>
+    <mat-card-title>Add Image</mat-card-title>
+    <mat-divider inset></mat-divider>
+    <p class="file-label">Image</p>
+    <mat-form-field class="file-input" appearance="legacy">
+      <input matInput style="display: none;">
+      <input class="file-upload" type="file" (change)="selectFile($event)">
+      <button mat-mini-fab color="primary" [disabled]="!currentFile" (click)="upload($event)">
+        <mat-icon>upload</mat-icon>
+      </button>
+      <mat-hint *ngIf="image">Uploaded image ID: {{ image.id || 'No upload yet.' }}</mat-hint>
+    </mat-form-field>
+  </mat-card>
+</div>
