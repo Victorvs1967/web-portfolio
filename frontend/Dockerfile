@@ -1,4 +1,4 @@
-FROM node:slim AS build
+FROM node:18 AS build
 
 # install dependencies first, in a different location for easier app bind mounting for local development
 
@@ -16,4 +16,4 @@ RUN ng build
 
 FROM nginx:latest
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /home/app/dist/angular-admin-dashboard /usr/share/nginx/html
+COPY --from=build /home/app/dist /usr/share/nginx/html

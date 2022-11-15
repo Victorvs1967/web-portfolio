@@ -12,11 +12,11 @@ import { ImageService } from 'src/app/service/image.service';
 export class HomeComponent {
 
   user?: User;
-  style = `object-fit: cover; transition: all 0.4s ease-in-out 0s; width: 100%; height: auto; border-radius: 0.5rem;`;
+  style = `object-fit: cover; transition: all 0.4s ease-in-out 0s; width: 100%; height: 100%; border-radius: 0.5rem;`;
   hero = { username: 'hero', password: 'password' };
 
   constructor(private image: ImageService, private admin: AdminService, private auth: AuthService) {
-    const style = { width: '100%', height: 'auto', radius: '.5rem', filter: 'grayscale(100%)' };
+    const style = { width: '100%', height: '100%', radius: '.5rem', filter: 'grayscale(100%)' };
     this.auth.login(this.hero).subscribe(() => {
       this.admin.getUser(this.hero.username).subscribe(user => {
         this.user = user;

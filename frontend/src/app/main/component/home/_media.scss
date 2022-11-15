@@ -1,11 +1,17 @@
-@media(max-width: 1432px) {
+@media(max-width: 1441px) {
   section {
     padding: 2rem 8rem;
   }
 }
 
-@media(max-width: 1200px) {
-
+@media(max-width: 1241px) {
+  .header-content {
+    .left-header {
+      .image {
+        width: 80%;
+      }
+    }
+  }
 }
 
 @media(max-width: 970px) {
