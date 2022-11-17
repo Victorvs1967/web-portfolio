@@ -2,8 +2,6 @@
   <mat-card class="login-form">
     <button mat-icon-button class="btn-close" routerLink="/home"><mat-icon>close</mat-icon></button>
     <mat-card-title>Login</mat-card-title>
-    <!-- <button mat-icon-button class="btn-close" *ngIf="isAdmin | async" aria-label="Close" routerLink="/admin"><mat-icon>close</mat-icon></button>
-    <button mat-icon-button class="btn-close" *ngIf="!(isAdmin | async)" aria-label="Close" routerLink="/home"><mat-icon>close</mat-icon></button> -->
     <mat-divider inset></mat-divider>
     <form *ngIf="loginForm" [formGroup]="loginForm" (ngSubmit)="submitLogin()">
       <mat-card-content class="form-inputs">
@@ -12,13 +10,11 @@
           <input matInput placeholder="Enter username..." type="text" formControlName="username" required>
           <mat-hint>username</mat-hint>
         </mat-form-field>
-  
         <mat-form-field appearance="legacy">
           <mat-label>Password</mat-label>
           <input matInput placeholder="Enter password..."type="password" formControlName="password" required>
           <mat-hint>password</mat-hint>
         </mat-form-field>
-  
       </mat-card-content>
       <mat-card-actions class="btn-group">
         <button mat-stroked-button color="primary" type="submit" [disabled]="loginForm.invalid">Login</button>

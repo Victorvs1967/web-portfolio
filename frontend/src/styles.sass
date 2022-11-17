@@ -6,6 +6,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800&display=swap')
 @import "/src/assets/themes/theme.scss"
 
+@font-face
+  font-family: 'Material Icons'
+  font-style: normal
+  font-weight: 400
+  src: local('Material Icons'),
+    local('MaterialIcons-Regular'),
+    url('src/assets/material-design-icons/font/MaterialIcons-Regular.ttf') format('truetype')
+
 @include mat.core(typography.$angular-theme-app-typography)
 @include mat.core-theme(light.$angular-theme-app-light-theme)
 @include mat.card-theme(light.$angular-theme-app-light-theme)
@@ -61,8 +69,7 @@ body
 
 
 body
-  font-family: Roboto, "Helvetica Neue", sans-serif
-
+  font-family: Poppins, "Helvetica Neue", sans-serif
 
 .mat-button,
 .mat-flat-button,
@@ -70,3 +77,27 @@ body
 .mat-raised-button,
 .mat-card
   border-radius: 1rem !important
+
+.material-icons
+  font-family: 'Material Icons'
+  font-weight: normal
+  font-style: normal
+  font-size: 24px  /* Preferred icon size */
+  display: inline-block
+  line-height: 1
+  text-transform: none
+  letter-spacing: normal
+  word-wrap: normal
+  white-space: nowrap
+  direction: ltr
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale
+
+  /* Support for IE. */
+  font-feature-settings: 'liga'

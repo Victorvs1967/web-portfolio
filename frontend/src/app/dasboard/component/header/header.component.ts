@@ -1,6 +1,8 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { LoginData } from 'src/app/model/login-data.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
 
@@ -17,9 +19,15 @@ export class HeaderComponent implements OnInit {
   isLogin: Observable<boolean> | undefined;
   isAdmin: Observable<boolean> | undefined;
 
+  loginData: LoginData | undefined;
+
   isUser: string | undefined;
 
-  constructor(private auth: AuthService, private router: Router, private styleManager: StyleManagerService) { }
+  constructor(
+    private auth: AuthService, 
+    private router: Router, 
+    private styleManager: StyleManagerService,
+  ) { }
 
   ngOnInit(): void {
     this.isLogin = this.auth.isLoggedIn;

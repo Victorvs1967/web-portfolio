@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable, of, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { LoginData } from '../model/login-data.model';
 import { Role } from '../model/role.model';
 import { User } from '../model/user.model';
 
@@ -53,7 +54,7 @@ export class AuthService {
     return this.isAdmin;
   }
 
-  login(userInfo: { username: string, password: string }): Observable<any | boolean> {
+  login(userInfo: LoginData): Observable<any | boolean> {
     return this.http.post(environment.baseUrl.concat(environment.loginUrl), userInfo).pipe(map((token: any) => {
       if (this.jwtService.decodeToken(token.token).role === Role.ADMIN) {
         this.clearToken();

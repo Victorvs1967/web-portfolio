@@ -3,6 +3,7 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
+import { LoginData } from 'src/app/model/login-data.model';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,11 @@ export class LoginComponent implements OnInit {
   isLogin: Observable<boolean> | undefined;
   isAdmin: Observable<boolean> | undefined;
 
-  constructor(private formBuilder: UntypedFormBuilder, private router: Router, private auth: AuthService) { }
+  constructor(
+    private formBuilder: UntypedFormBuilder, 
+    private router: Router, 
+    private auth: AuthService,
+  ) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -28,7 +33,8 @@ export class LoginComponent implements OnInit {
   }
 
   submitLogin() {
-    this.auth.login(this.loginForm?.value).subscribe({
+    const response: LoginData = this.loginForm?.value;
+    this.auth.login(response).subscribe({
       next: () => {
         this.loginForm?.reset();
         this.isAdmin ? this.router.navigate(['/admin']) : this.router.navigate(['/home']);
