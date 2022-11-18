@@ -6,8 +6,7 @@ $angular-theme-app-light-accent: mat.define-palette(mat.$pink-palette, A200, A10
 $angular-theme-app-light-warn: mat.define-palette(mat.$red-palette);
 $angular-theme-app-light-success: mat.define-palette(mat.$green-palette);
 $angular-theme-app-light-info: mat.define-palette(mat.$blue-palette);
-$angular-theme-app-light-theme: mat.define-light-theme((
-  color: (
+$angular-theme-app-light-theme: mat.define-light-theme((color: (
     primary: $angular-theme-app-light-primary,
     accent: $angular-theme-app-light-accent,
     warn: $angular-theme-app-light-warn,
