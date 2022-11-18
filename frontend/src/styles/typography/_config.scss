@@ -2,7 +2,7 @@
 
 $heading-font-family: "'Poppins', sans-serif";
 
-$angular-theme-app-typography: mat.define-typography-config(
+$angular-theme-app-typography: mat.define-legacy-typography-config(
   $display-4: mat.define-typography-level(112px, $font-family: $heading-font-family),
   $display-3: mat.define-typography-level(56px, $font-family: $heading-font-family),
   $display-2: mat.define-typography-level(45px, $font-family: $heading-font-family),
