@@ -12,6 +12,7 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
 import { JwtService } from './service/jwt.service';
 import { AlertComponent } from './component/alert/alert.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NotFoundComponent } from './component/not-found/not-found.component';
     BrowserAnimationsModule,
     MaterialUiModule,
     HttpClientModule,
+    NgChartsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

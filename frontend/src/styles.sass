@@ -7,7 +7,6 @@
 @import "/src/assets/themes/theme.scss"
 
 @include mat.core()
-// @include mat.core(typography.$angular-theme-app-typography)
 @include mat.core-theme(light.$angular-theme-app-light-theme)
 @include mat.card-theme(light.$angular-theme-app-light-theme)
 @include mat.button-theme(light.$angular-theme-app-light-theme)
@@ -54,13 +53,14 @@
   list-style: none
 
 
-html,
-body
-  height: 100%
-  font-size: 14px
+html
+  font-size: 10px
 
 body
+  height: 100%
   font-family: Poppins, sans-serif
+  font-size: 1.4rem
+  line-height: 1.6
 
 .mat-button,
 .mat-flat-button,

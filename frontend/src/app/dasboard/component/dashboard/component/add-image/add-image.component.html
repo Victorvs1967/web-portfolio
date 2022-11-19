@@ -6,7 +6,7 @@
     <mat-card-title>Add Image</mat-card-title>
     <mat-divider inset></mat-divider>
     <p class="file-label">Image</p>
-    <mat-form-field class="file-input" appearance="legacy">
+    <mat-form-field class="file-input">
       <input matInput style="display: none;">
       <input class="file-upload" type="file" (change)="selectFile($event)">
       <button mat-mini-fab color="primary" [disabled]="!currentFile" (click)="upload($event)">

@@ -8,19 +8,19 @@
     <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="submitSkill()">
 
       <mat-card-content class="form-inputs">
-        <mat-form-field appearance="legacy">
+        <mat-form-field>
           <mat-label>Skill name</mat-label>
           <input matInput placeholder="Enter project name..." type="text" formControlName="name" required>
           <mat-hint>skill name</mat-hint>
         </mat-form-field>
 
-        <mat-form-field appearance="legacy">
+        <mat-form-field>
           <mat-label>Description</mat-label>
           <input matInput placeholder="Enter description..." type="text" formControlName="description" required>
           <mat-hint>description</mat-hint>
         </mat-form-field>
 
-        <mat-form-field appearance="legacy">
+        <mat-form-field>
           <mat-label>Percent</mat-label>
           <input matInput placeholder="Enter percent..." type="text" formControlName="percent">
           <mat-hint>percent</mat-hint>
