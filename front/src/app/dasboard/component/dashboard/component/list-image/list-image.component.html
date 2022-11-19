@@ -1,0 +1,16 @@
+<mat-card class="file-container">
+  <mat-card-content class="files-list">
+    <mat-card-title>&nbsp;&nbsp;&nbsp;Images</mat-card-title>
+    <mat-divider inset></mat-divider>
+    <ul class="list-wrapper">
+      <li *ngFor="let image of images;">
+        <div class="img-container" id="{{ image.id }}"></div>
+        <div class="img-footer">
+          <a mat-button color="primary" routerLink="/admin/viewImage/{{ image.id }}">{{ image.name }}</a>
+          <a mat-button color="accent" (click)="toProject(image)">to project</a>
+          <a mat-button color="warn" (click)="delete(image.id)">delete</a>
+        </div>
+      </li>
+    </ul>
+  </mat-card-content>
+</mat-card>

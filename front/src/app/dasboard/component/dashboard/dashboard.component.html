@@ -1,0 +1,43 @@
+<app-header (taggledEvent)="drawer.toggle()"></app-header>
+
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" opened>
+  <mat-nav-list role="list">
+    <mat-list-item class="nav-link" role="listitem" routerLink="/admin"><mat-icon>home</mat-icon>&nbsp;&nbsp;Home</mat-list-item>
+    <mat-list-item mat-icon-button class="nav-link" role="listitem" [matMenuTriggerFor]="userMenu" aria-label="icon-button with a menu">
+      <mat-icon>person</mat-icon>&nbsp;&nbsp;User
+    </mat-list-item>
+    <mat-menu #userMenu="matMenu" xPosition="after">
+      <button mat-menu-item routerLink="addUser"><mat-icon>person_add</mat-icon>&nbsp;&nbsp;Add User</button>
+      <button mat-menu-item routerLink="listUser"><mat-icon>group</mat-icon>&nbsp;&nbsp;Users</button>
+    </mat-menu>
+    <mat-list-item mat-icon-button class="nav-link" role="listitem" [matMenuTriggerFor]="projectMenu" aria-label="icon-button with a menu">
+      <mat-icon>work</mat-icon>&nbsp;&nbsp;Project
+    </mat-list-item>
+    <mat-menu #projectMenu="matMenu" xPosition="after">
+      <button mat-menu-item routerLink="addProject"><mat-icon>medical_services</mat-icon>&nbsp;&nbsp;Add Project</button>
+      <button mat-menu-item routerLink="listProject"><mat-icon>cases</mat-icon>&nbsp;&nbsp;Projects</button>
+    </mat-menu>
+    <mat-list-item mat-icon-button class="nav-link" role="listitem" [matMenuTriggerFor]="skillMenu" aria-label="icon-button with a menu">
+      <mat-icon>insert_chart</mat-icon>&nbsp;&nbsp;Skill
+    </mat-list-item>
+    <mat-menu #skillMenu="matMenu" xPosition="after">
+      <button mat-menu-item routerLink="addSkill"><mat-icon>add_chart</mat-icon>&nbsp;&nbsp;Add Skill</button>
+      <button mat-menu-item routerLink="listSkill"><mat-icon>library_books</mat-icon>&nbsp;&nbsp;Skills</button>
+    </mat-menu>
+    <mat-list-item mat-icon-button class="nav-link" role="listitem" [matMenuTriggerFor]="imageMenu" aria-label="icon-button with a menu">
+      <mat-icon>photo</mat-icon>&nbsp;&nbsp;Image
+    </mat-list-item>
+    <mat-menu #imageMenu="matMenu" xPosition="after">
+      <button mat-menu-item routerLink="addImage"><mat-icon>add_photo_alternate</mat-icon>&nbsp;&nbsp;Add Image</button>
+      <button mat-menu-item routerLink="listImage"><mat-icon>photo_library</mat-icon>&nbsp;&nbsp;Images</button>
+    </mat-menu>
+    <mat-list-item class="nav-link" role="listitem"><mat-icon>wysiwyg</mat-icon>&nbsp;&nbsp;Blog</mat-list-item>
+  </mat-nav-list>  
+</mat-drawer>
+
+<div class="sidenav-content">
+  <router-outlet></router-outlet>
+</div>
+
+</mat-drawer-container>

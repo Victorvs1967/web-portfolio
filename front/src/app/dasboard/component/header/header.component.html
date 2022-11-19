@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <div class="main-nav">
+    <button mat-icon-button (click)="taggledAction()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="brand-title" routerLink="/admin">Admin dashboard</span>
+  </div>
+  <!-- Drop menu -->
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="toggleDarkTheme()">
+      <mat-icon>{{ isDark ? 'light_mode' : 'dark_mode'}}</mat-icon>
+      <span>Theme</span>
+    </button>
+    <button mat-menu-item routerLink="/auth/login" [disabled]="isLogin | async">
+      <mat-icon>login</mat-icon>
+      <span>Login</span>
+    </button>
+    <button mat-menu-item routerLink="/alert" [disabled]="!(isLogin | async)">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

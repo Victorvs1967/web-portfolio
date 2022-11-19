@@ -1,0 +1,146 @@
+@import "/src/assets/themes/theme.scss";
+
+.main-content {
+  background-color: var(--color-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  color: var(--color-white);
+  transition: all .4s ease-in-out;
+}
+
+a {
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  font-family: inherit;
+}
+
+header {
+  height: 100vh;
+  color: var(--color-white);
+  overflow: hidden;
+}
+
+section {
+  min-height: 100vh;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 3rem 10rem;
+}
+
+.container {
+  transform: translateY(-100%) scale(0);
+  transition: all .4s ease-in-out;
+  background-color: var(--color-primary);
+}
+
+.sec-01,
+.sec-02,
+.sec-03,
+.sec-04,
+.sec-05 {
+  transform: translateY(0) scale(1);
+}
+
+.active {
+  display: block;
+  animation: appear 1s ease-in-out both;
+
+  @keyframes appear {
+    0% {
+      transform: translateY(-100%) scaleY(0);
+    }
+
+    100% {
+      transform: translateY(0) scaleY(1);
+    }
+  }
+}
+
+// Independed components
+.btn-container {
+  display: flex;
+  align-self: flex-start;
+}
+
+.main-btn {
+  border-radius: 30px;
+  color: inherit;
+  font-weight: 600;
+  position: relative;
+  border: 1px solid var(--color-secondary);
+  display: flex;
+  align-self: flex-start;
+  align-items: center;
+  overflow: hidden;
+
+  .btn-text {
+    padding: 0 2rem;
+  }
+
+  .btn-icon {
+    background-color: #D7263D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: .8rem;
+
+    mat-icon {
+      font-size: 1.5rem;
+    }
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateX(100%);
+    z-index: -11;
+  }
+
+  &:hover {
+    &::before {
+      width: 100%;
+      height: 100%;
+      border-radius: 30px;
+      background-color: var(--color-secondary);
+      transform: translateX(0);
+      transition: all .4s ease-out;
+    }
+  }
+}
+
+.main-title {
+  text-align: center;
+  margin-top: 2rem;
+
+  h2 {
+    position: relative;
+    text-transform: uppercase;
+    font-size: 4rem;
+    font-weight: 700;
+
+    span {
+      color: var(--color-secondary);
+    }
+
+    .bg-text {
+      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      color: var(--color-grey-5);
+      transition: all .4s ease-in-out;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      font-weight: 800;
+      font-size: 6.3rem;
+    }
+  }
+}
+
+@import './media';
