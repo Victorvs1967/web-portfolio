@@ -1,5 +1,18 @@
-// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800&display=swap')
+@use '@angular/material' as mat
+@use './styles/themes/light'
+@use './styles/components'
+@use './styles/typography/config' as typography
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800&display=swap')
 @import "/src/assets/themes/theme.scss"
+
+@include mat.core()
+// @include mat.core(typography.$angular-theme-app-typography)
+@include mat.core-theme(light.$angular-theme-app-light-theme)
+@include mat.card-theme(light.$angular-theme-app-light-theme)
+@include mat.button-theme(light.$angular-theme-app-light-theme)
+@include mat.all-component-themes(light.$angular-theme-app-light-theme)
+@include components.theme(light.$angular-theme-app-light-theme, typography.$angular-theme-app-typography, light.$angular-theme-app-light-variants)
 
 :root
   --color-primary: #02182b
