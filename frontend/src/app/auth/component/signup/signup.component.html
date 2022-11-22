@@ -1,58 +1,60 @@
-<div class="container">
+<!-- <div class="container">
   <mat-card class="login-form">
     <mat-card-title>Sign Up</mat-card-title>
     <button mat-icon-button class="btn-close" *ngIf="isAdmin | async" aria-label="Close" routerLink="/admin"><mat-icon>close</mat-icon></button>
     <button mat-icon-button class="btn-close" *ngIf="!(isAdmin | async)" aria-label="Close" routerLink="/home"><mat-icon>close</mat-icon></button>
-    <mat-divider inset></mat-divider>
+    <mat-divider></mat-divider>
     <form *ngIf="signupForm" [formGroup]="signupForm" (ngSubmit)="submitSignup()">
 
       <mat-card-content class="form-inputs">
-        <mat-form-field>
+        <mat-form-field appearance="outline" class="form-field">
           <mat-label>Username</mat-label>
           <input matInput placeholder="Enter username..." type="text" formControlName="username" required>
           <mat-hint>username</mat-hint>
         </mat-form-field>
       
-        <mat-form-field>
-          <mat-label>Password</mat-label>
-          <input matInput placeholder="Enter password..." type="password" formControlName="password" required>
-          <mat-hint>password</mat-hint>
-        </mat-form-field>
+        <div class="fields-group">
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput placeholder="Enter password..." type="password" formControlName="password" required>
+            <mat-hint>password</mat-hint>
+          </mat-form-field>
+        
+          <mat-form-field appearance="outline">
+            <mat-label>Reenter Password</mat-label>
+            <input matInput placeholder="Reenter password..." type="password" formControlName="password2" required>
+            <mat-hint *ngIf="signupForm.controls['password']?.value == signupForm.controls['password2']?.value">password confirm</mat-hint>
+            <mat-hint *ngIf="signupForm.controls['password']?.value != signupForm.controls['password2']?.value" style="color: red;">password not confirm</mat-hint>
+          </mat-form-field>
+          </div>
       
-        <mat-form-field>
-          <mat-label>Reenter Password</mat-label>
-          <input matInput placeholder="Reenter password..." type="password" formControlName="password2" required>
-          <mat-hint *ngIf="signupForm.controls['password']?.value == signupForm.controls['password2']?.value">password confirm</mat-hint>
-          <mat-hint *ngIf="signupForm.controls['password']?.value != signupForm.controls['password2']?.value" style="color: red;">password not confirm</mat-hint>
-        </mat-form-field>
-      
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput placeholder="Enter email..." type="email" formControlName="email" required>
           <mat-hint>email</mat-hint>
         </mat-form-field>
       
         <div class="fields-group">
-          <mat-form-field class="input-item">
+          <mat-form-field appearance="outline" class="input-item">
             <mat-label>Firstname</mat-label>
             <input matInput placeholder="Repeat first name..." type="text" formControlName="firstName">
             <mat-hint>firstname</mat-hint>
           </mat-form-field>
       
-          <mat-form-field class="input-item">
+          <mat-form-field appearance="outline" class="input-item">
             <mat-label>Lastname</mat-label>
             <input matInput placeholder="Enter lastname..." type="text" formControlName="lastName">
             <mat-hint>lastname</mat-hint>
           </mat-form-field>
         </div>
       
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Phone</mat-label>
           <input matInput placeholder="Enter phone..." type="tel" formControlName="phone">
           <mat-hint>phone</mat-hint>
         </mat-form-field>
       
-        <mat-form-field style="margin-bottom: 0;">
+        <mat-form-field appearance="outline" style="margin-bottom: 0;">
           <mat-label>Address</mat-label>
           <input matInput placeholder="Enter address..." type="text" formControlName="address">
           <mat-hint>address</mat-hint>
@@ -60,8 +62,7 @@
 
         <div class="fields-group">
           <div class="file-field">
-            <!-- <p class="file-label">Photo</p> -->
-            <mat-form-field class="file-input">
+            <mat-form-field appearance="outline" class="file-input">
               <input matInput style="display: none;">
               <input class="file-upload" type="file" (change)="selectPhoto($event)">
               <button mat-mini-fab color="primary" [disabled]="!currentPhoto" (click)="uploadPhoto($event)">
@@ -71,8 +72,7 @@
             </mat-form-field>
           </div>
           <div class="file-field">
-            <!-- <p class="file-label">Avatar</p> -->
-            <mat-form-field class="file-input">
+            <mat-form-field appearance="outline" class="file-input">
               <input matInput style="display: none;">
               <input class="file-upload" type="file" (change)="selectAvatar($event)">
               <button mat-mini-fab color="primary" [disabled]="!currentAvatar" (click)="uploadAvatar($event)">
@@ -90,4 +90,94 @@
 
     </form>
   </mat-card>
-</div>
+</div> -->
+
+
+<h2 mat-dialog-title>Sign Up</h2>
+<button mat-icon-button class="btn-close" aria-label="Close" (click)="close()"><mat-icon>close</mat-icon></button>
+<!-- <button mat-icon-button class="btn-close" *ngIf="isAdmin | async" aria-label="Close" routerLink="/admin"><mat-icon>close</mat-icon></button> -->
+<!-- <button mat-icon-button class="btn-close" *ngIf="!(isAdmin | async)" aria-label="Close" routerLink="/home"><mat-icon>close</mat-icon></button> -->
+<mat-divider></mat-divider>
+<form mat-dialog-content *ngIf="signupForm" [formGroup]="signupForm" (ngSubmit)="submitSignup()">
+  <div class="form-inputs">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Username</mat-label>
+      <input matInput placeholder="Enter username..." type="text" formControlName="username" required>
+      <mat-hint>username</mat-hint>
+    </mat-form-field>
+  
+    <div class="fields-group">
+      <mat-form-field appearance="outline">
+        <mat-label>Password</mat-label>
+        <input matInput placeholder="Enter password..." type="password" formControlName="password" required>
+        <mat-hint>password</mat-hint>
+      </mat-form-field>
+    
+      <mat-form-field appearance="outline">
+        <mat-label>Reenter Password</mat-label>
+        <input matInput placeholder="Reenter password..." type="password" formControlName="password2" required>
+        <mat-hint *ngIf="signupForm.controls['password']?.value == signupForm.controls['password2']?.value">password confirm</mat-hint>
+        <mat-hint *ngIf="signupForm.controls['password']?.value != signupForm.controls['password2']?.value" style="color: red;">password not confirm</mat-hint>
+      </mat-form-field>
+      </div>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="Enter email..." type="email" formControlName="email" required>
+      <mat-hint>email</mat-hint>
+    </mat-form-field>
+  
+    <div class="fields-group">
+      <mat-form-field appearance="outline" class="input-item">
+        <mat-label>Firstname</mat-label>
+        <input matInput placeholder="Repeat first name..." type="text" formControlName="firstName">
+        <mat-hint>firstname</mat-hint>
+      </mat-form-field>
+  
+      <mat-form-field appearance="outline" class="input-item">
+        <mat-label>Lastname</mat-label>
+        <input matInput placeholder="Enter lastname..." type="text" formControlName="lastName">
+        <mat-hint>lastname</mat-hint>
+      </mat-form-field>
+    </div>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Phone</mat-label>
+      <input matInput placeholder="Enter phone..." type="tel" formControlName="phone">
+      <mat-hint>phone</mat-hint>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline" style="margin-bottom: 0;">
+      <mat-label>Address</mat-label>
+      <input matInput placeholder="Enter address..." type="text" formControlName="address">
+      <mat-hint>address</mat-hint>
+    </mat-form-field>     
+
+    <div class="fields-group">
+      <div class="file-field">
+        <mat-form-field appearance="outline" class="file-input">
+          <input matInput style="display: none;">
+          <input class="file-upload" type="file" (change)="selectPhoto($event)">
+          <button mat-mini-fab color="primary" [disabled]="!currentPhoto" (click)="uploadPhoto($event)">
+            <mat-icon>upload</mat-icon>
+          </button>
+          <mat-hint>Photo image ID: {{ photo.id || 'Photo upload yet.' }}</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="file-field">
+        <mat-form-field appearance="outline" class="file-input">
+          <input matInput style="display: none;">
+          <input class="file-upload" type="file" (change)="selectAvatar($event)">
+          <button mat-mini-fab color="primary" [disabled]="!currentAvatar" (click)="uploadAvatar($event)">
+            <mat-icon>upload</mat-icon>
+          </button>
+          <mat-hint>Avatar image ID: {{ avatar.id || 'Avatar upload yet.' }}</mat-hint>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions class="btn-group">
+    <button class="btn-primary" mat-stroked-button color="primary" type="submit" [disabled]="signupForm.invalid || (signupForm.controls['password'].value != signupForm.controls['password2'].value)">SignUp</button>
+    <button mat-stroked-button routerLink="/auth/login">Login</button>
+  </div>
+</form>

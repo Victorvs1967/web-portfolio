@@ -8,29 +8,35 @@
 }
 
 .login-form {
-  width: 500px;
+  width: 50rem;
   margin: 10% auto 0;
   padding: 2rem;
 }
 
 .form-inputs {
   width: 100%;
+  margin-bottom: 3rem;
   padding: 2rem 0 0;
 
   mat-form-field {
     width: 100%;
-    margin-bottom: 2rem;
+    margin-bottom: .5rem;
   }
 }
 
 .btn-group {
-  position: absolute;
-  right: 2rem;
-  bottom: .25rem;
+  gap: 1rem;
+  .btn-primary {
+    margin-left: auto;
+  }
 }
 
 .btn-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
+}
+
+mat-divider {
+  margin-top: 1rem;
 }

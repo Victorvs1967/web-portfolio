@@ -26,10 +26,10 @@ const routes: Routes = [
   { path: '', component: DashboardComponent, canDeactivate: [AuthGuard],
     children: [
       { path: '', component: GraphComponent },
-      { path: 'addUser', component: SignupComponent },
+      // { path: 'addUser', component: SignupComponent },
       { path: 'listUser', component: ListUserComponent },
       { path: 'editUser/:username', component: EditUserComponent },
-      { path: 'addProject', component: AddProjectComponent },
+      // { path: 'addProject', component: AddProjectComponent },
       { path: 'listProject', component: ListProjectComponent },
       { path: 'editProject', component: EditProjectComponent },
       { path: 'addSkill', component: AddSkillComponent },

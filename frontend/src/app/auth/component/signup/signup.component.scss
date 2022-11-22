@@ -9,8 +9,8 @@
 
 .login-form {
   width: 600px;
-  margin: 1.5rem auto 1rem ;
-  padding: 1.5rem 2rem; 
+  margin: 1rem auto 0;
+  padding: 2rem; 
 }
 
 .form-inputs {
@@ -19,15 +19,19 @@
 
   mat-form-field {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
   }
+}
+
+.mat-mdc-form-field-infix {
+  min-height: 1rem;
+  padding: 0;
 }
 
 .fields-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-
 }
 
 .file-input {
@@ -46,13 +50,21 @@ input[type="file"] {
 }
 
 .btn-group {
-  position: absolute;
-  right: 2rem;
-  bottom: .25rem;
+  // position: relative;
+  // right: 2rem;
+  // bottom: .55rem;
+  gap: 1rem;
+  .btn-primary {
+    margin-left: auto;
+  }
 }
 
 .btn-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
+}
+
+mat-divider {
+  margin-top: 1rem;
 }

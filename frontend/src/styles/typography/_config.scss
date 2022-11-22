@@ -9,4 +9,6 @@ $angular-theme-app-typography: mat.define-typography-config(
   $headline-4: mat.define-typography-level(34px, $font-family: $heading-font-family),
   $headline-5: mat.define-typography-level(24px, $font-family: $heading-font-family),
   $headline-6: mat.define-typography-level(20px, $font-family: $heading-font-family),
+  $button: mat.define-typography-level(14px, $font-family: $heading-font-family),
+  $body-1: mat.define-typography-level(14px, $font-family: $heading-font-family),
 );

@@ -15,7 +15,16 @@ export class HeaderComponent implements OnInit {
   isLogin: Observable<boolean> | undefined;
   isAdmin: Observable<boolean> | undefined;
 
-  constructor(private auth: AuthService, private router: Router, private styleManager: StyleManagerService) { }
+  dialogConfig = {
+    width: '50rem',
+    data: {},
+  };
+
+  constructor(
+    private auth: AuthService, 
+    private router: Router, 
+    private styleManager: StyleManagerService,
+  ) { }
 
   ngOnInit(): void {
     this.isLogin = this.auth.isLoggedIn;
@@ -23,7 +32,7 @@ export class HeaderComponent implements OnInit {
   }
 
   login() {
-    this.router.navigate(['login']);
+    this.router.navigate(['/auth']);
   }
 
   logout() {

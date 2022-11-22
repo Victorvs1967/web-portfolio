@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Project } from 'src/app/model/project.model';
 import { Skill } from 'src/app/model/skill.model';
@@ -29,7 +30,14 @@ export class AddProjectComponent implements OnInit {
   currentFile?: File;
   createForm?: UntypedFormGroup;
 
-  constructor(private formBuilder: UntypedFormBuilder, private router: Router, private admin: AdminService, private images: ImageService) { 
+  constructor(
+    private formBuilder: UntypedFormBuilder, 
+    private router: Router, 
+    private admin: AdminService, 
+    private images: ImageService,
+    public dialogRef: MatDialogRef<AddProjectComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Project,
+  ) { 
     this.admin.getSkillList().subscribe(data => 
       data.forEach(item => 
         this.skillsView?.push({ value: item, viewValue: item.name })));
@@ -52,14 +60,12 @@ export class AddProjectComponent implements OnInit {
     this.project.links = this.createForm?.value.links.split(',').map((link: string) => link.trim());
     this.project.image = this.image;
 
-    this.admin.addProject(this.project).subscribe({
-      next: () => {
-        this.createForm?.reset();
-        this.router.navigate(['/admin/listProject']);
-      },
-      error: err => alert(err.message)
-    });
+    this.dialogRef.close(this.project);
   }  
+
+  close() {
+    this.dialogRef.close();
+  }
 
   selectFile(event: any) {
     this.currentFile = event.target.files[0];

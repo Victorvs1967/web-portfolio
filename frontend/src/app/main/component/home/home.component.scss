@@ -1,7 +1,7 @@
 // Header content
 .header-content {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 45% 55%;
   height: 100%;
 
   .left-header {
@@ -38,7 +38,7 @@
     padding-right: 12rem;
 
     .name {
-      font-size: 3rem;
+      font-size: 4.8rem;
       line-height: 1;
 
       span {
@@ -48,7 +48,8 @@
 
     p {
       margin: 1.5rem 0;
-      line-height: 2rem;
+      font-size: 1.6rem;
+      line-height: 1.7;
     }
   }
 }

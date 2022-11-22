@@ -13,6 +13,7 @@ import { JwtService } from './service/jwt.service';
 import { AlertComponent } from './component/alert/alert.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { NgChartsModule } from 'ng2-charts';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,8 +27,9 @@ import { NgChartsModule } from 'ng2-charts';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MaterialUiModule,
+    ReactiveFormsModule,
     HttpClientModule,
+    MaterialUiModule,
     NgChartsModule,
   ],
   providers: [

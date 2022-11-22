@@ -10,7 +10,8 @@
     <button mat-menu-item (click)="toggleDarkTheme()">
       <mat-icon>{{ isDark ? 'light_mode' : 'dark_mode' }}</mat-icon>
       <span>Theme</span>
-    </button>    <button mat-menu-item routerLink="/auth/login" [disabled]="isLogin | async">
+    </button>
+    <button mat-menu-item (click)="login()" [disabled]="isLogin | async">
       <mat-icon>login</mat-icon>
       <span>Login</span>
     </button>
@@ -18,5 +19,5 @@
       <mat-icon>logout</mat-icon>
       <span>Logout</span>
     </button>
- </mat-menu>
+  </mat-menu>
 </mat-toolbar>

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { User } from 'src/app/model/user.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { ImageService } from 'src/app/service/image.service';
 
@@ -21,7 +23,14 @@ export class SignupComponent implements OnInit {
   currentPhoto?: File;
   currentAvatar?: File;
 
-  constructor(private formBuilder: UntypedFormBuilder, private router: Router, private auth: AuthService, private image: ImageService) { }
+  constructor(
+    private formBuilder: UntypedFormBuilder, 
+    private router: Router, 
+    private auth: AuthService, 
+    private image: ImageService,
+    public dialogRef: MatDialogRef<SignupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: User,
+  ) { }
 
   ngOnInit(): void {
     this.isLogin = this.auth.isLoggedIn;
@@ -42,13 +51,18 @@ export class SignupComponent implements OnInit {
   }
 
   submitSignup() {
-    this.auth.signup(this.signupForm?.value).subscribe({
-      next: () => {
-        this.signupForm?.reset();
-        this.isAdmin ? this.router.navigate(['/admin']) : this.router.navigate(['/home']);
-      },
-      error: err => alert(err.message)
-    });
+    // this.auth.signup(this.signupForm?.value).subscribe({
+    //   next: () => {
+    //     this.signupForm?.reset();
+    //     this.isAdmin ? this.router.navigate(['/admin']) : this.router.navigate(['/home']);
+    //   },
+    //   error: err => alert(err.message)
+    // });
+    this.dialogRef.close(this.signupForm?.value);
+  }
+
+  close(): void {
+    this.dialogRef.close();
   }
 
   selectPhoto(event: any) {

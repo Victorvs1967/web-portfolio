@@ -18,8 +18,11 @@ export class HeaderComponent implements OnInit {
   isAdmin: Observable<boolean> | undefined;
 
   isUser: string | undefined;
-
-  constructor(private auth: AuthService, private router: Router, private styleManager: StyleManagerService) { }
+  constructor(
+    private auth: AuthService, 
+    private router: Router, 
+    private styleManager: StyleManagerService,
+  ) { }
 
   ngOnInit(): void {
     this.isLogin = this.auth.isLoggedIn;
