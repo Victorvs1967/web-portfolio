@@ -18,7 +18,8 @@
       <mat-icon>login</mat-icon>
       <span>Login</span>
     </button>
-    <button mat-menu-item routerLink="/alert" [disabled]="!(isLogin | async)">
+    <!-- <button mat-menu-item routerLink="/alert" [disabled]="!(isLogin | async)"> -->
+    <button mat-menu-item (click)="logout()" [disabled]="!(isLogin | async)">
       <mat-icon>logout</mat-icon>
       <span>Logout</span>
     </button>

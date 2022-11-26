@@ -8,7 +8,6 @@ import { GraphComponent } from './component/dashboard/component/graph/graph.comp
 import { ListUserComponent } from './component/dashboard/component/list-user/list-user.component';
 import { EditUserComponent } from './component/dashboard/component/edit-user/edit-user.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SignupComponent } from '../auth/component/signup/signup.component';
 import { ListProjectComponent } from './component/dashboard/component/list-project/list-project.component';
 import { AddProjectComponent } from './component/dashboard/component/add-project/add-project.component';
 import { ListSkillComponent } from './component/dashboard/component/list-skill/list-skill.component';
@@ -26,10 +25,8 @@ const routes: Routes = [
   { path: '', component: DashboardComponent, canDeactivate: [AuthGuard],
     children: [
       { path: '', component: GraphComponent },
-      // { path: 'addUser', component: SignupComponent },
       { path: 'listUser', component: ListUserComponent },
       { path: 'editUser/:username', component: EditUserComponent },
-      // { path: 'addProject', component: AddProjectComponent },
       { path: 'listProject', component: ListProjectComponent },
       { path: 'editProject', component: EditProjectComponent },
       { path: 'addSkill', component: AddSkillComponent },

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 
@@ -11,7 +12,15 @@ export class AlertComponent implements OnInit {
 
   isAdmin: Observable<boolean> | undefined;
 
-  constructor(private auth: AuthService) { }
+  dialogConfig: MatDialogConfig = {
+    width: '50rem',
+    data: {},
+  };
+  
+  constructor(
+    private auth: AuthService,
+    public dialogRef: MatDialogRef<AlertComponent>,
+  ) { }
 
   ngOnInit(): void {
     this.isAdmin = this.auth.isAdmin;

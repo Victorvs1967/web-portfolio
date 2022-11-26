@@ -3,7 +3,7 @@
   <app-header (taggledEvent)="drawer.toggle()"></app-header>
   <mat-drawer #drawer class="sidenav" mode="side" opened>
     <mat-nav-list role="list">
-      <mat-list-item class="nav-link" role="listitem" routerLink="/admin"><mat-icon>home</mat-icon>&nbsp;&nbsp;Home</mat-list-item>
+      <mat-list-item class="nav-link" role="listitem" routerLink="/admin"><mat-icon>home</mat-icon><span>&nbsp;&nbsp;Home</span></mat-list-item>
       <mat-list-item mat-icon-button class="nav-link" role="listitem" [matMenuTriggerFor]="userMenu" aria-label="icon-button with a menu">
         <mat-icon>person</mat-icon>&nbsp;&nbsp;User
       </mat-list-item>
