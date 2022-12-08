@@ -36,9 +36,7 @@ export class DashboardComponent implements OnInit {
     const url = this.router.url;
     const sameUrlStrategy = this.router.onSameUrlNavigation;
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-
     await this.router.navigateByUrl(url);
-
     this.router.routeReuseStrategy.shouldReuseRoute = (future, curr) => future.routeConfig === curr.routeConfig;
     this.router.onSameUrlNavigation = sameUrlStrategy;
   }
@@ -48,9 +46,11 @@ export class DashboardComponent implements OnInit {
       .afterClosed().subscribe(data => {
         this.auth.signup(data).subscribe({
           next: () => {
-            this._reloadCurrentRoute();
-            this.router.onSameUrlNavigation = 'reload';
-            this.router.navigate(['/admin/listUser']);
+            this._reloadCurrentRoute()
+              .then(() => {
+                this.router.onSameUrlNavigation = 'reload';
+                this.router.navigate(['/admin/listUser']);
+              });
           },
           error: err => alert(err.message)
         });
@@ -62,9 +62,11 @@ export class DashboardComponent implements OnInit {
       .afterClosed().subscribe(data => {
         this.admin.addProject(data).subscribe({
           next: () => {
-            this._reloadCurrentRoute();
-            this.router.onSameUrlNavigation = 'reload';
-            this.router.navigate(['/admin/listProject']);
+            this._reloadCurrentRoute()
+              .then(() => {
+                this.router.onSameUrlNavigation = 'reload';
+                this.router.navigate(['/admin/listProject']);
+              });
           },
           error: err => alert(err.message)
         });

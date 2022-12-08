@@ -8,11 +8,11 @@ import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: 'alert', component: AlertComponent },
+  { path: "main", loadChildren: () => import('./main/main.module').then(m => m.HomeModule) },
+  { path: "auth", loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: "admin", canActivate: [AuthGuard], canActivateChild: [AdminGuard], loadChildren: () => import('./dasboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'home', component: HomeComponent, canDeactivate: [AuthGuard] },
-  { path: "auth", loadChildren: () => import('./auth/auth.module').then(M => M.AuthModule) },
-  { path: "main", loadChildren: () => import('./main/main.module').then(M => M.HomeModule) },
-  { path: "admin", canActivate: [AuthGuard], canActivateChild: [AdminGuard], loadChildren: () => import('./dasboard/dashboard.module').then(M => M.DashboardModule) },
+  { path: 'alert', component: AlertComponent },
   { path: '**', component: NotFoundComponent },
 ];
 

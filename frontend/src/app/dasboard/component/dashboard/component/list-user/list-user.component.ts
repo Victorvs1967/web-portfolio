@@ -34,7 +34,7 @@ export class ListUserComponent {
   }
 
   reloadData() {
-    this.admin.getUserList().subscribe(data => this.dataSource = new UsersDataSource([...data]));
+    this.admin.getUserList().subscribe(data => this.dataSource = new UsersDataSource([ ...data ]));
   }
 
   readImg(id: string): void {
