@@ -2,6 +2,13 @@
   height: 100vh;
 }
 
+.mat-drawer-content {
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+}
+
+
 .sidenav-content {
   margin: 1rem;
 }
