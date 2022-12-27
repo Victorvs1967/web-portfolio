@@ -52,13 +52,14 @@ export class LoginComponent implements OnInit {
 
   signup() {
     this.dialog.open(SignupComponent, this.dialogConfig)
-      .afterClosed().subscribe(data => {
-        this.auth.signup(data).subscribe({
-            next: () => {
-              this.isAdmin ? this.router.navigate(['/admin']) : this.router.navigate(['/home']);
-            },
-            error: err => alert(err.message)
-          });
-      });
+      .afterClosed()
+      .subscribe(
+        data => {
+          this.auth.signup(data).subscribe({
+              next: () => this.isAdmin ? this.router.navigate(['/admin']) : this.router.navigate(['/home']),
+              error: err => alert(err.message)
+            });
+        }
+      );
   }
 }

@@ -38,9 +38,11 @@ export class AddProjectComponent implements OnInit {
     public dialogRef: MatDialogRef<AddProjectComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Project,
   ) { 
-    this.admin.getSkillList().subscribe(data => 
-      data.forEach(item => 
-        this.skillsView?.push({ value: item, viewValue: item.name })));
+    this.admin.getSkillList().subscribe(
+      data => data.forEach(
+        item => this.skillsView?.push({ value: item, viewValue: item.name })
+      )
+    );
   }
 
   ngOnInit(): void {
@@ -74,6 +76,8 @@ export class AddProjectComponent implements OnInit {
 
   upload(event: any) {
     event.preventDefault();
-    if (this.currentFile) this.images.upload(this.currentFile).subscribe(response => this.image.id = response.id);
+    if (this.currentFile) this.images.upload(this.currentFile).subscribe(
+      response => this.image.id = response.id
+    );
   }
 }

@@ -51,13 +51,6 @@ export class SignupComponent implements OnInit {
   }
 
   submitSignup() {
-    // this.auth.signup(this.signupForm?.value).subscribe({
-    //   next: () => {
-    //     this.signupForm?.reset();
-    //     this.isAdmin ? this.router.navigate(['/admin']) : this.router.navigate(['/home']);
-    //   },
-    //   error: err => alert(err.message)
-    // });
     this.dialogRef.close(this.signupForm?.value);
   }
 

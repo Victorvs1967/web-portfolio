@@ -59,18 +59,22 @@ export class DashboardComponent implements OnInit {
 
   addProject() {
     this.dialog.open(AddProjectComponent, this.dialogConfig)
-      .afterClosed().subscribe(data => {
-        this.admin.addProject(data).subscribe({
-          next: () => {
-            this._reloadCurrentRoute()
-              .then(() => {
-                this.router.onSameUrlNavigation = 'reload';
-                this.router.navigate(['/admin/listProject']);
-              });
-          },
-          error: err => alert(err.message)
-        });
-      });
+      .afterClosed()
+      .subscribe(
+        data => {
+          this.admin.addProject(data).subscribe({
+            next: () => {
+              this._reloadCurrentRoute()
+                .then(
+                  () => {
+                    this.router.onSameUrlNavigation = 'reload';
+                    this.router.navigate(['/admin/listProject']);
+                  }
+                );
+            }, error: err => alert(err.message)
+          });
+        }
+      );
   }
 
 }
