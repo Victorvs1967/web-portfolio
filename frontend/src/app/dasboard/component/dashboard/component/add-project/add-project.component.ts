@@ -1,10 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { Project } from 'src/app/model/project.model';
 import { Skill } from 'src/app/model/skill.model';
-// import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { ImageService } from 'src/app/service/image.service';
 
@@ -32,7 +30,6 @@ export class AddProjectComponent implements OnInit {
 
   constructor(
     private formBuilder: UntypedFormBuilder, 
-    private router: Router, 
     private admin: AdminService, 
     private images: ImageService,
     public dialogRef: MatDialogRef<AddProjectComponent>,

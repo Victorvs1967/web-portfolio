@@ -11,17 +11,16 @@ import { ControlsComponent } from './component/controls/controls.component';
 import { MainComponent } from './main.component';
 
 const routes: Routes = [
-  {
-    path: '', component: MainComponent,
-    children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', component: HomeComponent },
-      { path: 'about', component: AboutComponent },
-      { path: 'portfolio', component: PortfolioComponent },
-      { path: 'blogs', component: BlogsComponent },
-      { path: 'contacts', component: ContactsComponent },
+  { path: '', component: MainComponent,
+  children: [
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: 'home', component: HomeComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'portfolio', component: PortfolioComponent },
+    { path: 'blogs', component: BlogsComponent },
+    { path: 'contacts', component: ContactsComponent },
     ],
-  }
+  },
 ];
 
 @NgModule({

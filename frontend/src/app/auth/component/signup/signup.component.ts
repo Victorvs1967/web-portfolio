@@ -25,7 +25,6 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private formBuilder: UntypedFormBuilder, 
-    private router: Router, 
     private auth: AuthService, 
     private image: ImageService,
     public dialogRef: MatDialogRef<SignupComponent>,

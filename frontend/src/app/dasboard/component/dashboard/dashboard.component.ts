@@ -6,6 +6,9 @@ import { SignupComponent } from 'src/app/auth/component/signup/signup.component'
 import { AdminService } from 'src/app/service/admin.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { AddProjectComponent } from './component/add-project/add-project.component';
+import { AddSkillComponent } from './component/add-skill/add-skill.component';
+import { AddImageComponent } from './component/add-image/add-image.component';
+import { ImageService } from 'src/app/service/image.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -24,6 +27,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private auth: AuthService,
     private admin: AdminService,
+    private images: ImageService,
     private router: Router,
     public dialog: MatDialog,
   ) { }
@@ -43,18 +47,23 @@ export class DashboardComponent implements OnInit {
 
   addUser() {
     this.dialog.open(SignupComponent, this.dialogConfig)
-      .afterClosed().subscribe(data => {
-        this.auth.signup(data).subscribe({
-          next: () => {
-            this._reloadCurrentRoute()
-              .then(() => {
-                this.router.onSameUrlNavigation = 'reload';
-                this.router.navigate(['/admin/listUser']);
-              });
-          },
-          error: err => alert(err.message)
-        });
-      });
+      .afterClosed()
+      .subscribe(data => {
+        if (data) {
+          this.auth.signup(data).subscribe({
+            next: () => {
+              this._reloadCurrentRoute()
+                .then(() => {
+                  this.router.onSameUrlNavigation = 'reload';
+                  this.router.navigate(['/admin/listUser']);
+                }
+              );
+            },
+            error: err => alert(err.message)
+          });
+        }
+      }
+    );
   }
 
   addProject() {
@@ -71,10 +80,45 @@ export class DashboardComponent implements OnInit {
                     this.router.navigate(['/admin/listProject']);
                   }
                 );
-            }, error: err => alert(err.message)
+            },
+            error: err => alert(err.message)
           });
         }
       );
+  }
+
+  addSkill() {
+    this.dialog.open(AddSkillComponent, this.dialogConfig)
+      .afterClosed().subscribe(data => {
+        this.admin.addSkill(data).subscribe({
+          next: () => {
+            this._reloadCurrentRoute()
+              .then(() => {
+                this.router.onSameUrlNavigation = 'reload';
+                this.router.navigate(['/admin/listSkill']);
+              }
+            );
+          },
+          error: err => alert(err.message)
+        });
+      });
+  }
+
+  addImage() {
+    this.dialog.open(AddImageComponent, this.dialogConfig)
+      .afterClosed().subscribe(data => {
+        this.images.upload(data).subscribe({
+          next: () => {
+            this._reloadCurrentRoute()
+              .then(() => {
+                this.router.onSameUrlNavigation = 'reload';
+                this.router.navigate(['/admin/listImage']);
+              }
+            );
+          },
+          error: err => alert(err.message)
+        });
+      });
   }
 
 }

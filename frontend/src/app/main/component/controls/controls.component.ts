@@ -10,7 +10,9 @@ export class ControlsComponent implements OnInit {
 
   isDark = this.styleManager.isDark;
 
-  constructor(private styleManager: StyleManagerService) {
+  constructor(
+    private styleManager: StyleManagerService,
+  ) {
   }
 
   ngOnInit(): void {
