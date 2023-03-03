@@ -52,3 +52,7 @@ tr.row:not(.expanded-row):active {
   align-items: center;
   justify-content: space-between;
 }
+
+mat-divider {
+  margin-top: 1rem;
+}

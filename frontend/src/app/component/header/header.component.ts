@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
@@ -10,6 +10,8 @@ import { StyleManagerService } from 'src/app/service/style-manager.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+
+  @Output() taggledEvent: any = new EventEmitter();
 
   isDark = this.styleManager.isDark;
   isLogin: Observable<boolean> | undefined;
@@ -42,5 +44,10 @@ export class HeaderComponent implements OnInit {
   toggleDarkTheme() {
     this.styleManager.toggleDarkTheme();
     this.isDark = !this.isDark;
+  }
+
+
+  taggledAction() {
+    this.taggledEvent.emit('');
   }
 }

@@ -17,6 +17,8 @@ export class HeaderComponent implements OnInit {
   isLogin: Observable<boolean> | undefined;
   isAdmin: Observable<boolean> | undefined;
 
+  file: string = '~src/assets/image/Cмирнов Виктор avatar.png';
+
   isUser: string | undefined;
   constructor(
     private auth: AuthService, 

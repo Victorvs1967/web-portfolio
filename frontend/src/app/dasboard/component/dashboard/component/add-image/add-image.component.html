@@ -1,31 +1,13 @@
-<!-- <div class="container">
-  <mat-card class="login-form">
-    <button mat-icon-button class="btn-close" routerLink="/admin">
-      <mat-icon>close</mat-icon>
-    </button>
-    <mat-card-title>Add Image</mat-card-title>
-    <mat-divider inset></mat-divider>
-    <p class="file-label">Image</p>
+  <h2 mat-dialog-title>Add Image</h2>
+  <button mat-icon-button class="btn-close" (click)="close()"><mat-icon>close</mat-icon></button>
+  <mat-divider></mat-divider>
+  <form class="image-form">
     <mat-form-field class="file-input">
       <input matInput style="display: none;">
       <input class="file-upload" type="file" (change)="selectFile($event)">
       <button mat-mini-fab color="primary" [disabled]="!currentFile" (click)="upload($event)">
         <mat-icon>upload</mat-icon>
       </button>
-      <mat-hint *ngIf="image">Uploaded image ID: {{ image.id || 'No upload yet.' }}</mat-hint>
+      <mat-hint *ngIf="data">Uploaded image ID: {{ data.id || 'No upload yet.' }}</mat-hint>
     </mat-form-field>
-  </mat-card>
-</div> -->
-  <h2 mat-dialog-title>Add Image</h2>
-  <button mat-icon-button class="btn-close" (click)="close()"><mat-icon>close</mat-icon></button>
-  <mat-divider></mat-divider>
-  <p class="file-label">Image</p>
-  <mat-form-field class="file-input">
-    <input matInput style="display: none;">
-    <input class="file-upload" type="file" (change)="selectFile($event)">
-    <button mat-mini-fab color="primary" [disabled]="!currentFile" (click)="upload($event)">
-      <mat-icon>upload</mat-icon>
-    </button>
-    <!-- <mat-hint *ngIf="image">Uploaded image ID: {{ image.id || 'No upload yet.' }}</mat-hint> -->
-    <mat-hint *ngIf="data">Uploaded image ID: {{ data.id || 'No upload yet.' }}</mat-hint>
-  </mat-form-field>
+  </form>

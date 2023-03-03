@@ -89,7 +89,8 @@ export class DashboardComponent implements OnInit {
 
   addSkill() {
     this.dialog.open(AddSkillComponent, this.dialogConfig)
-      .afterClosed().subscribe(data => {
+      .afterClosed()
+      .subscribe(data => {
         this.admin.addSkill(data).subscribe({
           next: () => {
             this._reloadCurrentRoute()
@@ -101,12 +102,14 @@ export class DashboardComponent implements OnInit {
           },
           error: err => alert(err.message)
         });
-      });
+      }
+    );
   }
 
   addImage() {
     this.dialog.open(AddImageComponent, this.dialogConfig)
-      .afterClosed().subscribe(data => {
+      .afterClosed()
+      .subscribe(data => {
         this.images.upload(data).subscribe({
           next: () => {
             this._reloadCurrentRoute()
@@ -118,7 +121,8 @@ export class DashboardComponent implements OnInit {
           },
           error: err => alert(err.message)
         });
-      });
+      }
+    );
   }
 
 }

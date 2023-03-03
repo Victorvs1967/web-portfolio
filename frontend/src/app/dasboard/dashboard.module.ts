@@ -63,6 +63,7 @@ const routes: Routes = [
     MaterialUiModule,
     ReactiveFormsModule,
     NgChartsModule,
-  ]
+  ],
+  providers: [ DashboardComponent ],
 })
 export class DashboardModule { }
