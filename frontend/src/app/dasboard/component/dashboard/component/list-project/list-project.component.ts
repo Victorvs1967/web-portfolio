@@ -1,8 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProjectsDataSource } from 'src/app/data/projects-data-source';
 import { Project } from 'src/app/model/project.model';
-import { ProjectsDataSource } from 'src/app/model/projects-data-source';
 import { AdminService } from 'src/app/service/admin.service';
 import { ImageService } from 'src/app/service/image.service';
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { UsersDataSource } from 'src/app/model/users-data-source';
+import { UsersDataSource } from 'src/app/data/users-data-source';
 import { AdminService } from 'src/app/service/admin.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { User } from 'src/app/model/user.model';

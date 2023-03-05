@@ -1,6 +1,6 @@
 import { DataSource } from "@angular/cdk/collections";
 import { BehaviorSubject, Observable } from "rxjs";
-import { Project } from "./project.model";
+import { User } from "../model/user.model";
 
 /**
  * Data source to provide what data should be rendered in the table. Note that the data source
@@ -9,18 +9,18 @@ import { Project } from "./project.model";
  * the underlying data. Instead, it only needs to take the data and send the table exactly what
  * should be rendered.
  */
-export class ProjectsDataSource extends DataSource<Project> {
-
-  constructor(data: Project[]) {
+export class UsersDataSource extends DataSource<User> {
+  
+  constructor(data: User[]) {
     super();
-    this.data = new BehaviorSubject<Project[]>(data);
+    this.data = new BehaviorSubject<User[]>(data);
   }
-
+  
   /** Stream of data that is provided to the table. */
-  data: BehaviorSubject<Project[]>;
+  data: BehaviorSubject<User[]>;
 
   /** Connect function called by the table to retrieve one stream containing the data to render. */
-  connect(): Observable<Project[]> {
+  connect(): Observable<User[]> {
     return this.data;
   }
 

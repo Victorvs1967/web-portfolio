@@ -1,8 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SkillsDataSource } from 'src/app/data/skills-data-source';
 import { Skill } from 'src/app/model/skill.model';
-import { SkillsDataSource } from 'src/app/model/skills-data-source';
 import { AdminService } from 'src/app/service/admin.service';
 
 @Component({

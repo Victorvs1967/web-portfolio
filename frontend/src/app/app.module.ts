@@ -13,6 +13,7 @@ import { JwtService } from './service/jwt.service';
 import { AlertComponent } from './component/alert/alert.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,10 @@ import { ReactiveFormsModule } from '@angular/forms';
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
     JwtService,
+    {
+      provide: LocationStrategy,
+      useClass: PathLocationStrategy,
+    },
   ],
   bootstrap: [AppComponent]
 })
