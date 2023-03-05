@@ -1,21 +1,16 @@
 package com.vvs.webfluxadminapp.service;
 
-import java.time.Instant;
-import java.util.Date;
-
 import com.vvs.webfluxadminapp.dto.ResponseDto;
 import com.vvs.webfluxadminapp.dto.UserDto;
 import com.vvs.webfluxadminapp.error.exception.EmailAlreadyExistException;
 import com.vvs.webfluxadminapp.error.exception.UserAlreadyExistException;
 import com.vvs.webfluxadminapp.mapper.AppMapper;
 import com.vvs.webfluxadminapp.model.User;
-import com.vvs.webfluxadminapp.model.UserRole;
 import com.vvs.webfluxadminapp.repository.UserRepository;
 import com.vvs.webfluxadminapp.security.JwtUtil;
 
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -25,13 +20,6 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
-  @Value("${app.admin.username}")
-  private String username;
-  @Value("${app.admin.password}")
-  private String password;
-  @Value("${app.admin.email}")
-  private String email;
-
   private final PasswordEncoder passwordEncoder;
   private final UserRepository userRepository;
   private final JwtUtil jwtUtil;
@@ -39,7 +27,6 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   public Mono<UserDto> signUp(UserDto userDto) {
-    createAdmin();
     
     return isUserExist(userDto.getUsername())
       .filter(userExist -> !userExist)
@@ -76,19 +63,4 @@ public class AuthServiceImpl implements AuthService {
       .switchIfEmpty(Mono.just(false));
   }
 
-  private void createAdmin() {
-    User user = User.builder()
-      .username(username)
-      .password(passwordEncoder.encode(password))
-      .email(email)
-      .onCreate(Date.from(Instant.now()))
-      .role(UserRole.ADMIN)
-      .build();
-
-    userRepository.findAll()
-      .map(users -> users)
-      .switchIfEmpty(userRepository.save(user))
-      .subscribe();
-  }
-  
 }
