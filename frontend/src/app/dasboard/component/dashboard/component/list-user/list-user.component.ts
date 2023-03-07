@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { UsersDataSource } from 'src/app/data/users-data-source';
 import { AdminService } from 'src/app/service/admin.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { User } from 'src/app/model/user.model';
 import { ImageService } from 'src/app/service/image.service';
+import { AnyDataSource } from 'src/app/data/data-source';
 
 @Component({
   selector: 'app-list-user',
@@ -34,7 +34,7 @@ export class ListUserComponent {
   }
 
   reloadData() {
-    this.admin.getUserList().subscribe(data => this.dataSource = new UsersDataSource([ ...data ]));
+    this.admin.getUserList().subscribe(data => this.dataSource = new AnyDataSource([ ...data ]));
   }
 
   readImg(id: string): void {

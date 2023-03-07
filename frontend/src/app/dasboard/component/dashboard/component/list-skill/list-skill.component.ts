@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { SkillsDataSource } from 'src/app/data/skills-data-source';
+import { AnyDataSource } from 'src/app/data/data-source';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
 
@@ -38,7 +38,7 @@ export class ListSkillComponent {
   }
 
   reloadData() {
-    this.admin.getSkillList().subscribe(data => this.dataSource = new SkillsDataSource([...data]));
+    this.admin.getSkillList().subscribe(data => this.dataSource = new AnyDataSource([...data]));
   }
 
 }
