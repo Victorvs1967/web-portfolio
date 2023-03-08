@@ -15,7 +15,7 @@ export class AddImageComponent implements OnInit {
   imageForm?: UntypedFormGroup;
 
   constructor(
-    private formBuilder: UntypedFormBuilder, 
+    private formBuilder: UntypedFormBuilder,
     private images: ImageService,
     public dialogRef: MatDialogRef<AddImageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Image,

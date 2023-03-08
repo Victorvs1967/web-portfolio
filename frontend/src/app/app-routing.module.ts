@@ -7,9 +7,9 @@ import { AdminGuard } from './guard/admin.guard';
 import { AuthGuard } from './guard/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'main', pathMatch: 'full' },
-  { path: "main", loadChildren: () => import('./main/main.module').then(m => m.HomeModule) },
-  { path: "auth", loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: '', redirectTo: '', pathMatch: 'full' },
+  { path: '', loadChildren: () => import('./main/main.module').then(m => m.HomeModule) },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
   { path: "admin", canActivate: [AuthGuard], canActivateChild: [AdminGuard], loadChildren: () => import('./dasboard/dashboard.module').then(m => m.DashboardModule) },
   { path: 'home', component: HomeComponent, canDeactivate: [AuthGuard] },
   { path: 'alert', component: AlertComponent },

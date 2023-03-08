@@ -8,13 +8,13 @@
     <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="submitProject()" enctype="multipart/form-data">
 
       <mat-card-content class="form-inputs">
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Project name</mat-label>
           <input matInput placeholder="Enter project name..." type="text" formControlName="name" required>
           <mat-hint>project name</mat-hint>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Description</mat-label>
           <input matInput placeholder="Enter description..." type="text" formControlName="description" required>
           <mat-hint>description</mat-hint>
@@ -30,7 +30,7 @@
           <mat-hint>Uploaded image ID: {{ image.id || 'No upload yet.' }}</mat-hint>
         </mat-form-field> -->
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Skills</mat-label>
           <mat-select formControlName="skills">
             <mat-option *ngFor="let skill of skillsView" [value]="skill">
@@ -40,7 +40,7 @@
           <mat-hint>skills</mat-hint>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field appearance="outline">
           <mat-label>Links</mat-label>
           <input matInput placeholder="Enter links..." type="text" formControlName="links">
           <mat-hint>links</mat-hint>

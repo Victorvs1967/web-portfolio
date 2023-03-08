@@ -27,8 +27,8 @@ export class LoginComponent implements OnInit {
     public dialog: MatDialog,
     public dialogRef: MatDialogRef<LoginComponent>,
     @Inject(MAT_DIALOG_DATA) public data: LoginData,
-    private formBuilder: UntypedFormBuilder, 
-    private router: Router, 
+    private formBuilder: UntypedFormBuilder,
+    private router: Router,
     private auth: AuthService,
   ) { }
 
@@ -44,10 +44,6 @@ export class LoginComponent implements OnInit {
 
   submitLogin() {
     this.dialogRef.close(this.loginForm?.value);
-  }
-
-  close(): void {
-    this.dialogRef.close();
   }
 
   signup() {

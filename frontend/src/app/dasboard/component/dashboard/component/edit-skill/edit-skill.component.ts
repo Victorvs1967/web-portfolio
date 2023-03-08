@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
@@ -20,14 +21,21 @@ export class EditSkillComponent implements OnInit {
 
   editForm?: UntypedFormGroup;
 
-  constructor(private formBuilder: UntypedFormBuilder, private router: Router, private admin: AdminService, private route: ActivatedRoute) { }
+  constructor(
+    private formBuilder: UntypedFormBuilder,
+    public dialogRef: MatDialogRef<EditSkillComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Skill,
+    private router: Router,
+    private admin: AdminService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(param => {
       this.skill = {
-        id: param['id'], 
-        name: param['name'], 
-        description: param['description'], 
+        id: param['id'],
+        name: param['name'],
+        description: param['description'],
         percent: parseInt(param['percent'])
       };
       this.editForm = this.formBuilder.group({
@@ -39,14 +47,24 @@ export class EditSkillComponent implements OnInit {
     })
   }
 
+  // submitSkill() {
+  //   const skill: Skill = this.editForm?.value;
+  //   this.admin.editSkill(skill).subscribe({
+  //     next: () => {
+  //       this.editForm?.reset();
+  //       this.router.navigate(['/admin/listSkill']);
+  //     },
+  //     error: err => alert(err.message)
+  //   });
+  // }
+
   submitSkill() {
-    const skill: Skill = this.editForm?.value;
-    this.admin.editSkill(skill).subscribe({
-      next: () => {
-        this.editForm?.reset();
-        this.router.navigate(['/admin/listSkill']);
-      },
-      error: err => alert(err.message)
-    });
+    this.dialogRef.close(this.editForm?.value);
   }
+
+  close() {
+    this.dialogRef.close();
+  }
+
+
 }

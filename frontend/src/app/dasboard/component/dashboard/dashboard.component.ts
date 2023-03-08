@@ -109,20 +109,19 @@ export class DashboardComponent implements OnInit {
   addImage() {
     this.dialog.open(AddImageComponent, this.dialogConfig)
       .afterClosed()
-      .subscribe(data => {
-        this.images.upload(data).subscribe({
-          next: () => {
-            this._reloadCurrentRoute()
-              .then(() => {
-                this.router.onSameUrlNavigation = 'reload';
-                this.router.navigate(['/admin/listImage']);
-              }
-            );
-          },
-          error: err => alert(err.message)
-        });
-      }
-    );
+      .subscribe(() => {
+        this.images.list().subscribe();
+        // .subscribe({
+        //   next: () => {
+        //     this._reloadCurrentRoute()
+        //       .then(() => {
+        //         this.router.onSameUrlNavigation = 'reload';
+        //         this.router.navigate(['/admin/listImage']);
+        //       });
+        //   },
+        //   error: err => alert(err.message)
+        // });
+      });
   }
 
 }

@@ -1,8 +1,10 @@
+import { LoginComponent } from './../../auth/component/login/login.component';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
+import { authModal } from 'src/app/auth/component/auth-dialog.decorator';
 
 @Component({
   selector: 'app-header',
@@ -23,8 +25,8 @@ export class HeaderComponent implements OnInit {
   };
 
   constructor(
-    private auth: AuthService, 
-    private router: Router, 
+    private auth: AuthService,
+    private router: Router,
     private styleManager: StyleManagerService,
   ) { }
 
@@ -33,8 +35,10 @@ export class HeaderComponent implements OnInit {
     this.isAdmin = this.auth.isAdmin;
   }
 
+  @authModal(LoginComponent)
   login() {
-    this.router.navigate(['/auth']);
+    this.router.navigate(['/admin']);
+    // this.router.navigate(['/auth']);
   }
 
   logout() {

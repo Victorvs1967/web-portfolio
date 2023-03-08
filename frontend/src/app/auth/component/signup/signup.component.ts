@@ -23,8 +23,8 @@ export class SignupComponent implements OnInit {
   currentAvatar?: File;
 
   constructor(
-    private formBuilder: UntypedFormBuilder, 
-    private auth: AuthService, 
+    private formBuilder: UntypedFormBuilder,
+    private auth: AuthService,
     private image: ImageService,
     public dialogRef: MatDialogRef<SignupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: User,
@@ -50,10 +50,6 @@ export class SignupComponent implements OnInit {
 
   submitSignup() {
     this.dialogRef.close(this.signupForm?.value);
-  }
-
-  close(): void {
-    this.dialogRef.close();
   }
 
   selectPhoto(event: any) {

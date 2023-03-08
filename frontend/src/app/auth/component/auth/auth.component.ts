@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoginComponent } from '../login/login.component';
 
@@ -11,8 +10,6 @@ import { LoginComponent } from '../login/login.component';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent implements OnInit {
-
-  isAdmin: Observable<boolean> | undefined;
 
   dialogConfig: MatDialogConfig = {
     width: '50rem',
@@ -28,8 +25,7 @@ export class AuthComponent implements OnInit {
   ngOnInit(): void {
     this.dialog.open(LoginComponent, this.dialogConfig)
       .afterClosed().subscribe(data => {
-        this.auth.login(data).subscribe(() => this.router.navigate(['/admin']));
+        this.auth.login(data).subscribe(() => this.router.navigate(['admin']));
       });
   }
-
 }
