@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { authModal } from 'src/app/auth/component/auth-dialog.decorator';
 import { AuthService } from 'src/app/service/auth.service';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
+import { alertModal } from 'src/app/component/alert/alert.decorator';
 
 @Component({
   selector: 'app-header',
@@ -38,6 +39,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['admin']);
   }
 
+  @alertModal()
   logout() {
     this.auth.logout();
     this.router.navigate(['home']);

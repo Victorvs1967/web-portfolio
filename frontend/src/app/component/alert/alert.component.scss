@@ -1,26 +1,17 @@
-.container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
 .alert {
-  width: 400px;
-  position: relative;
-  margin: 20% auto;
-
   .alert-link {
     text-decoration: none;
     color: #06357a;
     font-weight: 700;
   }
+  .alert-link:hover {
+    cursor: pointer;
+  }
 }
 
 .alert-heading {
+  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 0 1rem;
 
@@ -33,11 +24,15 @@
       vertical-align: middle;
     }
   }
+
+  button {
+    margin-left: auto;
+  }
 }
 
 .alert-message {
   padding: 1rem 1rem 0;
-  font-size: 1rem;
+  font-size: 1.4rem;
 
   mat-divider {
     margin-top: .5rem;

@@ -1,6 +1,5 @@
 import { adminModal } from './../admin-dialog.decorator';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SignupComponent } from 'src/app/auth/component/signup/signup.component';
@@ -20,7 +19,6 @@ export class DashboardComponent implements OnInit {
 
   constructor(
     private router: Router,
-    public dialog: MatDialog,
   ) { }
 
   ngOnInit(): void {
@@ -39,6 +37,7 @@ export class DashboardComponent implements OnInit {
   @authModal(SignupComponent)
   addUser() {
     this.router.navigate(['/admin/listUser']);
+
   }
 
   @adminModal(AddProjectComponent)

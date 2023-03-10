@@ -6,6 +6,8 @@ import { User } from 'src/app/model/user.model';
 import { ImageService } from 'src/app/service/image.service';
 import { AnyDataSource } from 'src/app/data/data-source';
 import { adminModal } from '../../../admin-dialog.decorator';
+import { alertModal } from 'src/app/component/alert/alert.decorator';
+import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 
 @Component({
   selector: 'app-list-user',
@@ -22,6 +24,11 @@ import { adminModal } from '../../../admin-dialog.decorator';
 export class ListUserComponent implements OnInit {
 
   static user: User;
+  static alert: AlertDialogData = {
+    title: "A you sure?",
+    subtitle: "You can't get access to this user again.",
+    message: "If you realy want to delete this user,",
+  };
 
   displayedColumns: string[] = [ 'username', 'email', 'firstName', 'lastName', 'onCreate', 'role' ];
   dataSource: any;
@@ -48,10 +55,10 @@ export class ListUserComponent implements OnInit {
     this.reloadData();
   }
 
-  deleteUser(username: string) {
-    if (confirm('Are you sure?')) {
-      this.admin.deleteUser(username).subscribe(() => this.reloadData());
-    }
+  @alertModal(ListUserComponent.alert)
+  deleteUser(user: User) {
+    this.admin.deleteUser(user.username).subscribe(() => this.reloadData());
+    this.admin._reloadCurrentRoute();
   }
 
   reloadData() {

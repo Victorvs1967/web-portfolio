@@ -6,6 +6,8 @@ import { Project } from 'src/app/model/project.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { ImageService } from 'src/app/service/image.service';
 import { adminModal } from '../../../admin-dialog.decorator';
+import { AlertDialogData } from 'src/app/model/alert-dialog.model';
+import { alertModal } from 'src/app/component/alert/alert.decorator';
 
 @Component({
   selector: 'app-list-project',
@@ -22,6 +24,11 @@ import { adminModal } from '../../../admin-dialog.decorator';
 export class ListProjectComponent implements OnInit {
 
   static project: Project;
+  static alert: AlertDialogData = {
+    title: "A you sure?",
+    subtitle: "You can't get access to this project again.",
+    message: "If you realy want to delete this project,",
+  };
 
   displayedColumns: string[] = [ "name", "image", "description", "skills", "links" ];
   dataSource: any;
@@ -50,10 +57,9 @@ export class ListProjectComponent implements OnInit {
     this.reloadData();
   }
 
+  @alertModal(ListProjectComponent.alert)
   deleteProject(id: string) {
-    if (confirm('Are you sure?')) {
       this.admin.deleteProject(id).subscribe(() => this.reloadData());
-    }
   }
 
   reloadData() {
