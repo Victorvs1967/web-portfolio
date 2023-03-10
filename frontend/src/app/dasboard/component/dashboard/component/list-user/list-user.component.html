@@ -46,7 +46,7 @@
             <mat-card-header class="detail-header">
               <mat-card-title class="element-username"> {{element.username}} </mat-card-title>
               <mat-card-actions class="btn-group">
-                <button mat-icon-button color="primary" routerLink="/admin/editUser/{{element.username}}">
+                <button mat-icon-button color="primary" (click)="editUser(element)">
                   <mat-icon>edit</mat-icon>
                 </button>
                 <button mat-icon-button color="warn" (click)="deleteUser(element.username)">

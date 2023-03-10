@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Image } from 'src/app/model/image.model';
 import { ImageService } from 'src/app/service/image.service';
 
@@ -17,8 +18,8 @@ export class AddImageComponent implements OnInit {
   constructor(
     private formBuilder: UntypedFormBuilder,
     private images: ImageService,
-    public dialogRef: MatDialogRef<AddImageComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Image,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -34,10 +35,9 @@ export class AddImageComponent implements OnInit {
 
   upload(event: any) {
     event.preventDefault();
-    if (this.currentFile) this.images.upload(this.currentFile).subscribe(response => this.data.id = response.id);
-  }
-
-  close() {
-    this.dialogRef.close();
+    if (this.currentFile) this.images.upload(this.currentFile).subscribe(response => {
+      this.data.id = response.id;
+      this.router.navigate(['/admin/listImage']);
+    });
   }
 }

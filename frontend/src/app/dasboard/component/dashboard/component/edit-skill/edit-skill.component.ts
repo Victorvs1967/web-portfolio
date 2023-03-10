@@ -1,7 +1,6 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { ListSkillComponent } from './../list-skill/list-skill.component';
+import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
 
@@ -23,47 +22,21 @@ export class EditSkillComponent implements OnInit {
 
   constructor(
     private formBuilder: UntypedFormBuilder,
-    public dialogRef: MatDialogRef<EditSkillComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Skill,
-    private router: Router,
     private admin: AdminService,
-    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(param => {
-      this.skill = {
-        id: param['id'],
-        name: param['name'],
-        description: param['description'],
-        percent: parseInt(param['percent'])
-      };
-      this.editForm = this.formBuilder.group({
-        name: [this.skill.name, [Validators.required]],
-        description: [this.skill.description, [Validators.required]],
-        percent: this.skill.percent,
-        id: this.skill.id
-      });
-    })
+    this.skill = ListSkillComponent.skill;
+    this.editForm = this.formBuilder.group({
+      name: [this.skill.name, [Validators.required]],
+      description: [this.skill.description, [Validators.required]],
+      percent: this.skill.percent,
+      id: this.skill.id
+    });
   }
-
-  // submitSkill() {
-  //   const skill: Skill = this.editForm?.value;
-  //   this.admin.editSkill(skill).subscribe({
-  //     next: () => {
-  //       this.editForm?.reset();
-  //       this.router.navigate(['/admin/listSkill']);
-  //     },
-  //     error: err => alert(err.message)
-  //   });
-  // }
 
   submitSkill() {
-    this.dialogRef.close(this.editForm?.value);
-  }
-
-  close() {
-    this.dialogRef.close();
+    this.admin.editSkill(this.editForm?.value).subscribe();
   }
 
 

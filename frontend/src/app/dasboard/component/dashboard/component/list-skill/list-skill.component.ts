@@ -1,11 +1,10 @@
 import { EditSkillComponent } from './../edit-skill/edit-skill.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { AnyDataSource } from 'src/app/data/data-source';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
+import { adminModal } from '../../../admin-dialog.decorator';
 
 @Component({
   selector: 'app-list-skill',
@@ -21,41 +20,30 @@ import { AdminService } from 'src/app/service/admin.service';
 })
 export class ListSkillComponent implements OnInit {
 
+  static skill: Skill;
+  
   displayedColumns: string[] = [ "name", "description", "percent" ];
   dataSource: any;
   expandedElement: Skill | null | undefined;
 
-  dialogConfig: MatDialogConfig = {
-    width: '60%',
-    data: {},
-  };
-
   constructor(
     private admin: AdminService,
-    private router: Router,
-    public dialog: MatDialog,
   ) {
     this.reloadData();
   }
 
   ngOnInit(): void {
-    this._reloadCurrentRoute();
+    this.admin._reloadCurrentRoute();
   }
 
   editSkill(skill: Skill) {
-    // this.router.navigate(['/admin/editSkill', skill])
-    this.dialog.open(EditSkillComponent, this.dialogConfig)
-      .afterClosed()
-      .subscribe(data => {
-        this.admin.editSkill(skill).subscribe({
-          next: () => {
-            // this.editForm?.reset();
-            this.router.navigate(['/admin/listSkill']);
-          },
-          error: err => alert(err.message)
-        });
-      }
-    );
+    ListSkillComponent.skill = skill;
+    this.getSkill();
+  }
+
+  @adminModal(EditSkillComponent, ListSkillComponent.skill)
+  getSkill() {
+    this.reloadData();
   }
 
   deleteSkill(id: string) {
@@ -67,15 +55,5 @@ export class ListSkillComponent implements OnInit {
   reloadData() {
     this.admin.getSkillList().subscribe(data => this.dataSource = new AnyDataSource([...data]));
   }
-
-  private async _reloadCurrentRoute(): Promise<void> {
-    const url = this.router.url;
-    const sameUrlStrategy = this.router.onSameUrlNavigation;
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    await this.router.navigateByUrl(url);
-    this.router.routeReuseStrategy.shouldReuseRoute = (future, curr) => future.routeConfig === curr.routeConfig;
-    this.router.onSameUrlNavigation = sameUrlStrategy;
-  }
-
 
 }

@@ -1,13 +1,9 @@
-<div class="container">
-  <mat-card class="login-form">
-    <button mat-icon-button class="btn-close" routerLink="/admin">
-      <mat-icon>close</mat-icon>
-    </button>
-    <mat-card-title>Edit Project Data</mat-card-title>
-    <mat-divider inset></mat-divider>
-    <form *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="submitProject()" enctype="multipart/form-data">
+    <h2 mat-dialog-title>Edit Project</h2>
+    <button mat-icon-button class="btn-close" [mat-dialog-close]="false"><mat-icon>close</mat-icon></button>
+    <mat-divider></mat-divider>
+    <form mat-dialog-content *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="submitProject()" enctype="multipart/form-data">
 
-      <mat-card-content class="form-inputs">
+      <div class="form-inputs">
         <mat-form-field appearance="outline">
           <mat-label>Project name</mat-label>
           <input matInput placeholder="Enter project name..." type="text" formControlName="name" required>
@@ -45,12 +41,9 @@
           <input matInput placeholder="Enter links..." type="text" formControlName="links">
           <mat-hint>links</mat-hint>
         </mat-form-field>
+      </div>
 
-      </mat-card-content>
-      <mat-card-actions class="btn-group">
-        <button mat-stroked-button color="primary" type="submit" [disabled]="editForm.invalid">Submit</button>
+      <mat-card-actions class="btn-group" [align]="'end'">
+        <button mat-stroked-button color="primary" [mat-dialog-close]="true" type="submit" [disabled]="editForm.invalid">Submit</button>
       </mat-card-actions>
-
     </form>
-  </mat-card>
-</div>

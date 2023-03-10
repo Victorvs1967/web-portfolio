@@ -1,6 +1,6 @@
-import { Component, OnInit, Output } from '@angular/core';
+import { ListProjectComponent } from './../list-project/list-project.component';
+import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Project } from 'src/app/model/project.model';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
@@ -28,27 +28,25 @@ export class EditProjectComponent implements OnInit {
   currentFile?: File;
   editForm?: UntypedFormGroup;
 
-  constructor(private formBuilder: UntypedFormBuilder, private router: Router, private admin: AdminService, private images: ImageService, private route: ActivatedRoute) { 
-    this.admin.getSkillList().subscribe(data => 
-      data.forEach(item => 
-        this.skillsView?.push({ value: item, viewValue: item.name })));
+  constructor(
+    private formBuilder: UntypedFormBuilder,
+    private admin: AdminService,
+    private images: ImageService,
+  ) {
+    this.admin.getSkillList()
+      .subscribe(data => data.forEach(item => this.skillsView?.push({ value: item, viewValue: item.name })));
   }
 
   ngOnInit(): void {
-    this.route.params.subscribe(param => {
-      this.admin.getProject(param['id']).subscribe(project => {
-        this.project = project;
-        this.image = project.image;
-        this.skills = project.skills;
-        this.editForm = this.formBuilder.group({
-          name: [project.name, [Validators.required]],
-          description: [project.description, [Validators.required]],
-          image: [project.image],
-          links: [project.links.toString()],
-          skills: [project.skills],
-        });
-      })
-    })
+    this.project = ListProjectComponent.project;
+      this.editForm = this.formBuilder.group({
+      name: [this.project.name, [Validators.required]],
+      description: [this.project.description, [Validators.required]],
+      image: [this.project.image],
+      links: [this.project.links.toString()],
+      skills: [this.project.skills],
+      id: [this.project.id],
+    });
   }
 
   submitProject() {
@@ -57,13 +55,7 @@ export class EditProjectComponent implements OnInit {
     this.project.links = this.editForm?.value.links.split(',').map((link: string) => link.trim());
     this.project.image = this.editForm?.value.image || this.image;
     this.project.skills.push(this.editForm?.value.skills.value);
-    this.admin.editProject(this.project).subscribe({
-      next: () => {
-        this.editForm?.reset();
-        this.router.navigate(['/admin/listProject']);
-      },
-      error: err => alert(err.message)
-    });
+    this.admin.editProject(this.project).subscribe();
   }
 
   selectFile(event: any) {

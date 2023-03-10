@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>Add Skill</h2>
-<button mat-icon-button class="btn-close" (click)="close()"><mat-icon>close</mat-icon></button>
+<button mat-icon-button class="btn-close" [mat-dialog-close]="false"><mat-icon>close</mat-icon></button>
 <mat-divider></mat-divider>
 <form mat-dialog-content *ngIf="createForm" [formGroup]="createForm" (ngSubmit)="submitSkill()">
   <div class="form-inputs">
@@ -20,6 +20,6 @@
     </mat-form-field>
   </div>
   <div mat-dialog-actions class="btn-group">
-    <button mat-stroked-button class="btn-primary" color="primary" type="submit" [disabled]="createForm.invalid">Submit</button>
+    <button mat-stroked-button class="btn-primary" [mat-dialog-close]="true" color="primary" type="submit" [disabled]="createForm.invalid">Submit</button>
   </div>
 </form>

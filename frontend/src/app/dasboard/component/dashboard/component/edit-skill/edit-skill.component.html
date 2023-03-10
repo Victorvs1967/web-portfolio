@@ -1,5 +1,5 @@
 <h2 mat-dialog-title>Edit Skill</h2>
-<button mat-icon-button class="btn-close" (click)="close()"><mat-icon>close</mat-icon></button>
+<button mat-icon-button class="btn-close" [mat-dialog-close]="false"><mat-icon>close</mat-icon></button>
 <mat-divider></mat-divider>
 
 <form mat-dialog-content *ngIf="editForm" [formGroup]="editForm" (ngSubmit)="submitSkill()">
@@ -25,7 +25,7 @@
   </div>
 
   <div mat-dialog-actions class="btn-group" [align]="'end'">
-    <button mat-stroked-button color="primary" type="submit" [disabled]="editForm.invalid">Submit</button>
+    <button mat-stroked-button color="primary" type="submit" [mat-dialog-close]="true" [disabled]="editForm.invalid">Submit</button>
   </div>
 
 </form>

@@ -39,4 +39,4 @@ const routes: Routes = [
     MaterialUiModule,
   ]
 })
-export class HomeModule { }
+export class MainModule { }

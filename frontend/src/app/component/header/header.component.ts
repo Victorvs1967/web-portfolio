@@ -1,5 +1,6 @@
+import { DialogService } from './../../service/dialog.service';
 import { LoginComponent } from './../../auth/component/login/login.component';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
@@ -15,14 +16,11 @@ export class HeaderComponent implements OnInit {
 
   @Output() taggledEvent: any = new EventEmitter();
 
+  dialogService = inject(DialogService);
+
   isDark = this.styleManager.isDark;
   isLogin: Observable<boolean> | undefined;
   isAdmin: Observable<boolean> | undefined;
-
-  dialogConfig = {
-    width: '50rem',
-    data: {},
-  };
 
   constructor(
     private auth: AuthService,
@@ -38,7 +36,6 @@ export class HeaderComponent implements OnInit {
   @authModal(LoginComponent)
   login() {
     this.router.navigate(['/admin']);
-    // this.router.navigate(['/auth']);
   }
 
   logout() {

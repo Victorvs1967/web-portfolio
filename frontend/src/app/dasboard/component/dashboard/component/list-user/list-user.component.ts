@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { EditUserComponent } from './../edit-user/edit-user.component';
+import { Component, OnInit } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { User } from 'src/app/model/user.model';
 import { ImageService } from 'src/app/service/image.service';
 import { AnyDataSource } from 'src/app/data/data-source';
+import { adminModal } from '../../../admin-dialog.decorator';
 
 @Component({
   selector: 'app-list-user',
@@ -17,13 +19,32 @@ import { AnyDataSource } from 'src/app/data/data-source';
     ]),
   ],
 })
-export class ListUserComponent {
+export class ListUserComponent implements OnInit {
+
+  static user: User;
 
   displayedColumns: string[] = [ 'username', 'email', 'firstName', 'lastName', 'onCreate', 'role' ];
   dataSource: any;
   expandedElement: User | null | undefined;
 
-  constructor(private admin: AdminService, private image: ImageService) {
+  constructor(
+    private admin: AdminService,
+    private image: ImageService,
+  ) {
+    this.reloadData();
+  }
+
+  ngOnInit(): void {
+    this.admin._reloadCurrentRoute();
+  }
+
+  editUser(user: User) {
+    ListUserComponent.user = user;
+    this.getUser();
+  }
+
+  @adminModal(EditUserComponent, ListUserComponent.user)
+  getUser() {
     this.reloadData();
   }
 

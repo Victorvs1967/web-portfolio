@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Project } from 'src/app/model/project.model';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
@@ -29,12 +29,11 @@ export class AddProjectComponent implements OnInit {
   createForm?: UntypedFormGroup;
 
   constructor(
-    private formBuilder: UntypedFormBuilder, 
-    private admin: AdminService, 
+    private formBuilder: UntypedFormBuilder,
+    private admin: AdminService,
     private images: ImageService,
-    public dialogRef: MatDialogRef<AddProjectComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Project,
-  ) { 
+  ) {
     this.admin.getSkillList().subscribe(
       data => data.forEach(
         item => this.skillsView?.push({ value: item, viewValue: item.name })
@@ -59,11 +58,7 @@ export class AddProjectComponent implements OnInit {
     this.project.links = this.createForm?.value.links.split(',').map((link: string) => link.trim());
     this.project.image = this.image;
 
-    this.dialogRef.close(this.project);
-  }  
-
-  close() {
-    this.dialogRef.close();
+    this.admin.addProject(this.project).subscribe();
   }
 
   selectFile(event: any) {

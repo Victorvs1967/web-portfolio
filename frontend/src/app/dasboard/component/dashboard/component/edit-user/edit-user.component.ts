@@ -1,6 +1,6 @@
+import { ListUserComponent } from './../list-user/list-user.component';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Role } from 'src/app/model/role.model';
 import { UserRole } from 'src/app/model/user-role.model';
@@ -31,26 +31,24 @@ export class EditUserComponent implements OnInit {
   currentPhoto?: File;
   currentAvatar?: File;
 
-  constructor(private formBuilder: UntypedFormBuilder, private router: Router, private admin: AdminService, private image: ImageService, private route: ActivatedRoute) { }
+  constructor(
+    private formBuilder: UntypedFormBuilder,
+    private admin: AdminService,
+    private image: ImageService,
+  ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(param => {
-      this.admin.getUser(param['username']).subscribe(user => {
-        this.user = user;
-        this.photo = user.photo;
-        this.avatar = user.avatar;
-        this.editForm = this.formBuilder.group({
-          username: [user.username, [Validators.required]],
-          email: [user.email, [Validators.required, Validators.email]],
-          firstName: [user.firstName],
-          lastName: [user.lastName],
-          phone: [user.phone],
-          address: [user.address],
-          role: [user.role],
-          photo: this.photo,
-          avatar: this.avatar,
-        });
-      });
+    this.user = ListUserComponent.user;
+    this.editForm = this.formBuilder.group({
+      username: [this.user.username, [Validators.required]],
+      email: [this.user.email, [Validators.required, Validators.email]],
+      firstName: [this.user.firstName],
+      lastName: [this.user.lastName],
+      phone: [this.user.phone],
+      address: [this.user.address],
+      role: [this.user.role],
+      photo: this.photo,
+      avatar: this.avatar,
     });
   }
 
@@ -65,13 +63,7 @@ export class EditUserComponent implements OnInit {
       this.user.role = this.editForm?.value.role;
       this.user.photo = this.editForm?.value.photo || this.photo;
       this.user.avatar = this.editForm?.value.avatar || this.avatar;
-      this.admin.editUser(this.user).subscribe({
-        next: () => {
-          this.editForm?.reset();
-          this.router.navigate(['/admin/listUser']);
-        },
-        error: err => alert(err.message)
-      });
+      this.admin.editUser(this.user).subscribe();
     }
   }
 

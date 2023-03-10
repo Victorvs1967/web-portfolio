@@ -1,10 +1,11 @@
+import { EditProjectComponent } from './../edit-project/edit-project.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { AnyDataSource } from 'src/app/data/data-source';
 import { Project } from 'src/app/model/project.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { ImageService } from 'src/app/service/image.service';
+import { adminModal } from '../../../admin-dialog.decorator';
 
 @Component({
   selector: 'app-list-project',
@@ -18,7 +19,9 @@ import { ImageService } from 'src/app/service/image.service';
     ]),
   ],
 })
-export class ListProjectComponent {
+export class ListProjectComponent implements OnInit {
+
+  static project: Project;
 
   displayedColumns: string[] = [ "name", "image", "description", "skills", "links" ];
   dataSource: any;
@@ -26,12 +29,25 @@ export class ListProjectComponent {
 
   img?: string;
 
-  constructor(private admin: AdminService, private images: ImageService, private router: Router) { 
+  constructor(
+    private admin: AdminService,
+    private images: ImageService,
+  ) {
     this.reloadData();
   }
 
+  ngOnInit(): void {
+    this.admin._reloadCurrentRoute();
+  }
+
   editProject(project: Project) {
-    this.router.navigate(['/admin/editProject', project])
+    ListProjectComponent.project = project;
+    this.getProject();
+  }
+
+  @adminModal(EditProjectComponent, ListProjectComponent.project)
+  getProject() {
+    this.reloadData();
   }
 
   deleteProject(id: string) {

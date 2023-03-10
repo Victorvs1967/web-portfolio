@@ -1,7 +1,9 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { Skill } from 'src/app/model/skill.model';
+import { AdminService } from 'src/app/service/admin.service';
 
 @Component({
   selector: 'app-add-skill',
@@ -9,12 +11,13 @@ import { Skill } from 'src/app/model/skill.model';
   styleUrls: ['./add-skill.component.scss']
 })
 export class AddSkillComponent implements OnInit {
-  
+
   createForm?: UntypedFormGroup;
 
   constructor(
-    private formBuilder: UntypedFormBuilder, 
-    public dialogRef: MatDialogRef<AddSkillComponent>,
+    private formBuilder: UntypedFormBuilder,
+    private admin: AdminService,
+    private router: Router,
     @Inject(MAT_DIALOG_DATA) public data: Skill,
   ) { }
 
@@ -27,11 +30,7 @@ export class AddSkillComponent implements OnInit {
   }
 
   submitSkill() {
-    this.dialogRef.close(this.createForm?.value);
-  }
-
-  close() {
-    this.dialogRef.close();
+    this.admin.addSkill(this.createForm?.value).subscribe(() => this.router.navigate(['/admin/listSkill']));
   }
 
 }
