@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
 
   dialogServise = inject(DialogService);
 
-  constructor(private auth: AuthService, private router: Router) {}
+  constructor(private auth: AuthService) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,

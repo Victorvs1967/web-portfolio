@@ -17,6 +17,7 @@ export class StyleManagerService {
       getLinkElementForKey('dark-theme').setAttribute('href', href);
       document.body.classList.add('dark-theme');
       this.isDark = true;
+
     }
   }
 
