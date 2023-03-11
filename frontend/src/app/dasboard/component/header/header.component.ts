@@ -32,6 +32,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isLogin = this.auth.isLoggedIn;
     this.isAdmin = this.auth.isAdmin;
+    console.log(this.auth.getUser());
+
   }
 
   @authModal(LoginComponent)
