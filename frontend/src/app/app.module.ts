@@ -6,7 +6,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialUiModule } from './material-ui/material-ui.module';
-import { HomeComponent } from './component/home/home.component';
 import { HeaderComponent } from './component/header/header.component';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { JwtService } from './service/jwt.service';
@@ -18,7 +17,6 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     HeaderComponent,
     AlertComponent,
     NotFoundComponent,
@@ -32,12 +30,15 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     MaterialUiModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    JwtService,
+    { provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true
+    },
     {
       provide: LocationStrategy,
       useClass: PathLocationStrategy,
     },
+    JwtService,
   ],
   bootstrap: [AppComponent]
 })

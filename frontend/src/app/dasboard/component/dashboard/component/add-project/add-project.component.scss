@@ -16,16 +16,34 @@
 .file-input {
   margin: 0;
   padding: 0;
+  button {
+    vertical-align: middle;
+  }
 }
 
 input[type="file"] {
-  width: 85%;
+  width: 90%;
   margin-top: 0;
-  margin-right: 0.5rem;
+  margin-right: 1rem;
   max-width: 100%;
   padding: .5rem;
   border: 1px solid #128ff2;
   border-radius: .25rem;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 2rem;
+  padding: 1rem;
+  outline: none;
+  border: none;
+  border-radius: 1rem;
+  border: 1px solid #128ff2;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #a7d3f7;
 }
 
 .fields-group {

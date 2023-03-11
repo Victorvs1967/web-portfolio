@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivateChild, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { inject, Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivateChild, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { map, Observable } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 
 @Injectable({
@@ -8,12 +8,9 @@ import { AuthService } from '../service/auth.service';
 })
 export class AdminGuard implements CanActivateChild {
 
-  isAdmin: Observable<boolean> | undefined;
-
-  constructor(private auth: AuthService, private router: Router) {}
+  auth = inject(AuthService)
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-    this.auth.onAdmin().subscribe(res => this.isAdmin = res);
-    return this.isAdmin ? true : false;
+    return this.auth.isAdmin.pipe(map(isAdmin => isAdmin ? true : false));
   }
 }
