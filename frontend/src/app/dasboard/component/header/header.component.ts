@@ -1,11 +1,13 @@
+import { ImageService } from 'src/app/service/image.service';
 import { LoginComponent } from './../../../auth/component/login/login.component';
-import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { authModal } from 'src/app/auth/component/auth-dialog.decorator';
 import { AuthService } from 'src/app/service/auth.service';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
 import { alertModal } from 'src/app/component/alert/alert.decorator';
+import { AdminService } from 'src/app/service/admin.service';
 
 @Component({
   selector: 'app-header',
@@ -18,22 +20,22 @@ export class HeaderComponent implements OnInit {
 
   isDark = this.styleManager.isDark;
   isLogin: Observable<boolean> | undefined;
-  isAdmin: Observable<boolean> | undefined;
 
-  file: string = '~src/assets/image/Cмирнов Виктор avatar.png';
+  file: string | undefined;
 
   isUser: string | undefined;
   constructor(
+    private image: ImageService,
+    private admin: AdminService,
     private auth: AuthService,
     private router: Router,
     private styleManager: StyleManagerService,
-  ) { }
+  ) {  }
 
   ngOnInit(): void {
     this.isLogin = this.auth.isLoggedIn;
-    this.isAdmin = this.auth.isAdmin;
-    console.log(this.auth.getUser());
-
+    this.admin.getUser(this.auth.getUser()).subscribe(user =>
+      this.image.img_download(user.avatar.id).subscribe(img => this.file = img));
   }
 
   @authModal(LoginComponent)
