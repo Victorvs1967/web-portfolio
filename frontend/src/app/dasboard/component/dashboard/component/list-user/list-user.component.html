@@ -4,24 +4,27 @@
     <mat-divider></mat-divider>
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
 
-      <!-- Username Column -->
-      <ng-container matColumnDef="username">
-        <th mat-header-cell *matHeaderCellDef> Username </th>
+      <!-- Avatar Column -->
+      <ng-container matColumnDef="avatar">
+        <th mat-header-cell *matHeaderCellDef> </th>
         <td class="avatar" mat-cell *matCellDef="let element">
-          <span *ngIf="(element.avatar.id !== ''); else placeholder">
-            <div
-              class="image-container"
-              [ngStyle]="{'background-image': ' url(' + (readAvatar(element.avatar.id) | async) + ')'}"
-            >
-            </div>
-          </span>
-          {{ element.username }}
-          {{ element.avatar.id }}
-        </td>
+          <div
+            *ngIf="undefined; else placeholder"
+            class="image-container"
+            [ngStyle]="{'background-image': ' url(' + (readAvatar(element.avatar.id) | async) + ')'}"
+          >
+          </div>
           <ng-template #placeholder>
             <div class="image-container avatar-placeholder"></div>
           </ng-template>
-        </ng-container>
+        </td>
+      </ng-container>
+
+      <!-- Username Column -->
+      <ng-container matColumnDef="username">
+        <th mat-header-cell *matHeaderCellDef> Username </th>
+        <td mat-cell *matCellDef="let element"> {{ element.username }} </td>
+      </ng-container>
 
       <!-- Email Column -->
       <ng-container matColumnDef="email">

@@ -1,6 +1,6 @@
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { EditUserComponent } from './../edit-user/edit-user.component';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, Output, EventEmitter } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { User } from 'src/app/model/user.model';
@@ -26,6 +26,8 @@ export class ListUserComponent implements OnInit {
 
   image = inject(ImageService);
 
+  @Output() file = new EventEmitter();
+
   static user: User;
   static alert: AlertDialogData = {
     title: "A you sure?",
@@ -33,7 +35,7 @@ export class ListUserComponent implements OnInit {
     message: "If you realy want to delete this user,",
   };
 
-  displayedColumns: string[] = [ 'username', 'email', 'firstName', 'lastName', 'onCreate', 'role' ];
+  displayedColumns: string[] = [ 'avatar', 'username', 'email', 'firstName', 'lastName', 'onCreate', 'role' ];
   dataSource: any;
   expandedElement: User | null | undefined;
 
@@ -72,7 +74,7 @@ export class ListUserComponent implements OnInit {
     this.image.download(id, style).subscribe();
   }
 
-  readAvatar(id: string): Observable<string> {
+  readAvatar(id: string): Observable<any> {
     return this.image.img_download(id);
   }
 }
