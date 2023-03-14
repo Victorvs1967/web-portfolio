@@ -56,3 +56,23 @@ tr.row:not(.expanded-row):active {
 mat-divider {
   margin-top: 1rem;
 }
+
+.avatar {
+  height: 51px;
+  display: flex;
+  align-items: center;
+  gap: 2rem
+}
+
+.image-container {
+  width: 4rem;
+  height: 4rem;
+  z-index: 1;
+  border-radius: 50%;
+  background-color: #fff;
+  background-position: center;
+  background-size: cover;
+  &.avatar-placeholder {
+    background-image: url('~src/assets/image/user.png');
+  }
+}

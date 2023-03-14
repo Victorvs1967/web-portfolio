@@ -1,5 +1,6 @@
+import { Observable } from 'rxjs';
 import { EditUserComponent } from './../edit-user/edit-user.component';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { User } from 'src/app/model/user.model';
@@ -23,6 +24,8 @@ import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 })
 export class ListUserComponent implements OnInit {
 
+  image = inject(ImageService);
+
   static user: User;
   static alert: AlertDialogData = {
     title: "A you sure?",
@@ -36,7 +39,6 @@ export class ListUserComponent implements OnInit {
 
   constructor(
     private admin: AdminService,
-    private image: ImageService,
   ) {
     this.reloadData();
   }
@@ -68,5 +70,9 @@ export class ListUserComponent implements OnInit {
   readImg(id: string): void {
     const style = { width: '100%', height: 'auto', radius: '.5rem' };
     this.image.download(id, style).subscribe();
+  }
+
+  readAvatar(id: string): Observable<string> {
+    return this.image.img_download(id);
   }
 }
