@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
@@ -10,28 +11,26 @@ import { AdminService } from 'src/app/service/admin.service';
   styleUrls: ['./add-skill.component.scss']
 })
 export class AddSkillComponent implements OnInit {
-  
+
   createForm?: UntypedFormGroup;
 
-  constructor(private formBuilder: UntypedFormBuilder, private router: Router, private admin: AdminService) { }
+  constructor(
+    private formBuilder: UntypedFormBuilder,
+    private admin: AdminService,
+    private router: Router,
+    @Inject(MAT_DIALOG_DATA) public data: Skill,
+  ) { }
 
   ngOnInit(): void {
-        this.createForm = this.formBuilder.group({
-          name: ['', [Validators.required]],
-          description: ['', [Validators.required]],
-          percent: [''],
-        });
+    this.createForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      description: ['', [Validators.required]],
+      percent: [''],
+    });
   }
 
   submitSkill() {
-    const skill: Skill = this.createForm?.value;
-
-    this.admin.addSkill(skill).subscribe({
-      next: () => {
-        this.createForm?.reset();
-        this.router.navigate(['/admin/listSkill']);
-      },
-      error: err => alert(err.message)
-    });
+    this.admin.addSkill(this.createForm?.value).subscribe(() => this.router.navigate(['/admin/listSkill']));
   }
+
 }

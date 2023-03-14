@@ -6,5 +6,9 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+<<<<<<< HEAD
 
 mongodb_data/
+=======
+mongodb_data/
+>>>>>>> origin/features

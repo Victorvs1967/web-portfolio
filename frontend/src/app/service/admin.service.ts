@@ -1,4 +1,5 @@
-import { HttpClient, HttpContext, HttpEvent, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user.model';
@@ -11,8 +12,12 @@ import { Skill } from '../model/skill.model';
 })
 export class AdminService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+  ) { }
 
+  // User services
   public getUserList(): Observable<User[]> {
     return this.http.get<User[]>(environment.baseUrl.concat(environment.userUrl))
   }
@@ -29,6 +34,7 @@ export class AdminService {
     return this.http.delete<void>(environment.baseUrl.concat(environment.userUrl).concat('/').concat(username));
   }
 
+  // Project services
   public getProjectList(): Observable<Project[]> {
     return this.http.get<Project[]>(environment.baseUrl.concat(environment.projectUrl));
   }
@@ -49,6 +55,7 @@ export class AdminService {
     return this.http.delete<void>(environment.baseUrl.concat(environment.projectUrl).concat('/').concat(id));
   }
 
+  // Skill services
   public getSkillList(): Observable<Skill[]> {
     return this.http.get<Skill[]>(environment.baseUrl.concat(environment.skillUrl));
   }
@@ -58,14 +65,25 @@ export class AdminService {
   }
 
   public addSkill(skill: Skill): Observable<Skill | boolean> {
-    return this.http.post<Skill>(environment.baseUrl.concat(environment.skillUrl), skill)
+    return this.http.post<Skill>(environment.baseUrl.concat(environment.skillUrl), skill);
   }
 
   public editSkill(skill: Skill): Observable<Skill | boolean> {
-    return this.http.put<Skill>(environment.baseUrl.concat(environment.skillUrl), skill)
+    return this.http.put<Skill>(environment.baseUrl.concat(environment.skillUrl), skill);
   }
 
   public deleteSkill(id: string): Observable<void> {
     return this.http.delete<void>(environment.baseUrl.concat(environment.skillUrl).concat('/').concat(id));
   }
+
+  // Reload function
+  public async _reloadCurrentRoute(): Promise<void> {
+    const url = this.router.url;
+    const sameUrlStrategy = this.router.onSameUrlNavigation;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    await this.router.navigateByUrl(url);
+    this.router.routeReuseStrategy.shouldReuseRoute = (future, curr) => future.routeConfig === curr.routeConfig;
+    this.router.onSameUrlNavigation = sameUrlStrategy;
+  }
+
 }

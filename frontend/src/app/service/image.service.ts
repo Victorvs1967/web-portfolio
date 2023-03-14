@@ -18,13 +18,17 @@ export class ImageService {
   }
 
   download(id: string, style: any): Observable<void> {
+    return this.img_download(id).pipe(map(
+      img => this.viewImage(id, img, style)));
+  }
+
+  img_download(id: string): Observable<string> {
     return this.http.get(environment.baseUrl.concat(environment.imageUrl).concat('/download/').concat(id), { responseType: 'arraybuffer' })
       .pipe(map(data => {
         const contentType = 'image/jpeg';
         const byteArray = new Uint8Array(data);
         const blob = new Blob([byteArray], { type: contentType });
-        const blobUrl = URL.createObjectURL(blob);
-        this.viewImage(id, blobUrl, style);
+        return URL.createObjectURL(blob);
       })
     );
   }
@@ -51,7 +55,7 @@ export class ImageService {
       img.style.height = style.height || 'auto';
       img.style.borderRadius = style.radius || '.5rem';
       img.style.filter = style.filter || '';
-      
+
       el ? el.appendChild(img) : '';
     }
   }

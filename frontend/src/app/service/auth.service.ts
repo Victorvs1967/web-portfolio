@@ -76,7 +76,7 @@ export class AuthService {
   }
 
   signup(user: User): Observable<any | boolean> {
-    return this.http.post(environment.baseUrl.concat(environment.signupUrl), user)
+    return this.http.post(environment.baseUrl.concat(environment.signupUrl), user);
   }
 
   logout(param = true) {

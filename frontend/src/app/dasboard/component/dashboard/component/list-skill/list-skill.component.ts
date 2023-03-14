@@ -1,9 +1,12 @@
+import { EditSkillComponent } from './../edit-skill/edit-skill.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { AnyDataSource } from 'src/app/data/data-source';
 import { Skill } from 'src/app/model/skill.model';
-import { SkillsDataSource } from 'src/app/model/skills-data-source';
 import { AdminService } from 'src/app/service/admin.service';
+import { adminModal } from '../../../admin-dialog.decorator';
+import { AlertDialogData } from 'src/app/model/alert-dialog.model';
+import { alertModal } from 'src/app/component/alert/alert.decorator';
 
 @Component({
   selector: 'app-list-skill',
@@ -17,28 +20,47 @@ import { AdminService } from 'src/app/service/admin.service';
     ]),
   ],
 })
-export class ListSkillComponent {
+export class ListSkillComponent implements OnInit {
+
+  static skill: Skill;
+  static alert: AlertDialogData = {
+    title: "A you sure?",
+    subtitle: "You can't get access to this skill again.",
+    message: "If you realy want to delete this skill,",
+  };
 
   displayedColumns: string[] = [ "name", "description", "percent" ];
   dataSource: any;
   expandedElement: Skill | null | undefined;
 
-  constructor(private admin: AdminService, private router: Router) { 
+  constructor(
+    private admin: AdminService,
+  ) {
     this.reloadData();
   }
 
-  editSkill(skill: Skill) {
-    this.router.navigate(['/admin/editSkill', skill])
+  ngOnInit(): void {
+    this.admin._reloadCurrentRoute();
   }
 
-  deleteSkill(id: string) {
-    if (confirm('Are you sure?')) {
-      this.admin.deleteSkill(id).subscribe(() => this.reloadData());
-    }
+  editSkill(skill: Skill) {
+    ListSkillComponent.skill = skill;
+    this.getSkill();
+  }
+
+  @adminModal(EditSkillComponent, ListSkillComponent.skill)
+  getSkill() {
+    this.reloadData();
+  }
+
+  @alertModal(ListSkillComponent.alert)
+  deleteSkill(skill: Skill) {
+    if (skill.id) this.admin.deleteSkill(skill.id).subscribe(() => this.reloadData());
+    this.admin._reloadCurrentRoute();
   }
 
   reloadData() {
-    this.admin.getSkillList().subscribe(data => this.dataSource = new SkillsDataSource([...data]));
+    this.admin.getSkillList().subscribe(data => this.dataSource = new AnyDataSource([...data]));
   }
 
 }

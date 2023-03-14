@@ -33,7 +33,8 @@ public class ImageServiceImpl implements ImageService {
 
     return Mono.just(file)
       .map(parts -> parts.toSingleValueMap())
-      .map(map -> (FilePart) map.get("file"))
+      .map(map -> map.get("file"))
+      .cast(FilePart.class)
       .flatMap(part -> gridFsTemplate.store(part.content(), part.filename(), metadata))
       .map(id -> Map.of("id", id.toHexString()))
       .map(_id -> _id);

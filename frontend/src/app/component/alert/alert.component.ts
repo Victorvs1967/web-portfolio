@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 import { AuthService } from 'src/app/service/auth.service';
 
 @Component({
@@ -12,21 +13,12 @@ export class AlertComponent implements OnInit {
 
   isAdmin: Observable<boolean> | undefined;
 
-  dialogConfig: MatDialogConfig = {
-    width: '50rem',
-    data: {},
-  };
-  
   constructor(
+    @Inject(MAT_DIALOG_DATA) public data: AlertDialogData,
     private auth: AuthService,
-    public dialogRef: MatDialogRef<AlertComponent>,
   ) { }
 
   ngOnInit(): void {
     this.isAdmin = this.auth.isAdmin;
-  }
-
-  logout() {
-    this.auth.logout(true);
   }
 }

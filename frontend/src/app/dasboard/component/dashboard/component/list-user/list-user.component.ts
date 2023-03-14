@@ -1,9 +1,14 @@
-import { Component } from '@angular/core';
-import { UsersDataSource } from 'src/app/model/users-data-source';
+import { map, Observable } from 'rxjs';
+import { EditUserComponent } from './../edit-user/edit-user.component';
+import { Component, OnInit, inject, Output, EventEmitter } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { User } from 'src/app/model/user.model';
 import { ImageService } from 'src/app/service/image.service';
+import { AnyDataSource } from 'src/app/data/data-source';
+import { adminModal } from '../../../admin-dialog.decorator';
+import { alertModal } from 'src/app/component/alert/alert.decorator';
+import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 
 @Component({
   selector: 'app-list-user',
@@ -17,28 +22,59 @@ import { ImageService } from 'src/app/service/image.service';
     ]),
   ],
 })
-export class ListUserComponent {
+export class ListUserComponent implements OnInit {
 
-  displayedColumns: string[] = [ 'username', 'email', 'firstName', 'lastName', 'onCreate', 'role' ];
+  image = inject(ImageService);
+
+  @Output() file = new EventEmitter();
+
+  static user: User;
+  static alert: AlertDialogData = {
+    title: "A you sure?",
+    subtitle: "You can't get access to this user again.",
+    message: "If you realy want to delete this user,",
+  };
+
+  displayedColumns: string[] = [ 'avatar', 'username', 'email', 'firstName', 'lastName', 'onCreate', 'role' ];
   dataSource: any;
   expandedElement: User | null | undefined;
 
-  constructor(private admin: AdminService, private image: ImageService) {
+  constructor(
+    private admin: AdminService,
+  ) {
     this.reloadData();
   }
 
-  deleteUser(username: string) {
-    if (confirm('Are you sure?')) {
-      this.admin.deleteUser(username).subscribe(() => this.reloadData());
-    }
+  ngOnInit(): void {
+    this.admin._reloadCurrentRoute();
+  }
+
+  editUser(user: User) {
+    ListUserComponent.user = user;
+    this.getUser();
+  }
+
+  @adminModal(EditUserComponent, ListUserComponent.user)
+  getUser() {
+    this.reloadData();
+  }
+
+  @alertModal(ListUserComponent.alert)
+  deleteUser(user: User) {
+    this.admin.deleteUser(user.username).subscribe(() => this.reloadData());
+    this.admin._reloadCurrentRoute();
   }
 
   reloadData() {
-    this.admin.getUserList().subscribe(data => this.dataSource = new UsersDataSource([ ...data ]));
+    this.admin.getUserList().subscribe(data => this.dataSource = new AnyDataSource([ ...data ]));
   }
 
   readImg(id: string): void {
     const style = { width: '100%', height: 'auto', radius: '.5rem' };
     this.image.download(id, style).subscribe();
+  }
+
+  readAvatar(id: string): Observable<any> {
+    return this.image.img_download(id);
   }
 }

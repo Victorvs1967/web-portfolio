@@ -12,7 +12,10 @@ export class ListImageComponent {
 
   images: any[] = [];
 
-  constructor(private image: ImageService, private _bottomSheet: MatBottomSheet) {
+  constructor(
+    private image: ImageService,
+    private _bottomSheet: MatBottomSheet,
+  ) {
     this.viewList();
   }
 

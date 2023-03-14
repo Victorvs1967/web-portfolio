@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
 
 @Component({
@@ -10,7 +11,10 @@ export class ControlsComponent implements OnInit {
 
   isDark = this.styleManager.isDark;
 
-  constructor(private styleManager: StyleManagerService) {
+  constructor(
+    private styleManager: StyleManagerService,
+    private route: ActivatedRoute,
+  ) {
   }
 
   ngOnInit(): void {

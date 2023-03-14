@@ -1,6 +1,6 @@
 .mat-toolbar {
   display: grid;
-  grid-template-columns: 97% 3%;
+  grid-template-columns: 92% 8%;
 }
 
 .main-nav {
@@ -11,4 +11,23 @@
 
 .brand-title {
   cursor: pointer;
+}
+
+.avatar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.image-container {
+  width: 4rem;
+  height: 4rem;
+  z-index: 1;
+  border-radius: 50%;
+  background-color: #fff;
+  background-position: center;
+  background-size: cover;
+  &.avatar-placeholder {
+    background-image: url('~src/assets/image/user.png');
+  }
 }

@@ -1,15 +1,6 @@
-.container {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, .1);
-}
-
 .login-form {
-  width: 600px;
-  margin: 2rem auto 1rem;
+  width: 800px;
+  margin: 1rem auto 0;
   padding: 2rem;
 }
 
@@ -19,40 +10,68 @@
 
   mat-form-field {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: .5rem;
   }
+}
+
+.mat-mdc-form-field-infix {
+  min-height: 1rem;
+  padding: 0;
 }
 
 .fields-group {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
-
 }
 
 .file-input {
   margin: 0;
   padding: 0;
+  button {
+    vertical-align: middle;
+  }
 }
 
 input[type="file"] {
+  max-width: 100%;
   width: 80%;
   margin-top: 0;
   margin-right: 0.5rem;
-  max-width: 100%;
   padding: .5rem;
   border: 1px solid #128ff2;
   border-radius: .25rem;
+  font-size: 1.2rem;
+}
+
+input[type="file"]::file-selector-button {
+  margin-right: 2rem;
+  padding: 1rem;
+  outline: none;
+  border: none;
+  border-radius: 1rem;
+  border: 1px solid #128ff2;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+input[type="file"]::file-selector-button:hover {
+  background-color: #a7d3f7;
 }
 
 .btn-group {
-  position: absolute;
-  right: 2rem;
-  bottom: .25rem;
+  gap: 1rem;
+  .btn-primary {
+    margin-left: auto;
+  }
 }
 
 .btn-close {
   position: absolute;
   top: 1rem;
   right: 1rem;
+}
+
+mat-divider {
+  margin-top: 1rem;
 }

@@ -1,9 +1,9 @@
 <mat-card class="list-skill">
   <mat-card-content>
-    <mat-card-title>&nbsp;&nbsp;&nbsp;Skills</mat-card-title>
-    <mat-divider inset></mat-divider>
+    <mat-card-title>Skills</mat-card-title>
+    <mat-divider></mat-divider>
     <table mat-table [dataSource]="dataSource" multiTemplateDataRows>
-      
+
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -33,7 +33,7 @@
                 <button mat-icon-button color="primary" (click)="editSkill(element)">
                   <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button color="warn" (click)="deleteSkill(element)">
+                <button mat-icon-button color="warn" (click)="deleteSkill(element.id)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </mat-card-actions>

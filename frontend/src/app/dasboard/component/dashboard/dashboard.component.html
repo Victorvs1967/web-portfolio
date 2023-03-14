@@ -1,5 +1,5 @@
+<app-header (taggledEvent)="drawer.toggle()"></app-header>
 <mat-drawer-container class="container" autosize>
-  <app-header (taggledEvent)="drawer.toggle()"></app-header>
   <mat-drawer #drawer class="sidenav" mode="side" opened>
     <mat-nav-list role="list">
       <mat-list-item class="nav-link" role="listitem" routerLink="/admin"><mat-icon>home</mat-icon><span>&nbsp;&nbsp;Home</span></mat-list-item>
@@ -21,18 +21,18 @@
         <mat-icon>insert_chart</mat-icon>&nbsp;&nbsp;Skill
       </mat-list-item>
       <mat-menu #skillMenu="matMenu" xPosition="after">
-        <button mat-menu-item routerLink="addSkill"><mat-icon>add_chart</mat-icon>&nbsp;&nbsp;Add Skill</button>
+        <button mat-menu-item (click)="addSkill()"><mat-icon>add_chart</mat-icon>&nbsp;&nbsp;Add Skill</button>
         <button mat-menu-item routerLink="listSkill"><mat-icon>library_books</mat-icon>&nbsp;&nbsp;Skills</button>
       </mat-menu>
       <mat-list-item mat-icon-button class="nav-link" role="listitem" [matMenuTriggerFor]="imageMenu" aria-label="icon-button with a menu">
         <mat-icon>photo</mat-icon>&nbsp;&nbsp;Image
       </mat-list-item>
       <mat-menu #imageMenu="matMenu" xPosition="after">
-        <button mat-menu-item routerLink="addImage"><mat-icon>add_photo_alternate</mat-icon>&nbsp;&nbsp;Add Image</button>
+        <button mat-menu-item (click)="addImage()"><mat-icon>add_photo_alternate</mat-icon>&nbsp;&nbsp;Add Image</button>
         <button mat-menu-item routerLink="listImage"><mat-icon>photo_library</mat-icon>&nbsp;&nbsp;Images</button>
       </mat-menu>
       <mat-list-item class="nav-link" role="listitem"><mat-icon>wysiwyg</mat-icon>&nbsp;&nbsp;Blog</mat-list-item>
-    </mat-nav-list>  
+    </mat-nav-list>
   </mat-drawer>
 
   <div class="sidenav-content">
