@@ -51,7 +51,6 @@ export class EditUserComponent implements OnInit {
       photo: this.photo,
       avatar: this.avatar,
     });
-    console.log(this.user);
   }
 
   submitEdit() {
