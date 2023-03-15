@@ -34,8 +34,8 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLogin = this.auth.isLoggedIn;
-    this.admin.getUser(this.auth.getUser()).subscribe(user =>
-      this.image.img_download(user.avatar.id).subscribe(img => this.file = img));
+    this.admin.getUser(this.auth.getUser())
+      .subscribe(user => this.image.img_download(user.avatar.id).subscribe(img => this.file = img));
   }
 
   @authModal(LoginComponent)

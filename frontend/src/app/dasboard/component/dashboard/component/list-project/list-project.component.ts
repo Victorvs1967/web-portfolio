@@ -8,6 +8,7 @@ import { ImageService } from 'src/app/service/image.service';
 import { adminModal } from '../../../admin-dialog.decorator';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 import { alertModal } from 'src/app/component/alert/alert.decorator';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-list-project',
@@ -44,6 +45,7 @@ export class ListProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.reloadData();
     this.admin._reloadCurrentRoute();
   }
 
@@ -54,21 +56,24 @@ export class ListProjectComponent implements OnInit {
 
   @adminModal(EditProjectComponent, ListProjectComponent.project)
   getProject() {
-    this.reloadData();
   }
 
   @alertModal(ListProjectComponent.alert)
   deleteProject(id: string) {
-      this.admin.deleteProject(id).subscribe(() => this.reloadData());
+    this.admin.deleteProject(id)
+      .subscribe();
   }
 
   reloadData() {
-    this.admin.getProjectList().subscribe(data => this.dataSource = new AnyDataSource([ ...data ]));
+    this.admin.getProjectList()
+      .pipe(map(data => this.dataSource = new AnyDataSource([...data])))
+      .subscribe();
   }
 
   readImg(id: string): void {
     const style = { width: '100%', height: 'auto', radius: '.5rem' };
-    this.images.download(id, style).subscribe();
+    this.images.download(id, style)
+      .subscribe();
   }
 
 }
