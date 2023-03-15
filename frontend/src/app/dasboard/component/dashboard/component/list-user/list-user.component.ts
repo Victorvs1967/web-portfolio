@@ -1,6 +1,6 @@
 import { map, Observable } from 'rxjs';
 import { EditUserComponent } from './../edit-user/edit-user.component';
-import { Component, OnInit, inject, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { User } from 'src/app/model/user.model';
@@ -26,8 +26,6 @@ export class ListUserComponent implements OnInit {
 
   image = inject(ImageService);
 
-  @Output() file = new EventEmitter();
-
   static user: User;
   static alert: AlertDialogData = {
     title: "A you sure?",
@@ -46,6 +44,7 @@ export class ListUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.reloadData();
     this.admin._reloadCurrentRoute();
   }
 
@@ -66,15 +65,29 @@ export class ListUserComponent implements OnInit {
   }
 
   reloadData() {
-    this.admin.getUserList().subscribe(data => this.dataSource = new AnyDataSource([ ...data ]));
+    this.admin.getUserList()
+      .pipe(map(data =>
+        data.forEach((user: any) => {
+          if (user.avatar.id !== '' )
+            this.image.img_download(user.avatar.id)
+            .pipe(map(img => {
+              user = { ...user, avatar: { ...user.avatar, avatarImg: img} };
+              data = [ ...data.filter(usr => usr.id != user.id), user ];
+              this.dataSource = new AnyDataSource([ ...data ])
+            }))
+            .subscribe();
+        })
+      ))
+      .subscribe();
   }
 
   readImg(id: string): void {
     const style = { width: '100%', height: 'auto', radius: '.5rem' };
-    this.image.download(id, style).subscribe();
+    this.image.download(id, style)
+      .subscribe();
   }
 
-  readAvatar(id: string): Observable<any> {
+  readAvatar(id: string): Observable<string> {
     return this.image.img_download(id);
   }
 }

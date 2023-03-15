@@ -9,10 +9,10 @@
         <th mat-header-cell *matHeaderCellDef> </th>
         <td class="avatar" mat-cell *matCellDef="let element">
           <div
-            *ngIf="undefined; else placeholder"
+            *ngIf="element.avatar.avatarImg; else placeholder"
             class="image-container"
-            [ngStyle]="{'background-image': ' url(' + (readAvatar(element.avatar.id) | async) + ')'}"
-          >
+            [ngStyle]="{'background-image': ' url(' + element.avatar.avatarImg + ')'}"
+            >
           </div>
           <ng-template #placeholder>
             <div class="image-container avatar-placeholder"></div>
