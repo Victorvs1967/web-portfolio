@@ -68,11 +68,11 @@ export class ListUserComponent implements OnInit {
     this.admin.getUserList()
       .pipe(map(data =>
         data.forEach((user: any) => {
-          if (user.avatar.id !== '' )
+          if (user.avatar.id !== '')
             this.image.img_download(user.avatar.id)
             .pipe(map(img => {
               user = { ...user, avatar: { ...user.avatar, avatarImg: img} };
-              data = [ ...data.filter(usr => usr.id != user.id), user ];
+              data = [ ...data.filter(usr => usr.id !== user.id), user ];
               this.dataSource = new AnyDataSource([ ...data ])
             }))
             .subscribe();

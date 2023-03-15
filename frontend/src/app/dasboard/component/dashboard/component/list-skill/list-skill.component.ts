@@ -40,6 +40,7 @@ export class ListSkillComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.reloadData();
     this.admin._reloadCurrentRoute();
   }
 
