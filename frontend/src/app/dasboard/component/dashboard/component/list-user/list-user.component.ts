@@ -1,4 +1,4 @@
-import { map, Observable } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { EditUserComponent } from './../edit-user/edit-user.component';
 import { Component, OnInit, inject } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
@@ -44,7 +44,6 @@ export class ListUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.reloadData();
     this.admin._reloadCurrentRoute();
   }
 
@@ -60,21 +59,22 @@ export class ListUserComponent implements OnInit {
 
   @alertModal(ListUserComponent.alert)
   deleteUser(user: User) {
-    this.admin.deleteUser(user.username).subscribe(() => this.reloadData());
-    this.admin._reloadCurrentRoute();
+    this.admin.deleteUser(user.username).subscribe();
+    this.reloadData();
   }
 
   reloadData() {
     this.admin.getUserList()
-      .pipe(map(data =>
-        data.forEach((user: any) => {
-          if (user.avatar.id !== '')
-            this.image.img_download(user.avatar.id)
-            .pipe(map(img => {
-              user = { ...user, avatar: { ...user.avatar, avatarImg: img} };
-              data = [ ...data.filter(usr => usr.id !== user.id), user ];
-              this.dataSource = new AnyDataSource([ ...data ])
-            }))
+      .pipe(
+        map(data => data.forEach((user: any) => {
+          if (user.avatar.id !== '') this.image.img_download(user.avatar.id)
+            .pipe(
+              tap(img => {
+                user = { ...user, avatar: { ...user.avatar, avatarImg: img} };
+                data = [ ...data.filter(usr => usr.id !== user.id), user ];
+                this.dataSource = new AnyDataSource([ ...data ]);
+              }
+            ))
             .subscribe();
         })
       ))
@@ -87,7 +87,4 @@ export class ListUserComponent implements OnInit {
       .subscribe();
   }
 
-  readAvatar(id: string): Observable<string> {
-    return this.image.img_download(id);
-  }
 }
