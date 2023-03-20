@@ -1,3 +1,4 @@
+import { modal } from 'src/app/service/dialog.decorator';
 import { EditProjectComponent } from './../edit-project/edit-project.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
@@ -5,10 +6,9 @@ import { AnyDataSource } from 'src/app/data/data-source';
 import { Project } from 'src/app/model/project.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { ImageService } from 'src/app/service/image.service';
-import { adminModal } from '../../../admin-dialog.decorator';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
-import { alertModal } from 'src/app/component/alert/alert.decorator';
 import { map } from 'rxjs';
+import { AlertComponent } from 'src/app/component/alert/alert.component';
 
 @Component({
   selector: 'app-list-project',
@@ -54,11 +54,11 @@ export class ListProjectComponent implements OnInit {
     this.getProject();
   }
 
-  @adminModal(EditProjectComponent, ListProjectComponent.project)
+  @modal(EditProjectComponent, ListProjectComponent.project)
   getProject() {
   }
 
-  @alertModal(ListProjectComponent.alert)
+  @modal(AlertComponent, ListProjectComponent.alert)
   deleteProject(id: string) {
     this.admin.deleteProject(id)
       .subscribe();

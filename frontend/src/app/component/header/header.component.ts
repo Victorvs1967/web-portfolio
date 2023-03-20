@@ -1,3 +1,4 @@
+import { AlertComponent } from './../alert/alert.component';
 import { DialogService } from './../../service/dialog.service';
 import { LoginComponent } from './../../auth/component/login/login.component';
 import { Component, EventEmitter, OnInit, Output, inject } from '@angular/core';
@@ -5,8 +6,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
-import { authModal } from 'src/app/auth/component/auth-dialog.decorator';
-import { alertModal } from '../alert/alert.decorator';
+import { modal } from 'src/app/service/dialog.decorator';
 
 @Component({
   selector: 'app-header',
@@ -34,12 +34,12 @@ export class HeaderComponent implements OnInit {
     this.isAdmin = this.auth.isAdmin;
   }
 
-  @authModal(LoginComponent)
+  @modal(LoginComponent)
   login() {
     this.router.navigate(['/admin']);
   }
 
-  @alertModal()
+  @modal(AlertComponent, AlertComponent.defaultAlertData)
   logout() {
     this.auth.logout();
   }
@@ -48,7 +48,6 @@ export class HeaderComponent implements OnInit {
     this.styleManager.toggleDarkTheme();
     this.isDark = !this.isDark;
   }
-
 
   taggledAction() {
     this.taggledEvent.emit('');

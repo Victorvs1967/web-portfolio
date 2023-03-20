@@ -1,11 +1,10 @@
-import { Component, Inject, OnInit, inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { ImageService } from 'src/app/service/image.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -24,7 +23,6 @@ export class SignupComponent implements OnInit {
   currentAvatar?: File;
 
   constructor(
-    private router: Router,
     private formBuilder: UntypedFormBuilder,
     private auth: AuthService,
     private image: ImageService,

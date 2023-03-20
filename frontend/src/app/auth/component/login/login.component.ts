@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoginData } from 'src/app/model/login-data.model';
 import { SignupComponent } from '../signup/signup.component';
-import { authModal } from '../auth-dialog.decorator';
+import { modal } from 'src/app/service/dialog.decorator';
 
 @Component({
   selector: 'app-login',
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.loginForm?.value).subscribe(() => this.router.navigate(['admin']));
   }
 
-  @authModal(SignupComponent)
+  @modal(SignupComponent)
   signup() {
     this.router.navigate(['admin']);
   }

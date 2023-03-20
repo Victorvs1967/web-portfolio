@@ -1,9 +1,7 @@
-import { DialogService } from './../../service/dialog.service';
-import { LoginComponent } from './login/login.component';
 import { ComponentType } from '@angular/cdk/portal';
-import { SignupComponent } from './signup/signup.component';
+import { DialogService } from './dialog.service';
 
-export const authModal = (componentType: ComponentType<LoginComponent | SignupComponent>) => {
+export const modal = (componentType: ComponentType<any>, data: any = {}) => {
   return (target: Object, propertyKey: string, descriptor: PropertyDescriptor, data: any = {}) => {
     const originalMethod = descriptor.value;
     descriptor.value = async function ( ...args: any ) {

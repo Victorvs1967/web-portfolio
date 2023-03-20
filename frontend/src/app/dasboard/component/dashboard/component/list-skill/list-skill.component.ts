@@ -1,12 +1,12 @@
+import { modal } from 'src/app/service/dialog.decorator';
 import { EditSkillComponent } from './../edit-skill/edit-skill.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AnyDataSource } from 'src/app/data/data-source';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
-import { adminModal } from '../../../admin-dialog.decorator';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
-import { alertModal } from 'src/app/component/alert/alert.decorator';
+import { AlertComponent } from 'src/app/component/alert/alert.component';
 
 @Component({
   selector: 'app-list-skill',
@@ -49,12 +49,12 @@ export class ListSkillComponent implements OnInit {
     this.getSkill();
   }
 
-  @adminModal(EditSkillComponent, ListSkillComponent.skill)
+  @modal(EditSkillComponent, ListSkillComponent.skill)
   getSkill() {
     this.reloadData();
   }
 
-  @alertModal(ListSkillComponent.alert)
+  @modal(AlertComponent, ListSkillComponent.alert)
   deleteSkill(skill: Skill) {
     if (skill.id) this.admin.deleteSkill(skill.id).subscribe(() => this.reloadData());
     this.admin._reloadCurrentRoute();

@@ -11,6 +11,13 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class AlertComponent implements OnInit {
 
+  public static defaultAlertData = {
+    title: 'A you sure?',
+    subtitle: 'You can login again when you want.',
+    message: 'If you want to logout current user,',
+  };
+
+
   isAdmin: Observable<boolean> | undefined;
 
   constructor(

@@ -1,3 +1,4 @@
+import { modal } from 'src/app/service/dialog.decorator';
 import { map, tap } from 'rxjs';
 import { EditUserComponent } from './../edit-user/edit-user.component';
 import { Component, OnInit, inject } from '@angular/core';
@@ -6,9 +7,8 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 import { User } from 'src/app/model/user.model';
 import { ImageService } from 'src/app/service/image.service';
 import { AnyDataSource } from 'src/app/data/data-source';
-import { adminModal } from '../../../admin-dialog.decorator';
-import { alertModal } from 'src/app/component/alert/alert.decorator';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
+import { AlertComponent } from 'src/app/component/alert/alert.component';
 
 @Component({
   selector: 'app-list-user',
@@ -52,12 +52,12 @@ export class ListUserComponent implements OnInit {
     this.getUser();
   }
 
-  @adminModal(EditUserComponent, ListUserComponent.user)
+  @modal(EditUserComponent, ListUserComponent.user)
   getUser() {
     this.reloadData();
   }
 
-  @alertModal(ListUserComponent.alert)
+  @modal(AlertComponent, ListUserComponent.alert)
   deleteUser(user: User) {
     this.admin.deleteUser(user.username).subscribe();
     this.reloadData();

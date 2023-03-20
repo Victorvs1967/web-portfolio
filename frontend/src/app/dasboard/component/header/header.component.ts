@@ -1,12 +1,12 @@
+import { AlertComponent } from './../../../component/alert/alert.component';
+import { modal } from 'src/app/service/dialog.decorator';
 import { ImageService } from 'src/app/service/image.service';
 import { LoginComponent } from './../../../auth/component/login/login.component';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { authModal } from 'src/app/auth/component/auth-dialog.decorator';
 import { AuthService } from 'src/app/service/auth.service';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
-import { alertModal } from 'src/app/component/alert/alert.decorator';
 import { AdminService } from 'src/app/service/admin.service';
 
 @Component({
@@ -39,12 +39,12 @@ export class HeaderComponent implements OnInit {
       .subscribe(user => this.image.img_download(user.avatar.id).subscribe(img => this.file = img));
   }
 
-  @authModal(LoginComponent)
+  @modal(LoginComponent)
   login() {
     this.router.navigate(['admin']);
   }
 
-  @alertModal()
+  @modal(AlertComponent, AlertComponent.defaultAlertData)
   logout() {
     this.auth.logout();
     this.router.navigate(['home']);
