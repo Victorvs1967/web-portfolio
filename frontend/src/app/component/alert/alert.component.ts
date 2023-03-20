@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 import { AuthService } from 'src/app/service/auth.service';
@@ -11,12 +11,11 @@ import { AuthService } from 'src/app/service/auth.service';
 })
 export class AlertComponent implements OnInit {
 
-  public static defaultAlertData = {
+  static defaultAlertData = {
     title: 'A you sure?',
     subtitle: 'You can login again when you want.',
     message: 'If you want to logout current user,',
   };
-
 
   isAdmin: Observable<boolean> | undefined;
 
@@ -27,5 +26,6 @@ export class AlertComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.auth.isAdmin;
+    this.data = AlertComponent.defaultAlertData;
   }
 }

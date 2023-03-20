@@ -1,13 +1,13 @@
-import { AlertComponent } from './../../../component/alert/alert.component';
 import { modal } from 'src/app/service/dialog.decorator';
 import { ImageService } from 'src/app/service/image.service';
-import { LoginComponent } from './../../../auth/component/login/login.component';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
 import { AdminService } from 'src/app/service/admin.service';
+import { LoginComponent } from 'src/app/auth/component/login/login.component';
+import { AlertComponent } from 'src/app/component/alert/alert.component';
 
 @Component({
   selector: 'app-header',
