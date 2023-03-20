@@ -24,6 +24,7 @@ export class HeaderComponent implements OnInit {
   file: string | undefined;
 
   isUser: string | undefined;
+
   constructor(
     private image: ImageService,
     private admin: AdminService,

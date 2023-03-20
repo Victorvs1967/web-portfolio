@@ -23,8 +23,8 @@
         <mat-icon>{{ isDark ? 'light_mode' : 'dark_mode'}}</mat-icon>
         <span>Theme</span>
       </button>
-      <button [disabled]="!(isLogin | async)" mat-menu-item (click)="login()" [disabled]="isLogin | async"><mat-icon>login</mat-icon><span>Login</span></button>
-      <button [disabled]="isLogin | async" mat-menu-item (click)="logout()" [disabled]="!(isLogin | async)"><mat-icon>logout</mat-icon><span>Logout</span></button>
+      <button mat-menu-item (click)="login()" [disabled]="isLogin | async"><mat-icon>login</mat-icon><span>Login</span></button>
+      <button mat-menu-item (click)="logout()" [disabled]="!(isLogin | async)"><mat-icon>logout</mat-icon><span>Logout</span></button>
     </mat-menu>
   </div>
 </mat-toolbar>
