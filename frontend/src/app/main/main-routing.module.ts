@@ -5,7 +5,7 @@ import { AboutComponent } from './component/about/about.component';
 import { PortfolioComponent } from './component/portfolio/portfolio.component';
 import { BlogsComponent } from './component/blogs/blogs.component';
 import { ContactsComponent } from './component/contacts/contacts.component';
-import { MainComponent } from './main.component';
+import { MainComponent } from './component/main/main.component';
 
 const routes: Routes = [
   { path: '', component: MainComponent,

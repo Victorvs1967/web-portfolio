@@ -1,5 +1,5 @@
 import { modal } from 'src/app/service/dialog.decorator';
-import { EditProjectComponent } from './../edit-project/edit-project.component';
+import { EditProjectComponent } from '../edit-project/edit-project.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AnyDataSource } from 'src/app/data/data-source';

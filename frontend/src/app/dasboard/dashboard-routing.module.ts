@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
-import { DashboardComponent } from './component/dashboard/dashboard.component';
+import { DashboardComponent } from './component/dash/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
-import { GraphComponent } from './component/dashboard/component/graph/graph.component';
-import { ListUserComponent } from './component/dashboard/component/list-user/list-user.component';
-import { EditUserComponent } from './component/dashboard/component/edit-user/edit-user.component';
-import { ListProjectComponent } from './component/dashboard/component/list-project/list-project.component';
-import { ListSkillComponent } from './component/dashboard/component/list-skill/list-skill.component';
-import { AddSkillComponent } from './component/dashboard/component/add-skill/add-skill.component';
+import { GraphComponent } from './component/graph/graph.component';
+import { ListUserComponent } from './component/list-user/list-user.component';
 import { AuthGuard } from '../guard/auth.guard';
-import { EditProjectComponent } from './component/dashboard/component/edit-project/edit-project.component';
-import { EditSkillComponent } from './component/dashboard/component/edit-skill/edit-skill.component';
-import { AddImageComponent } from './component/dashboard/component/add-image/add-image.component';
-import { ListImageComponent } from './component/dashboard/component/list-image/list-image.component';
-import { ViewImageComponent } from './component/dashboard/component/view-image/view-image.component';
+import { AddImageComponent } from './component/add-image/add-image.component';
+import { AddSkillComponent } from './component/add-skill/add-skill.component';
+import { EditProjectComponent } from './component/edit-project/edit-project.component';
+import { EditSkillComponent } from './component/edit-skill/edit-skill.component';
+import { EditUserComponent } from './component/edit-user/edit-user.component';
+import { ListImageComponent } from './component/list-image/list-image.component';
+import { ListProjectComponent } from './component/list-project/list-project.component';
+import { ListSkillComponent } from './component/list-skill/list-skill.component';
+import { ViewImageComponent } from './component/view-image/view-image.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, canDeactivate: [AuthGuard],

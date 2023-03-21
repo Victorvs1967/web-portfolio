@@ -39,7 +39,7 @@ export class EditProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.project = ListProjectComponent.project;
-      this.editForm = this.formBuilder.group({
+    this.editForm = this.formBuilder.group({
       name: [this.project.name, [Validators.required]],
       description: [this.project.description, [Validators.required]],
       image: [this.project.image],
@@ -50,12 +50,14 @@ export class EditProjectComponent implements OnInit {
   }
 
   submitProject() {
-    this.project.name = this.editForm?.value.name;
-    this.project.description = this.editForm?.value.description;
-    this.project.links = this.editForm?.value.links.split(',').map((link: string) => link.trim());
-    this.project.image = this.editForm?.value.image || this.image;
-    this.project.skills.push(this.editForm?.value.skills.value);
-    this.admin.editProject(this.project).subscribe();
+    if (this.project) {
+      this.project.name = this.editForm?.value.name;
+      this.project.description = this.editForm?.value.description;
+      this.project.links = this.editForm?.value.links.split(',').map((link: string) => link.trim());
+      this.project.image = this.editForm?.value.image || this.image;
+      this.project.skills.push(this.editForm?.value.skills.value);
+      this.admin.editProject(this.project).subscribe();
+    }
   }
 
   selectFile(event: any) {

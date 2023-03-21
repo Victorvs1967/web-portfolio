@@ -7,8 +7,8 @@ import { PortfolioComponent } from './component/portfolio/portfolio.component';
 import { BlogsComponent } from './component/blogs/blogs.component';
 import { ContactsComponent } from './component/contacts/contacts.component';
 import { ControlsComponent } from './component/controls/controls.component';
-import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
+import { MainComponent } from './component/main/main.component';
 
 @NgModule({
   declarations: [

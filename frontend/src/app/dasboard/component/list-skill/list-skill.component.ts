@@ -64,4 +64,8 @@ export class ListSkillComponent implements OnInit {
     this.admin.getSkillList().subscribe(data => this.dataSource = new AnyDataSource([...data]));
   }
 
+  static ofSkill() {
+    return ListSkillComponent.skill;
+  }
+
 }

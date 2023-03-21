@@ -13,11 +13,15 @@ import { AlertComponent } from './component/alert/alert.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { ListProjectComponent } from './dasboard/component/list-project/list-project.component';
+import { ListSkillComponent } from './dasboard/component/list-skill/list-skill.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
+    ListProjectComponent,
+    ListSkillComponent,
     AlertComponent,
     NotFoundComponent,
   ],

@@ -1,6 +1,5 @@
 import { modal } from 'src/app/service/dialog.decorator';
 import { map, tap } from 'rxjs';
-import { EditUserComponent } from './../edit-user/edit-user.component';
 import { Component, OnInit, inject } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -9,6 +8,7 @@ import { ImageService } from 'src/app/service/image.service';
 import { AnyDataSource } from 'src/app/data/data-source';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 import { AlertComponent } from 'src/app/component/alert/alert.component';
+import { EditUserComponent } from '../edit-user/edit-user.component';
 
 @Component({
   selector: 'app-list-user',

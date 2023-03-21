@@ -1,4 +1,3 @@
-import { ListUserComponent } from './../list-user/list-user.component';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -8,6 +7,7 @@ import { User } from 'src/app/model/user.model';
 import { Image } from 'src/app/model/image.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { ImageService } from 'src/app/service/image.service';
+import { ListUserComponent } from '../list-user/list-user.component';
 
 @Component({
   selector: 'app-edit-user',
