@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,8 +13,6 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
 import { JwtService } from './service/jwt.service';
 import { AlertComponent } from './component/alert/alert.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
-import { ReactiveFormsModule } from '@angular/forms';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { ListProjectComponent } from './dasboard/component/list-project/list-project.component';
 import { ListSkillComponent } from './dasboard/component/list-skill/list-skill.component';
 
