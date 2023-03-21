@@ -1,10 +1,10 @@
-import { ListProjectComponent } from './../list-project/list-project.component';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Project } from 'src/app/model/project.model';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { ImageService } from 'src/app/service/image.service';
+import { ListProjectComponent } from '../list-project/list-project.component';
 
 @Component({
   selector: 'app-edit-project',
