@@ -9,6 +9,7 @@ import { ContactsComponent } from './component/contacts/contacts.component';
 import { ControlsComponent } from './component/controls/controls.component';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './component/main/main.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MainComponent } from './component/main/main.component';
     CommonModule,
     MainRoutingModule,
     MaterialUiModule,
+    FontAwesomeModule,
   ]
 })
 export class MainModule { }

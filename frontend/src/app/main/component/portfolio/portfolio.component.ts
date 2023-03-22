@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
 import { Project } from 'src/app/model/project.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { ImageService } from 'src/app/service/image.service';
@@ -9,6 +11,9 @@ import { ImageService } from 'src/app/service/image.service';
   styleUrls: ['./portfolio.component.scss']
 })
 export class PortfolioComponent implements OnInit {
+
+  github = faGithub;
+  eye = faEye;
 
   projects: Project[] = [];
 

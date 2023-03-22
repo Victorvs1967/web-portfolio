@@ -13,10 +13,10 @@
           <h3>{{ project.name }}</h3>
           <div class="icons">
             <a class="icon" *ngIf="project.links[0]" href="{{ project.links[0] }}" target="_blank">
-              <mat-icon>visibility</mat-icon>
+              <fa-icon [icon]="eye"></fa-icon>
             </a>
             <a class="icon" *ngIf="project.links[1]" href="{{ project.links[1] }}" target="_blank">
-              <i class="fa-brands fa-github"></i>
+              <fa-icon [icon]="github"></fa-icon>
             </a>
           </div>
         </div>

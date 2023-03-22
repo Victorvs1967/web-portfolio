@@ -32,7 +32,8 @@ import { ListSkillComponent } from './dasboard/component/list-skill/list-skill.c
     MaterialUiModule,
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS,
+    {
+      provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
     },
@@ -42,7 +43,7 @@ import { ListSkillComponent } from './dasboard/component/list-skill/list-skill.c
     },
     JwtService,
     ListProjectComponent,
-    ListSkillComponent
+    ListSkillComponent,
   ],
   bootstrap: [AppComponent]
 })
