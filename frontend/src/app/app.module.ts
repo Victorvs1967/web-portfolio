@@ -20,8 +20,6 @@ import { ListSkillComponent } from './dasboard/component/list-skill/list-skill.c
   declarations: [
     AppComponent,
     HeaderComponent,
-    ListProjectComponent,
-    ListSkillComponent,
     AlertComponent,
     NotFoundComponent,
   ],
@@ -43,6 +41,8 @@ import { ListSkillComponent } from './dasboard/component/list-skill/list-skill.c
       useClass: PathLocationStrategy,
     },
     JwtService,
+    ListProjectComponent,
+    ListSkillComponent
   ],
   bootstrap: [AppComponent]
 })

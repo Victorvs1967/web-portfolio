@@ -1,5 +1,4 @@
 import { modal } from 'src/app/service/dialog.decorator';
-import { EditSkillComponent } from './../edit-skill/edit-skill.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { AnyDataSource } from 'src/app/data/data-source';
@@ -7,6 +6,7 @@ import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 import { AlertComponent } from 'src/app/component/alert/alert.component';
+import { EditSkillComponent } from '../edit-skill/edit-skill.component';
 
 @Component({
   selector: 'app-list-skill',

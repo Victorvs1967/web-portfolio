@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { DashboardComponent } from './component/dash/dashboard.component';
+import { DashboardComponent } from './component/dashboard/dashboard.component';
 import { RouterModule, Routes } from '@angular/router';
 import { GraphComponent } from './component/graph/graph.component';
 import { ListUserComponent } from './component/list-user/list-user.component';
@@ -11,8 +11,8 @@ import { EditSkillComponent } from './component/edit-skill/edit-skill.component'
 import { EditUserComponent } from './component/edit-user/edit-user.component';
 import { ListImageComponent } from './component/list-image/list-image.component';
 import { ListProjectComponent } from './component/list-project/list-project.component';
-import { ListSkillComponent } from './component/list-skill/list-skill.component';
 import { ViewImageComponent } from './component/view-image/view-image.component';
+import { ListSkillComponent } from './component/list-skill/list-skill.component';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent, canDeactivate: [AuthGuard],

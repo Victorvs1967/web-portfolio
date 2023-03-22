@@ -1,8 +1,8 @@
-import { ListSkillComponent } from '../list-skill/list-skill.component';
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
+import { ListSkillComponent } from '../list-skill/list-skill.component';
 
 @Component({
   selector: 'app-edit-skill',
