@@ -1,6 +1,5 @@
 package com.vvs.webfluxadminapp.router;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -12,15 +11,15 @@ import com.vvs.webfluxadminapp.model.Project;
 import com.vvs.webfluxadminapp.security.JwtUtil;
 import com.vvs.webfluxadminapp.service.ProjectService;
 
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @Component
+@RequiredArgsConstructor
 public class ProjectHandler {
 
-  @Autowired
-  private ProjectService projectService;
-  @Autowired
-  private JwtUtil jwtUtil;
+  private final ProjectService projectService;
+  private final JwtUtil jwtUtil;
 
   public Mono<ServerResponse> getProjects(ServerRequest request) {
     return ServerResponse

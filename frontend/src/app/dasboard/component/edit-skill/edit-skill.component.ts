@@ -11,12 +11,7 @@ import { ListSkillComponent } from '../list-skill/list-skill.component';
 })
 export class EditSkillComponent implements OnInit {
 
-  skill: Skill = {
-    id: null,
-    name: '',
-    description: '',
-    percent: 0
-  };
+  skill?: Skill;
 
   editForm?: UntypedFormGroup;
 

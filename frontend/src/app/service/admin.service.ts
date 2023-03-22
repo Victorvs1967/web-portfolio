@@ -23,15 +23,15 @@ export class AdminService {
   }
 
   public getUser(username: string): Observable<User> {
-    return this.http.get<User>(environment.baseUrl.concat(environment.userUrl).concat('/').concat(username));
+    return this.http.get<User>(environment.baseUrl.concat(environment.userUrl, '/', username));
   }
 
   public editUser(user: User): Observable<User> {
-    return this.http.put<User>(environment.baseUrl.concat(environment.userUrl).concat('/').concat(user.username), user);
+    return this.http.put<User>(environment.baseUrl.concat(environment.userUrl, '/', user.username), user);
   }
 
   public deleteUser(username: string): Observable<void> {
-    return this.http.delete<void>(environment.baseUrl.concat(environment.userUrl).concat('/').concat(username));
+    return this.http.delete<void>(environment.baseUrl.concat(environment.userUrl, '/', username));
   }
 
   // Project services
@@ -40,7 +40,7 @@ export class AdminService {
   }
 
   public getProject(id: string): Observable<Project> {
-    return this.http.get<Project>(environment.baseUrl.concat(environment.projectUrl).concat('/').concat(id));
+    return this.http.get<Project>(environment.baseUrl.concat(environment.projectUrl, '/', id));
   }
 
   public addProject(project: Project): Observable<Project | boolean> {
@@ -52,7 +52,7 @@ export class AdminService {
   }
 
   public deleteProject(id: string): Observable<void> {
-    return this.http.delete<void>(environment.baseUrl.concat(environment.projectUrl).concat('/').concat(id));
+    return this.http.delete<void>(environment.baseUrl.concat(environment.projectUrl, '/', id));
   }
 
   // Skill services
@@ -61,7 +61,7 @@ export class AdminService {
   }
 
   public getSkill(id: string): Observable<Skill> {
-    return this.http.get<Skill>(environment.baseUrl.concat(environment.skillUrl).concat('/').concat(id));
+    return this.http.get<Skill>(environment.baseUrl.concat(environment.skillUrl, '/', id));
   }
 
   public addSkill(skill: Skill): Observable<Skill | boolean> {
@@ -73,7 +73,7 @@ export class AdminService {
   }
 
   public deleteSkill(id: string): Observable<void> {
-    return this.http.delete<void>(environment.baseUrl.concat(environment.skillUrl).concat('/').concat(id));
+    return this.http.delete<void>(environment.baseUrl.concat(environment.skillUrl, '/', id));
   }
 
   // Reload function

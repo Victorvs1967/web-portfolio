@@ -24,7 +24,7 @@
       <!-- Skill Column -->
       <ng-container matColumnDef="skills">
         <th mat-header-cell *matHeaderCellDef> Skills </th>
-        <td mat-cell *matCellDef="let element"><span *ngFor="let skill of element.skills"><span *ngIf="skill">{{ skill.name }}</span></span>
+        <td mat-cell *matCellDef="let element"><span *ngFor="let skill of element.skills"><span *ngIf="skill">{{ skill.name }}&nbsp;</span></span>
       </ng-container>
 
       <!-- Links Column -->

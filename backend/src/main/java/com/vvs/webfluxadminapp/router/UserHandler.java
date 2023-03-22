@@ -6,7 +6,8 @@ import com.vvs.webfluxadminapp.error.exception.WrongCredentialException;
 import com.vvs.webfluxadminapp.security.JwtUtil;
 import com.vvs.webfluxadminapp.service.UserService;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -15,12 +16,11 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Mono;
 
 @Component
+@RequiredArgsConstructor
 public class UserHandler {
 
-  @Autowired
-  private UserService userService;
-  @Autowired
-  private JwtUtil jwtUtil;
+  private final UserService userService;
+  private final JwtUtil jwtUtil;
 
   public Mono<ServerResponse> getUsers(ServerRequest request) {
     String token = request.headers().firstHeader("authorization").substring(7);

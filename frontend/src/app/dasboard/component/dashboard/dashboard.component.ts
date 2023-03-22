@@ -28,23 +28,23 @@ export class DashboardComponent implements OnInit {
 
   @modal(SignupComponent)
   addUser() {
-    this.router.navigate(['listUser']);
+    this.router.navigate(['/admin/listUser']);
 
   }
 
   @modal(AddProjectComponent)
   addProject() {
-    this.router.navigate(['listProject']);
+    this.router.navigate(['/admin/listProject']);
   }
 
   @modal(AddSkillComponent)
   addSkill() {
-    this.router.navigate(['listSkill']);
+    this.router.navigate(['admin', 'listSkill']);
   }
 
   @modal(AddImageComponent)
   addImage() {
-    this.router.navigate(['listImage']);
+    this.router.navigate(['/admin/listImage']);
   }
 
 }

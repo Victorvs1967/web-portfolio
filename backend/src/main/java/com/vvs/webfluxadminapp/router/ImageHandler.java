@@ -3,7 +3,6 @@ package com.vvs.webfluxadminapp.router;
 import java.util.ArrayList;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.buffer.DefaultDataBuffer;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -13,13 +12,14 @@ import org.springframework.web.reactive.function.server.ServerResponse;
 
 import com.vvs.webfluxadminapp.service.ImageService;
 
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @Component
+@RequiredArgsConstructor
 public class ImageHandler {
   
-  @Autowired
-  private ImageService imageService;
+  private final ImageService imageService;
 
   public Mono<ServerResponse> uploadImg(ServerRequest request) {
     return request.body(BodyExtractors.toMultipartData())

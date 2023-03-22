@@ -12,14 +12,15 @@ import com.vvs.webfluxadminapp.dto.UserDto;
 import com.vvs.webfluxadminapp.error.exception.WrongCredentialException;
 import com.vvs.webfluxadminapp.service.AuthService;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.MediaType;
 
 @Component
+@RequiredArgsConstructor
 public class AuthHandler {
   
-  @Autowired
-  private AuthService authService;
+  private final AuthService authService;
 
   public Mono<ServerResponse> signUp(ServerRequest request) {
 

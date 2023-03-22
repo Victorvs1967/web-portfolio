@@ -56,16 +56,11 @@ export class ListSkillComponent implements OnInit {
 
   @modal(AlertComponent, ListSkillComponent.alert)
   deleteSkill(skill: Skill) {
-    if (skill.id) this.admin.deleteSkill(skill.id).subscribe(() => this.reloadData());
-    this.admin._reloadCurrentRoute();
+    if (skill.id) this.admin.deleteSkill(skill.id).subscribe();
   }
 
   reloadData() {
     this.admin.getSkillList().subscribe(data => this.dataSource = new AnyDataSource([...data]));
-  }
-
-  static ofSkill() {
-    return ListSkillComponent.skill;
   }
 
 }
