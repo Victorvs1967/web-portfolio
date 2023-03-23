@@ -34,8 +34,8 @@ public class UserHandler {
   }
 
   public Mono<ServerResponse> getUser(ServerRequest request) {
-    String token = request.headers().firstHeader("authorization").substring(7);
     String username = request.pathVariable("username");
+    String token = request.headers().firstHeader("authorization").substring(7);
     return jwtUtil.validateToken(token)
       .switchIfEmpty(Mono.error(WrongCredentialException::new))
       .map(result -> !result)
@@ -48,8 +48,8 @@ public class UserHandler {
   }
 
   public Mono<ServerResponse> updateUserData(ServerRequest request) {
-    String token = request.headers().firstHeader("authorization").substring(7);
     String username = request.pathVariable("username");
+    String token = request.headers().firstHeader("authorization").substring(7);
     Mono<UserDto> userDto = request.bodyToMono(UserDto.class);
     return jwtUtil.validateToken(token)
       .switchIfEmpty(Mono.error(WrongCredentialException::new))
@@ -66,8 +66,8 @@ public class UserHandler {
   }
 
   public Mono<ServerResponse> deleteUser(ServerRequest request) {
-    String token = request.headers().firstHeader("authorization").substring(7);
     String username = request.pathVariable("username");
+    String token = request.headers().firstHeader("authorization").substring(7);
     return jwtUtil.validateToken(token)
       .switchIfEmpty(Mono.error(WrongCredentialException::new))
       .map(result -> !result)

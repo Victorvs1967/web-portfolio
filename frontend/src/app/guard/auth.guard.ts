@@ -17,12 +17,11 @@ export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-
       if (!this.auth.onLogin()) {
-      this.login();
-      return false;
-    }
-    return true;
+        this.login();
+        return false;
+      }
+      return true;
   }
 
   canDeactivate(

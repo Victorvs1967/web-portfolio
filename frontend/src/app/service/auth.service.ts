@@ -56,17 +56,11 @@ export class AuthService {
 
   login(userInfo: LoginData): Observable<any | boolean> {
     return this.http.post(environment.baseUrl.concat(environment.loginUrl), userInfo).pipe(map((token: any) => {
-      if (this.jwtService.decodeToken(token.token).role === Role.ADMIN) {
+      if (userInfo.username && userInfo.password) {
+        this.jwtService.decodeToken(token.token).role === Role.ADMIN ? this.adminIn.next(true) : this.adminIn.next(false);
+        this.loggedIn.next(true);
         this.clearToken();
         this.setToken(token);
-        this.loggedIn.next(true);
-        this.adminIn.next(true);
-        return of(true);
-      } else if (userInfo.username !== '' && userInfo.password !== '') {
-        this.clearToken();
-        this.setToken(token);
-        this.loggedIn.next(true);
-        this.adminIn.next(false);
         return of(true);
       }
       this.loggedIn.next(false);

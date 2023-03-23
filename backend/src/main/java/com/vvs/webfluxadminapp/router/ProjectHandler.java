@@ -22,27 +22,34 @@ public class ProjectHandler {
   private final JwtUtil jwtUtil;
 
   public Mono<ServerResponse> getProjects(ServerRequest request) {
-    return ServerResponse
+    String token = request.headers().firstHeader("authorization").substring(7);
+    return jwtUtil.validateToken(token)
+      .switchIfEmpty(Mono.error(WrongCredentialException::new))
+      .flatMap(result -> ServerResponse
       .ok()
       .contentType(MediaType.APPLICATION_JSON)
-      .body(projectService.getProjects(), Project.class);
+      .body(projectService.getProjects(), Project.class));
   }
 
   public Mono<ServerResponse> getProject(ServerRequest request) {
-    String token = request.headers().firstHeader("authorization").substring(7);
     String id = request.pathVariable("id");
+    String token = request.headers().firstHeader("authorization").substring(7);
     return jwtUtil.validateToken(token)
       .switchIfEmpty(Mono.error(WrongCredentialException::new))
       .map(result -> id)
       .map(projectService::getProject)
       .flatMap(projectDto -> ServerResponse
-          .ok()
-          .contentType(MediaType.APPLICATION_JSON)
-          .body(projectDto, ProjectDto.class));
+        .ok()
+        .contentType(MediaType.APPLICATION_JSON)
+        .body(projectDto, ProjectDto.class));
   }
 
   public Mono<ServerResponse> createProject(ServerRequest request) {
-    return request.bodyToMono(ProjectDto.class)
+    Mono<ProjectDto> project = request.bodyToMono(ProjectDto.class);
+    String token = request.headers().firstHeader("authorization").substring(7);
+    return jwtUtil.validateToken(token)
+      .switchIfEmpty(Mono.error(WrongCredentialException::new))
+      .flatMap(result -> project)
       .map(projectService::createProject)
       .flatMap(projectDto -> ServerResponse
         .ok()
@@ -51,7 +58,11 @@ public class ProjectHandler {
   }
 
   public Mono<ServerResponse> editProject(ServerRequest request) {
-    return request.bodyToMono(ProjectDto.class)
+    Mono<ProjectDto> project =  request.bodyToMono(ProjectDto.class);
+    String token = request.headers().firstHeader("authorization").substring(7);
+    return jwtUtil.validateToken(token)
+      .switchIfEmpty(Mono.error(WrongCredentialException::new))
+      .flatMap(result -> project)
       .map(projectService::updateProject)
       .flatMap(projectDto -> ServerResponse
         .ok()
@@ -60,8 +71,8 @@ public class ProjectHandler {
   }
 
   public Mono<ServerResponse> deleteProject(ServerRequest request) {
-    String token = request.headers().firstHeader("authorization").substring(7);
     String id = request.pathVariable("id");
+    String token = request.headers().firstHeader("authorization").substring(7);
     return jwtUtil.validateToken(token)
       .switchIfEmpty(Mono.error(WrongCredentialException::new))
       .map(result -> id)

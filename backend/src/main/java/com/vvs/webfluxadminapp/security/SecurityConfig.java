@@ -58,7 +58,10 @@ public class SecurityConfig {
       .authorizeExchange()
       .pathMatchers(HttpMethod.OPTIONS).permitAll()
       .pathMatchers(WHITELIST_AUTH_URLS).permitAll()
-      .anyExchange().authenticated().and()
+      .pathMatchers(HttpMethod.PUT).hasAnyAuthority("ADMIN", "MANAGER")
+      .pathMatchers(HttpMethod.DELETE).hasAnyAuthority("ADMIN", "MANAGER")
+      .anyExchange().authenticated()
+      .and()
       .build();
   }
 

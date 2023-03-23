@@ -37,6 +37,7 @@ public class AuthServiceImpl implements AuthService {
       .map(aBoolean -> userDto)
       .map(usrDto -> appMapper.convert(usrDto, User.class))
       .doOnNext(user -> user.setPassword(passwordEncoder.encode(user.getPassword())))
+      .doOnNext(user -> user.setActive(true))
       .flatMap(userRepository::save)
       .map(user -> appMapper.convert(user, UserDto.class));
 }

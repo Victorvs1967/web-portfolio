@@ -37,7 +37,7 @@ public class User implements UserDetails {
 
   private Date onCreate;
   private Date onUpdate;
-  private  boolean isActive;
+  private boolean isActive;
   private UserRole role;
 
   public User() {
