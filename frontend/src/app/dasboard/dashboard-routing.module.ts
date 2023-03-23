@@ -15,7 +15,8 @@ import { ViewImageComponent } from './component/view-image/view-image.component'
 import { ListSkillComponent } from './component/list-skill/list-skill.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent, canDeactivate: [AuthGuard],
+  {
+    path: '', component: DashboardComponent, canActivate: [AuthGuard], canDeactivate: [AuthGuard],
     children: [
       { path: '', component: GraphComponent },
       { path: 'listUser', component: ListUserComponent },

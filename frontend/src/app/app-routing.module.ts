@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: '', redirectTo: '', pathMatch: 'full' },
   { path: '', loadChildren: () => import('./main/main.module').then(m => m.MainModule) },
   { path: 'auth', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
-  { path: "admin", canActivate: [AuthGuard], loadChildren: () => import('./dasboard/dashboard.module').then(m => m.DashboardModule) },
+  { path: "admin", loadChildren: () => import('./dasboard/dashboard.module').then(m => m.DashboardModule) },
   { path: '**', component: NotFoundComponent },
 ];
 
