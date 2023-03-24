@@ -8,6 +8,7 @@
   .contact-content-container {
     flex-direction: column;
     margin-bottom: 6rem;
+    padding: 0 10%;
 
     .left-contact {
       .contact-icons {
@@ -40,6 +41,10 @@
     padding: 1rem 6rem;
   }
 
+  .contact-content-container {
+    padding: 0;
+  }
+
   .main-title {
     h2 {
       font-size: 3rem;
@@ -59,6 +64,7 @@
   .contact-content-container {
     flex-direction: column;
     margin-bottom: 6rem;
+    padding: 0;
 
     .left-contact {
       .contact-icons {
