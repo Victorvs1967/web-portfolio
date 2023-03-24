@@ -1,13 +1,14 @@
+import { AuthService } from 'src/app/service/auth.service';
 import { modal } from 'src/app/service/dialog.decorator';
 import { EditProjectComponent } from '../edit-project/edit-project.component';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AnyDataSource } from 'src/app/data/data-source';
 import { Project } from 'src/app/model/project.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { ImageService } from 'src/app/service/image.service';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AlertComponent } from 'src/app/component/alert/alert.component';
 
 @Component({
@@ -23,6 +24,9 @@ import { AlertComponent } from 'src/app/component/alert/alert.component';
   ],
 })
 export class ListProjectComponent implements OnInit {
+
+  auth = inject(AuthService);
+  isAdmin: Observable<boolean>;
 
   static project: Project;
   static alert: AlertDialogData = {
@@ -41,6 +45,7 @@ export class ListProjectComponent implements OnInit {
     private admin: AdminService,
     private images: ImageService,
   ) {
+    this.isAdmin = this.auth.isAdmin;
     this.reloadData();
   }
 

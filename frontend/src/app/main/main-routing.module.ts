@@ -6,9 +6,11 @@ import { PortfolioComponent } from './component/portfolio/portfolio.component';
 import { BlogsComponent } from './component/blogs/blogs.component';
 import { ContactsComponent } from './component/contacts/contacts.component';
 import { MainComponent } from './component/main/main.component';
+import { AuthGuard } from '../guard/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: MainComponent,
+  {
+    path: '', component: MainComponent, canDeactivate: [AuthGuard],
     children: [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },

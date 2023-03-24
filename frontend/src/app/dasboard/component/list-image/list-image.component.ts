@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/service/auth.service';
+import { Component, inject } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ImageService } from 'src/app/service/image.service';
 import { ProjectListComponent } from './project-list/project-list.component';
@@ -10,12 +12,16 @@ import { ProjectListComponent } from './project-list/project-list.component';
 })
 export class ListImageComponent {
 
+  auth = inject(AuthService);
+  isAdmin: Observable<boolean>;
+
   images: any[] = [];
 
   constructor(
     private image: ImageService,
     private _bottomSheet: MatBottomSheet,
   ) {
+    this.isAdmin = this.auth.isAdmin;
     this.viewList();
   }
 

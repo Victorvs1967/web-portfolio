@@ -1,5 +1,6 @@
+import { AuthService } from 'src/app/service/auth.service';
 import { modal } from 'src/app/service/dialog.decorator';
-import { map, tap } from 'rxjs';
+import { map, tap, Observable } from 'rxjs';
 import { Component, OnInit, inject } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -25,6 +26,9 @@ import { EditUserComponent } from '../edit-user/edit-user.component';
 export class ListUserComponent implements OnInit {
 
   image = inject(ImageService);
+  auth = inject(AuthService);
+
+  isAdmin: Observable<Boolean>;
 
   static user: User;
   static alert: AlertDialogData = {
@@ -40,6 +44,7 @@ export class ListUserComponent implements OnInit {
   constructor(
     private admin: AdminService,
   ) {
+    this.isAdmin = this.auth.isAdmin;
     this.reloadData();
   }
 

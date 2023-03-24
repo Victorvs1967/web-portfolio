@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/service/auth.service';
+import { Component, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SignupComponent } from 'src/app/auth/component/signup/signup.component';
@@ -15,12 +16,15 @@ import { AddSkillComponent } from '../add-skill/add-skill.component';
 })
 export class DashboardComponent implements OnInit {
 
-  isAdmin: Observable<boolean> | undefined;
+  auth = inject(AuthService);
+  isAdmin: Observable<boolean>;
 
   constructor(
     private admin: AdminService,
     private router: Router,
-  ) { }
+  ) {
+    this.isAdmin = this.auth.isAdmin;
+  }
 
   ngOnInit(): void {
     this.admin._reloadCurrentRoute();

@@ -57,7 +57,8 @@ export class AuthService {
   login(userInfo: LoginData): Observable<any | boolean> {
     return this.http.post(environment.baseUrl.concat(environment.loginUrl), userInfo).pipe(map((token: any) => {
       if (userInfo.username && userInfo.password) {
-        this.jwtService.decodeToken(token.token).role === Role.ADMIN ? this.adminIn.next(true) : this.adminIn.next(false);
+        const role = this.jwtService.decodeToken(token.token).role;
+        role === Role.ADMIN || Role.MANAGER ? this.adminIn.next(true) : this.adminIn.next(false);
         this.loggedIn.next(true);
         this.clearToken();
         this.setToken(token);

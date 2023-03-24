@@ -1,6 +1,8 @@
+import { Observable } from 'rxjs';
+import { AuthService } from './../../../service/auth.service';
 import { modal } from 'src/app/service/dialog.decorator';
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AnyDataSource } from 'src/app/data/data-source';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
@@ -22,6 +24,9 @@ import { EditSkillComponent } from '../edit-skill/edit-skill.component';
 })
 export class ListSkillComponent implements OnInit {
 
+  auth = inject(AuthService);
+  isAdmin: Observable<boolean>;
+
   static skill: Skill;
   static alert: AlertDialogData = {
     title: "A you sure?",
@@ -36,6 +41,7 @@ export class ListSkillComponent implements OnInit {
   constructor(
     private admin: AdminService,
   ) {
+    this.isAdmin = this.auth.isAdmin;
     this.reloadData();
   }
 
