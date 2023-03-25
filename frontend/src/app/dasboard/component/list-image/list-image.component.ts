@@ -46,5 +46,4 @@ export class ListImageComponent {
   toProject(image: any) {
     this._bottomSheet.open(ProjectListComponent, { data: { image } });
   }
-
 }

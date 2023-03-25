@@ -25,7 +25,7 @@ import { EditSkillComponent } from '../edit-skill/edit-skill.component';
 export class ListSkillComponent implements OnInit {
 
   auth = inject(AuthService);
-  isAdmin: Observable<boolean>;
+  isAdmin?: Observable<boolean>;
 
   static skill: Skill;
   static alert: AlertDialogData = {
@@ -41,11 +41,11 @@ export class ListSkillComponent implements OnInit {
   constructor(
     private admin: AdminService,
   ) {
-    this.isAdmin = this.auth.isAdmin;
     this.reloadData();
   }
 
   ngOnInit(): void {
+    this.isAdmin = this.auth.isAdmin;
     this.reloadData();
     this.admin._reloadCurrentRoute();
   }

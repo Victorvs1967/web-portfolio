@@ -26,7 +26,7 @@ import { AlertComponent } from 'src/app/component/alert/alert.component';
 export class ListProjectComponent implements OnInit {
 
   auth = inject(AuthService);
-  isAdmin: Observable<boolean>;
+  isAdmin?: Observable<boolean>;
 
   static project: Project;
   static alert: AlertDialogData = {
@@ -45,11 +45,11 @@ export class ListProjectComponent implements OnInit {
     private admin: AdminService,
     private images: ImageService,
   ) {
-    this.isAdmin = this.auth.isAdmin;
     this.reloadData();
   }
 
   ngOnInit(): void {
+    this.isAdmin = this.auth.isAdmin;
     this.reloadData();
     this.admin._reloadCurrentRoute();
   }
