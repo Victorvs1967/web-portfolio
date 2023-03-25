@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { map, tap } from 'rxjs';
 import { Project } from 'src/app/model/project.model';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
@@ -13,17 +14,8 @@ import { ImageService } from 'src/app/service/image.service';
 })
 export class AddProjectComponent implements OnInit {
 
-  image = { id: '', name: '' }
+  image: any;
   skillsView: { value: Skill, viewValue: string }[] = [];
-  skills: Skill[] = [];
-  project: Project = {
-    id: null,
-    name: '',
-    description: '',
-    image: this.image,
-    skills: [],
-    links: [],
-  };
 
   currentFile?: File;
   createForm?: UntypedFormGroup;
@@ -34,11 +26,11 @@ export class AddProjectComponent implements OnInit {
     private images: ImageService,
     @Inject(MAT_DIALOG_DATA) public data: Project,
   ) {
-    this.admin.getSkillList().subscribe(
-      data => data.forEach(
-        item => this.skillsView?.push({ value: item, viewValue: item.name })
-      )
-    );
+    this.admin.getSkillList()
+      .pipe(
+        map(data => data
+          .map(item => this.skillsView = [...this.skillsView, { value: item, viewValue: item.name }])))
+      .subscribe();
   }
 
   ngOnInit(): void {
@@ -46,19 +38,19 @@ export class AddProjectComponent implements OnInit {
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       image: [this.image],
-      skills: [ this.skillsView ],
+      skills: [[]],
       links: [''],
     });
-}
+  }
 
   submitProject() {
-    this.project.name = this.createForm?.value.name;
-    this.project.description = this.createForm?.value.description;
-    this.project.skills.push(this.createForm?.value.skills.value);
-    this.project.links = this.createForm?.value.links.split(',').map((link: string) => link.trim());
-    this.project.image = this.image;
-
-    this.admin.addProject(this.project).subscribe();
+    let project: Project = this.createForm?.value;
+    project.name = this.createForm?.value.name;
+    project.description = this.createForm?.value.description;
+    project.links = this.createForm?.value.links.split(',').map((link: string) => link.trim());
+    project.image = this.createForm?.value.image || this.image;
+    project.skills = [...this.createForm?.value.skills];
+    this.admin.addProject(project).subscribe();
   }
 
   selectFile(event: any) {
@@ -68,8 +60,9 @@ export class AddProjectComponent implements OnInit {
 
   upload(event: any) {
     event.preventDefault();
-    if (this.currentFile) this.images.upload(this.currentFile).subscribe(
-      response => this.image.id = response.id
-    );
+    if (this.currentFile) this.images.upload(this.currentFile)
+    .pipe(
+      tap(response => this.image.id = response.id))
+    .subscribe();
   }
 }

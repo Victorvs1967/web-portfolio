@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { map, tap } from 'rxjs';
 import { Project } from 'src/app/model/project.model';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
@@ -13,17 +14,9 @@ import { ListProjectComponent } from '../list-project/list-project.component';
 })
 export class EditProjectComponent implements OnInit {
 
-  image: { id: string, name: string } = { id: '', name: '' };
+  image: any;
   skillsView: { value: Skill, viewValue: string }[] = [];
-  skills: Skill[] = [];
-  project: Project = {
-    id: null,
-    name: '',
-    description: '',
-    image: this.image,
-    skills: this.skills,
-    links: [],
-  };
+  project: Project;
 
   currentFile?: File;
   editForm?: UntypedFormGroup;
@@ -33,12 +26,15 @@ export class EditProjectComponent implements OnInit {
     private admin: AdminService,
     private images: ImageService,
   ) {
+    this.project = ListProjectComponent.project;
     this.admin.getSkillList()
-      .subscribe(data => data.forEach(item => this.skillsView?.push({ value: item, viewValue: item.name })));
+      .pipe(map(data =>
+        data.map(i =>
+          this.skillsView = [ ...this.skillsView, { value: i, viewValue: i.name}])))
+      .subscribe();
   }
 
   ngOnInit(): void {
-    this.project = ListProjectComponent.project;
     this.editForm = this.formBuilder.group({
       name: [this.project.name, [Validators.required]],
       description: [this.project.description, [Validators.required]],
@@ -55,7 +51,7 @@ export class EditProjectComponent implements OnInit {
       this.project.description = this.editForm?.value.description;
       this.project.links = this.editForm?.value.links.split(',').map((link: string) => link.trim());
       this.project.image = this.editForm?.value.image || this.image;
-      this.project.skills.push(this.editForm?.value.skills.value);
+      this.project.skills = [ ...this.editForm?.value.skills ];
       this.admin.editProject(this.project).subscribe();
     }
   }
@@ -67,7 +63,10 @@ export class EditProjectComponent implements OnInit {
 
   upload(event: any) {
     event.preventDefault();
-    if (this.currentFile) this.images.upload(this.currentFile).subscribe(response => this.image.id = response.id);
+    if (this.currentFile) this.images.upload(this.currentFile)
+      .pipe(
+        tap(response => this.image.id = response.id))
+      .subscribe();
   }
 
 }

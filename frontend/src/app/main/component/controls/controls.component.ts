@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
 
 @Component({
@@ -13,7 +12,6 @@ export class ControlsComponent implements OnInit {
 
   constructor(
     private styleManager: StyleManagerService,
-    private route: ActivatedRoute,
   ) {
   }
 
