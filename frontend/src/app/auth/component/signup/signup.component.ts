@@ -68,7 +68,8 @@ export class SignupComponent implements OnInit {
 
   uploadAvatar(event: any) {
     event.preventDefault();
-    if (this.currentAvatar) this.image.upload(this.currentAvatar).subscribe(response => this.avatar.id = response.id);
+    if (this.currentAvatar) this.image.upload(this.currentAvatar)
+      .subscribe(response => this.avatar.id = response.id);
   }
 
 }

@@ -22,7 +22,7 @@ public class SecurityConfig {
   @Value("${app.host.url}")
   private String hostUrl;
   
-  private final static String[] WHITELIST_AUTH_URLS = {"/auth/signup", "/auth/login"};
+  private final static String[] WHITELIST_AUTH_URLS = {"/auth/signup", "/auth/login", "/api/images/upload"};
 
   @Autowired
   private AuthenticationManager authenticationManager;
@@ -56,10 +56,10 @@ public class SecurityConfig {
       .authenticationManager(authenticationManager)
       .securityContextRepository(securityContextRepository)
       .authorizeExchange()
-      .pathMatchers(HttpMethod.OPTIONS).permitAll()
-      .pathMatchers(WHITELIST_AUTH_URLS).permitAll()
       .pathMatchers(HttpMethod.PUT).hasAnyAuthority("ADMIN", "MANAGER")
       .pathMatchers(HttpMethod.DELETE).hasAnyAuthority("ADMIN", "MANAGER")
+      .pathMatchers(HttpMethod.OPTIONS).permitAll()
+      .pathMatchers(WHITELIST_AUTH_URLS).permitAll()
       .anyExchange().authenticated()
       .and()
       .build();
