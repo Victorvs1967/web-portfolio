@@ -1,7 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
 import { User } from 'src/app/model/user.model';
 import { AuthService } from 'src/app/service/auth.service';
 import { ImageService } from 'src/app/service/image.service';
@@ -14,8 +13,6 @@ import { ImageService } from 'src/app/service/image.service';
 export class SignupComponent implements OnInit {
 
   signupForm?: UntypedFormGroup;
-  isLogin: Observable<boolean> | undefined;
-  isAdmin: Observable<boolean> | undefined;
 
   photo = { id: '', name: '' }
   avatar = { id: '', name: '' }
@@ -30,9 +27,6 @@ export class SignupComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.isLogin = this.auth.isLoggedIn;
-    this.isAdmin = this.auth.isAdmin;
-
     this.signupForm = this.formBuilder.group({
       username: ['', [Validators.required]],
       password: ['', [Validators.required]],

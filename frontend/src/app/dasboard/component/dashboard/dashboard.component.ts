@@ -17,28 +17,27 @@ import { AddSkillComponent } from '../add-skill/add-skill.component';
 export class DashboardComponent implements OnInit {
 
   auth = inject(AuthService);
-  isAdmin: Observable<boolean>;
+  isAdmin?: Observable<boolean>;
 
   constructor(
     private admin: AdminService,
     private router: Router,
-  ) {
-    this.isAdmin = this.auth.isAdmin;
-  }
+  ) { }
 
   ngOnInit(): void {
+    this.isAdmin = this.auth.isAdmin;
     this.admin._reloadCurrentRoute();
   }
 
   @modal(SignupComponent)
   addUser() {
-    this.router.navigate(['/admin/listUser']);
+    this.router.navigate(['admin', 'listUser']);
 
   }
 
   @modal(AddProjectComponent)
   addProject() {
-    this.router.navigate(['/admin/listProject']);
+    this.router.navigate(['admin', 'listProject']);
   }
 
   @modal(AddSkillComponent)
@@ -48,7 +47,6 @@ export class DashboardComponent implements OnInit {
 
   @modal(AddImageComponent)
   addImage() {
-    this.router.navigate(['/admin/listImage']);
+    this.router.navigate(['admin', 'listImage']);
   }
-
 }

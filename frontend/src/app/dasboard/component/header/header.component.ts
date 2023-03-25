@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
   isLogin: Observable<boolean> | undefined;
 
   file: string | undefined;
-
   isUser: string | undefined;
 
   constructor(

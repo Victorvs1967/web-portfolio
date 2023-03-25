@@ -28,7 +28,7 @@ export class ListUserComponent implements OnInit {
   image = inject(ImageService);
   auth = inject(AuthService);
 
-  isAdmin: Observable<Boolean>;
+  isAdmin?: Observable<boolean>;
 
   static user: User;
   static alert: AlertDialogData = {
@@ -44,11 +44,12 @@ export class ListUserComponent implements OnInit {
   constructor(
     private admin: AdminService,
   ) {
-    this.isAdmin = this.auth.isAdmin;
     this.reloadData();
   }
 
   ngOnInit(): void {
+    this.isAdmin = this.auth.isAdmin;
+    this.reloadData();
     this.admin._reloadCurrentRoute();
   }
 

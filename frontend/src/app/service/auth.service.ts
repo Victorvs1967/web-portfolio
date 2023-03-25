@@ -23,7 +23,7 @@ export class AuthService {
   }
 
   get isAdmin(): Observable<boolean> {
-    if (this.token != undefined) this.adminIn.next(this.jwtService.decodeToken(this.token).role === Role.ADMIN);
+    this.adminIn.next(this.onAdmin());
     return this.adminIn.asObservable();
   }
 
@@ -42,6 +42,10 @@ export class AuthService {
     return this.jwtService.decodeToken(this.getToken()).sub;
   }
 
+  getRole(): string {
+    return this.jwtService.decodeToken(this.getToken()).role;
+  }
+
   clearToken() {
     sessionStorage.removeItem('token');
   }
@@ -50,15 +54,17 @@ export class AuthService {
     return sessionStorage.getItem('token') ? true : false;
   }
 
-  onAdmin(): Observable<boolean | any> {
-    return this.isAdmin;
+  onAdmin(): boolean {
+    return (this.getRole() === Role.ADMIN) || (this.getRole() === Role.MANAGER);
   }
 
   login(userInfo: LoginData): Observable<any | boolean> {
     return this.http.post(environment.baseUrl.concat(environment.loginUrl), userInfo).pipe(map((token: any) => {
       if (userInfo.username && userInfo.password) {
-        const role = this.jwtService.decodeToken(token.token).role;
-        role === Role.ADMIN || Role.MANAGER ? this.adminIn.next(true) : this.adminIn.next(false);
+        (this.jwtService.decodeToken(token.token).role === Role.ADMIN ||
+        this.jwtService.decodeToken(token.token).role === Role.MANAGER) ?
+          this.adminIn.next(true) :
+          this.adminIn.next(false);
         this.loggedIn.next(true);
         this.clearToken();
         this.setToken(token);

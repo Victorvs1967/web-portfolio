@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AuthService } from 'src/app/service/auth.service';
 import { LoginData } from 'src/app/model/login-data.model';
@@ -16,6 +16,7 @@ import { modal } from 'src/app/service/dialog.decorator';
 export class LoginComponent implements OnInit {
 
   loginForm?: UntypedFormGroup;
+
   isLogin: Observable<boolean> | undefined;
   isAdmin: Observable<boolean> | undefined;
 
@@ -31,13 +32,15 @@ export class LoginComponent implements OnInit {
       username: ['', [Validators.required]],
       password: ['', [Validators.required]]
     });
-
-    this.isLogin = this.auth.isLoggedIn;
-    this.auth.onAdmin().subscribe(r => this.isAdmin = r);
   }
 
   submitLogin() {
-    this.auth.login(this.loginForm?.value).subscribe(() => this.router.navigate(['admin']));
+    this.auth.login(this.loginForm?.value)
+    .pipe(map(res => {
+      this.isLogin = this.auth.isLoggedIn;
+      this.isAdmin = this.auth.isAdmin;
+    }))
+    .subscribe(() => this.router.navigate(['admin']));
   }
 
   @modal(SignupComponent)
