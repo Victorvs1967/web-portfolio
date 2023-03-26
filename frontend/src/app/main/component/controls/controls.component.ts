@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject, Input } from '@angular/core';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
 
 @Component({
@@ -8,12 +8,10 @@ import { StyleManagerService } from 'src/app/service/style-manager.service';
 })
 export class ControlsComponent implements OnInit {
 
+  styleManager = inject(StyleManagerService);
   isDark = this.styleManager.isDark;
 
-  constructor(
-    private styleManager: StyleManagerService,
-  ) {
-  }
+  constructor() { }
 
   ngOnInit(): void {
     // call main function
@@ -27,17 +25,16 @@ export class ControlsComponent implements OnInit {
 
     controls.forEach((control: any) => {
       control.addEventListener('click', () => {
-        const buttons = document.querySelectorAll('.active-btn'),
-          active = document.querySelector('.active'),
-          id = document.getElementById(control.dataset.id);
+        const page = document.getElementById(control.dataset.id),
+              active = document.querySelector('.active');
         // remove active-btn class from all controlls
-        buttons.forEach(ctrl => {
-          ctrl.classList.remove('active-btn');
-        });
+        // controls.forEach(ctrl => {
+        //   ctrl.classList.remove('active-btn');
+        // });
         // add active class to selected
-        control.classList.add('active-btn');
+        // control.classList.add('active-btn');
         active?.classList.remove('active');
-        id?.classList.add('active');
+        page?.classList.add('active');
       });
     });
 
