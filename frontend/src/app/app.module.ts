@@ -8,7 +8,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MaterialUiModule } from './material-ui/material-ui.module';
-import { HeaderComponent } from './component/header/header.component';
 import { TokenInterceptor } from './interceptor/token.interceptor';
 import { JwtService } from './service/jwt.service';
 import { AlertComponent } from './component/alert/alert.component';
@@ -19,7 +18,6 @@ import { ListSkillComponent } from './dasboard/component/list-skill/list-skill.c
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     AlertComponent,
     NotFoundComponent,
   ],
