@@ -5,7 +5,7 @@
     <button mat-icon-button class="alert-close" *ngIf="!(isAdmin | async)" aria-label="Close" [mat-dialog-close]="false"><mat-icon>close</mat-icon></button>
   </h2>
   <div class="alert-message">
-    {{ data.message }},&nbsp;
+    {{ data.message }}&nbsp;
     <a class="alert-link" [mat-dialog-close]="true">click here</a>.
     <mat-divider></mat-divider>
   </div>

@@ -22,17 +22,10 @@ export class ControlsComponent implements OnInit {
   pageTransition = () => {
     // button click to active class
     const controls = document.querySelectorAll('.control');
-
     controls.forEach((control: any) => {
       control.addEventListener('click', () => {
         const page = document.getElementById(control.dataset.id),
               active = document.querySelector('.active');
-        // remove active-btn class from all controlls
-        // controls.forEach(ctrl => {
-        //   ctrl.classList.remove('active-btn');
-        // });
-        // add active class to selected
-        // control.classList.add('active-btn');
         active?.classList.remove('active');
         page?.classList.add('active');
       });

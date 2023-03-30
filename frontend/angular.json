@@ -51,8 +51,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.sass",
-              "src/assets/style/all.min.css"
+              "src/styles.sass"
             ],
             "scripts": []
           },
@@ -121,8 +120,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "src/styles.sass",
-              "src/assets/style/all.min.css"
+              "src/styles.sass"
             ],
             "scripts": []
           }

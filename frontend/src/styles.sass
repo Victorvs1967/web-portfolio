@@ -1,8 +1,9 @@
 // theming components
 @use '@angular/material' as mat
-@use './styles/themes/light'
-@use './styles/components'
 @use './styles/typography/config' as typography
+@use './styles/themes/light'
+@use './styles/themes/dark'
+@use './styles/components'
 
 @include mat.core()
 @include mat.core-theme(light.$angular-theme-app-light-theme)
@@ -11,9 +12,6 @@
 @include mat.button-theme(light.$angular-theme-app-light-theme)
 @include mat.all-component-themes(light.$angular-theme-app-light-theme)
 @include components.theme(light.$angular-theme-app-light-theme, typography.$angular-theme-app-typography, light.$angular-theme-app-light-variants)
-
-@import './styles/themes/light'
-@import './styles/themes/dark'
 
 // Styling elements
 *

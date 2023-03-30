@@ -1,4 +1,4 @@
-@use "../../app/component/alert/alert-theme" as alert;
+@use "/src/app/component/alert/alert-theme" as alert;
 @use "./button/variants" as button-variants;
 
 @mixin theme($theme, $typography-config, $variants) {
