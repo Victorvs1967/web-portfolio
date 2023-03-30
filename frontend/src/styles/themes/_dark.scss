@@ -24,14 +24,20 @@ $angular-theme-app-dark-variants: (
 );
 
 .dark-theme {
+  @include mat.core-theme($angular-theme-app-dark-theme);
   @include mat.core-color($angular-theme-app-dark-theme);
+  @include mat.all-component-themes($angular-theme-app-dark-theme);
   @include mat.toolbar-color($angular-theme-app-dark-theme);
   @include mat.card-color($angular-theme-app-dark-theme);
-  @include mat.all-component-themes($angular-theme-app-dark-theme);
   @include mat.button-color($angular-theme-app-dark-theme);
   @include components.theme(
     $angular-theme-app-dark-theme,
     typography.$angular-theme-app-typography,
     $angular-theme-app-dark-variants
   );
+  tr.detail-row {
+    height: 0 !important;
+  }
 }
+
+

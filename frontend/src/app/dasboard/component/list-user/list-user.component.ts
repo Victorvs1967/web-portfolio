@@ -49,8 +49,8 @@ export class ListUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.auth.isAdmin;
-    this.reloadData();
-    this.admin._reloadCurrentRoute();
+    // this.reloadData();
+    // this.admin._reloadCurrentRoute();
   }
 
   editUser(user: User) {
@@ -60,13 +60,13 @@ export class ListUserComponent implements OnInit {
 
   @modal(EditUserComponent, ListUserComponent.user)
   getUser() {
-    this.reloadData();
+    // this.reloadData();
   }
 
   @modal(AlertComponent, ListUserComponent.alert)
   deleteUser(user: User) {
     this.admin.deleteUser(user.username).subscribe();
-    this.reloadData();
+    // this.reloadData();
   }
 
   reloadData() {

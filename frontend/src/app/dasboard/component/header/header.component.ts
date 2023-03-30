@@ -1,6 +1,6 @@
 import { modal } from 'src/app/service/dialog.decorator';
 import { ImageService } from 'src/app/service/image.service';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
@@ -29,6 +29,7 @@ export class HeaderComponent implements OnInit {
     private admin: AdminService,
     private auth: AuthService,
     private router: Router,
+    private _renderer: Renderer2,
     private styleManager: StyleManagerService,
   ) {  }
 
@@ -54,7 +55,14 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleDarkTheme() {
-    this.styleManager.toggleDarkTheme();
+    if (this.isDark === false) {
+      this._renderer.addClass(document.body, 'dark-theme');
+      this._renderer.removeClass(document.body, 'light-theme');
+    } else {
+      this._renderer.addClass(document.body, 'light-theme');
+      this._renderer.removeClass(document.body, 'dark-theme');
+    }
+
     this.isDark = !this.isDark;
   }
 }

@@ -1,32 +1,36 @@
 .container {
-  height: 100vh;
+ height: 100vh;
 }
 
 .mat-drawer-content {
-  &::-webkit-scrollbar {
-    width: 0px;
-  }
+ &::-webkit-scrollbar {
+  width: 0px;
+ }
 }
 
 .sidenav-content {
-  margin: 1rem;
+ margin: 1rem;
 }
 
 .card-content {
-  margin: 1rem;
+ margin: 1rem;
 }
 
 .nav-link {
-  cursor: pointer;  
+ cursor: pointer;
 }
 
 .title {
-  margin: 1rem;
-  padding: 2rem;
-  font-size: 1.2rem;
-  cursor: pointer;
+ margin: 1rem;
+ padding: 2rem;
+ font-size: 1.2rem;
+ cursor: pointer;
 }
 
 .mat-icon {
-  margin-right: 0 !important;
+ margin-right: 0 !important;
 }
+
+// tr.detail-row {
+//  height: 0 !important;
+// }

@@ -1,4 +1,35 @@
+// styling main page
 @import "/src/assets/themes/theme.scss";
+
+:root {
+  --color-primary: #02182b;
+  --color-secondary: #D7263D;
+  --color-white: #ffffff;
+  --color-black: #161616;
+  --color-grey-0: #f8f8f8;
+  --color-grey-1: #dbe1e8;
+  --color-grey-2: #b2becd;
+  --color-grey-3: #6c7983;
+  --color-grey-4: #454e56;
+  --color-grey-5: #2a2e35;
+  --color-grey-6: #12181b;
+  --br-sm-2: 14px;
+  --box-shadow-1: 0 3px 15px rgba(0, 0, 0, .2);
+}
+
+.light-mode {
+  --color-primary: #f1f1f1;
+  --color-secondary: #D7263D;
+  --color-white: #565656;
+  --color-black: #ffffff;
+  --color-grey-6: #f8f8f8;
+  --color-grey-5: #dbe1e8;
+  --color-grey-4: #b2becd;
+  --color-grey-3: #6c7983;
+  --color-grey-2: #454e56;
+  --color-grey-1: #2a2e35;
+  --color-grey-0: #12181b;
+}
 
 .main-content {
   background-color: var(--color-primary);

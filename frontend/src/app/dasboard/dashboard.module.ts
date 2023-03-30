@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Renderer2 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
@@ -19,6 +19,7 @@ import { ListUserComponent } from './component/list-user/list-user.component';
 import { ViewImageComponent } from './component/view-image/view-image.component';
 import { ListProjectComponent } from './component/list-project/list-project.component';
 import { ListSkillComponent } from './component/list-skill/list-skill.component';
+import { StyleManagerService } from '../service/style-manager.service';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,6 @@ import { ListSkillComponent } from './component/list-skill/list-skill.component'
     NgChartsModule,
     DashboardroutingModule,
   ],
-  providers: [ ],
+  providers: [],
 })
 export class DashboardModule { }

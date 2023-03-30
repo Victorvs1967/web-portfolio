@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 const MATERIAL_UI_COMPONENT = [
   MatToolbarModule,
@@ -32,10 +33,11 @@ const MATERIAL_UI_COMPONENT = [
   MatBottomSheetModule,
   MatTooltipModule,
   MatDialogModule,
+  MatSlideToggleModule,
 ];
 
 @NgModule({
   imports: [ CommonModule, ...MATERIAL_UI_COMPONENT ],
-  exports: [ MATERIAL_UI_COMPONENT ],
+  exports: [ ...MATERIAL_UI_COMPONENT ],
 })
 export class MaterialUiModule { }
