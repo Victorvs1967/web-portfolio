@@ -8,8 +8,5 @@ target/
 !**/src/test/**/target/
 
 mongodb_data/
-<<<<<<< HEAD
 dist/
-=======
-dist/
->>>>>>> origin/features
+/backup
