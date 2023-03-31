@@ -1,6 +1,6 @@
 import { modal } from 'src/app/service/dialog.decorator';
 import { ImageService } from 'src/app/service/image.service';
-import { Component, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, Host, inject, OnInit, Output, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
@@ -18,7 +18,9 @@ export class HeaderComponent implements OnInit {
 
   @Output() taggledEvent: any = new EventEmitter();
 
-  isDark = this.styleManager.isDark;
+  styleManager = inject(StyleManagerService, { skipSelf: true });
+
+  isDark: boolean = false;
   isLogin: Observable<boolean> | undefined;
 
   file: string | undefined;
@@ -30,8 +32,9 @@ export class HeaderComponent implements OnInit {
     private auth: AuthService,
     private router: Router,
     private _renderer: Renderer2,
-    private styleManager: StyleManagerService,
-  ) {  }
+  ) {
+    this.isDark = this.styleManager.isDark;
+  }
 
   ngOnInit(): void {
     this.isLogin = this.auth.isLoggedIn;
@@ -55,14 +58,17 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleDarkTheme() {
-    if (this.isDark === false) {
-      this._renderer.addClass(document.body, 'dark-theme');
+    this.isDark = !this.isDark;
+
+    if (this.isDark) {
       this._renderer.removeClass(document.body, 'light-theme');
+      this._renderer.addClass(document.body, 'dark-theme');
     } else {
-      this._renderer.addClass(document.body, 'light-theme');
       this._renderer.removeClass(document.body, 'dark-theme');
+      this._renderer.addClass(document.body, 'light-theme');
     }
 
-    this.isDark = !this.isDark;
+    // this.styleManager.toggleDarkTheme();
+    // this.isDark = this.styleManager.isDark;
   }
 }

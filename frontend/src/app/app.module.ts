@@ -12,8 +12,6 @@ import { TokenInterceptor } from './interceptor/token.interceptor';
 import { JwtService } from './service/jwt.service';
 import { AlertComponent } from './component/alert/alert.component';
 import { NotFoundComponent } from './component/not-found/not-found.component';
-import { ListProjectComponent } from './dasboard/component/list-project/list-project.component';
-import { ListSkillComponent } from './dasboard/component/list-skill/list-skill.component';
 
 @NgModule({
   declarations: [
@@ -40,8 +38,6 @@ import { ListSkillComponent } from './dasboard/component/list-skill/list-skill.c
       useClass: PathLocationStrategy,
     },
     JwtService,
-    ListProjectComponent,
-    ListSkillComponent,
   ],
   bootstrap: [AppComponent]
 })

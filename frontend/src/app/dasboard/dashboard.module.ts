@@ -46,6 +46,6 @@ import { StyleManagerService } from '../service/style-manager.service';
     NgChartsModule,
     DashboardroutingModule,
   ],
-  providers: [],
+  providers: [ ],
 })
 export class DashboardModule { }

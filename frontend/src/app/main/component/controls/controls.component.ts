@@ -1,5 +1,4 @@
-import { Component, OnInit, inject, Input } from '@angular/core';
-import { StyleManagerService } from 'src/app/service/style-manager.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-controls',
@@ -7,11 +6,6 @@ import { StyleManagerService } from 'src/app/service/style-manager.service';
   styleUrls: ['./controls.component.scss']
 })
 export class ControlsComponent implements OnInit {
-
-  styleManager = inject(StyleManagerService);
-  isDark = this.styleManager.isDark;
-
-  constructor() { }
 
   ngOnInit(): void {
     // call main function
@@ -36,10 +30,4 @@ export class ControlsComponent implements OnInit {
       document.body.classList.toggle('light-mode');
     });
   };
-
-  toggleDarkTheme() {
-    this.styleManager.toggleDarkTheme();
-    this.isDark = !this.isDark;
-  }
-
 }
