@@ -1,8 +1,8 @@
 import { modal } from 'src/app/service/dialog.decorator';
 import { ImageService } from 'src/app/service/image.service';
-import { Component, EventEmitter, Host, inject, OnInit, Output, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
 import { AdminService } from 'src/app/service/admin.service';
@@ -18,9 +18,10 @@ export class HeaderComponent implements OnInit {
 
   @Output() taggledEvent: any = new EventEmitter();
 
-  styleManager = inject(StyleManagerService, { skipSelf: true });
+  private styleManager = inject(StyleManagerService);
+  private _renderer = inject(Renderer2);
 
-  isDark: boolean = false;
+  isDark: boolean;
   isLogin: Observable<boolean> | undefined;
 
   file: string | undefined;
@@ -31,7 +32,6 @@ export class HeaderComponent implements OnInit {
     private admin: AdminService,
     private auth: AuthService,
     private router: Router,
-    private _renderer: Renderer2,
   ) {
     this.isDark = this.styleManager.isDark;
   }
@@ -39,7 +39,15 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.isLogin = this.auth.isLoggedIn;
     this.admin.getUser(this.auth.getUser())
-      .subscribe(user => this.image.img_download(user.avatar.id).subscribe(img => this.file = img));
+      .pipe(
+        map(user => this.image.img_download(user.avatar.id)
+          .pipe(
+            map(img => this.file = img)
+          )
+          .subscribe()
+        )
+      )
+      .subscribe();
   }
 
   @modal(LoginComponent)
@@ -58,17 +66,7 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleDarkTheme() {
-    this.isDark = !this.isDark;
-
-    if (this.isDark) {
-      this._renderer.removeClass(document.body, 'light-theme');
-      this._renderer.addClass(document.body, 'dark-theme');
-    } else {
-      this._renderer.removeClass(document.body, 'dark-theme');
-      this._renderer.addClass(document.body, 'light-theme');
-    }
-
-    // this.styleManager.toggleDarkTheme();
-    // this.isDark = this.styleManager.isDark;
+    this.styleManager.toggleDarkTheme(this._renderer);
+    this.isDark = this.styleManager.isDark;
   }
 }

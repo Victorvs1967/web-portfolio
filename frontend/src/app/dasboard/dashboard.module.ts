@@ -1,4 +1,4 @@
-import { NgModule, Renderer2 } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './component/dashboard/dashboard.component';
@@ -46,6 +46,8 @@ import { StyleManagerService } from '../service/style-manager.service';
     NgChartsModule,
     DashboardroutingModule,
   ],
-  providers: [ ],
+  providers: [
+    StyleManagerService,
+  ],
 })
 export class DashboardModule { }
