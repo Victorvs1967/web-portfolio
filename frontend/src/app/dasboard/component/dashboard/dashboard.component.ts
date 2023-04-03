@@ -19,6 +19,8 @@ export class DashboardComponent implements OnInit {
   auth = inject(AuthService);
   isAdmin?: Observable<boolean>;
 
+  isExpand: boolean = true;
+
   constructor(
     private admin: AdminService,
     private router: Router,
