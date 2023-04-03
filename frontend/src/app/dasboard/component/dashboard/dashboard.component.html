@@ -1,6 +1,6 @@
-<app-header (taggledEvent)="drawer.toggle()"></app-header>
-<mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side" opened>
+<app-header (taggledEvent)="sidenav.toggle()"></app-header>
+<mat-sidenav-container class="container" autosize>
+  <mat-sidenav #sidenav class="sidenav" mode="side" opened>
     <mat-nav-list role="list">
       <mat-list-item class="nav-link" role="listitem" routerLink="/admin"><mat-icon>home</mat-icon><span>&nbsp;&nbsp;Home</span></mat-list-item>
       <mat-list-item mat-icon-button class="nav-link" role="listitem" [matMenuTriggerFor]="userMenu" aria-label="icon-button with a menu">
@@ -33,9 +33,9 @@
       </mat-menu>
       <mat-list-item class="nav-link" role="listitem"><mat-icon>wysiwyg</mat-icon>&nbsp;&nbsp;Blog</mat-list-item>
     </mat-nav-list>
-  </mat-drawer>
+  </mat-sidenav>
 
   <div class="sidenav-content">
     <router-outlet></router-outlet>
   </div>
-</mat-drawer-container>
+</mat-sidenav-container>
