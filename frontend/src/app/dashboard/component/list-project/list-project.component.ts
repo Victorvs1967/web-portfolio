@@ -25,7 +25,6 @@ import { AlertComponent } from 'src/app/component/alert/alert.component';
 })
 export class ListProjectComponent implements OnInit {
 
-  auth = inject(AuthService);
   isAdmin?: Observable<boolean>;
 
   static project: Project;
@@ -42,6 +41,7 @@ export class ListProjectComponent implements OnInit {
   img?: string;
 
   constructor(
+    private auth: AuthService,
     private admin: AdminService,
     private images: ImageService,
   ) {

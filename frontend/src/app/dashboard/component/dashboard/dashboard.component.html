@@ -5,13 +5,15 @@
       <mat-list-item role="listItem" (click)="isExpand = !isExpand;">
         <mat-icon class="sidenav-btn" [ngClass]="{ 'rotated': !isExpand }">chevron_left</mat-icon>
       </mat-list-item>
-      <mat-list-item role="listitem" routerLink="/admin">
+      <mat-list-item role="listitem" routerLink="/admin"
+       matTooltip="Home" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
         <div class="sidenav-item">
           <mat-icon>home</mat-icon>
           <span *ngIf="isExpand">Home</span>
         </div>
       </mat-list-item>
-      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="userMenu" aria-label="icon-button with a menu">
+      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="userMenu" aria-label="icon-button with a menu"
+       matTooltip="User" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
         <div class="sidenav-item">
           <mat-icon>person</mat-icon>
           <span *ngIf="isExpand">User</span>
@@ -21,7 +23,8 @@
         <button *ngIf="isAdmin | async" mat-menu-item (click)="addUser()"><mat-icon>person_add</mat-icon>Add User</button>
         <button mat-menu-item routerLink="listUser"><mat-icon>group</mat-icon>Users</button>
       </mat-menu>
-      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="projectMenu" aria-label="icon-button with a menu">
+      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="projectMenu" aria-label="icon-button with a menu"
+       matTooltip="Portfolio" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
         <div class="sidenav-item">
           <mat-icon>work</mat-icon>
           <span *ngIf="isExpand">Project</span>
@@ -31,7 +34,8 @@
         <button *ngIf="isAdmin | async" mat-menu-item (click)="addProject()"><mat-icon>medical_services</mat-icon>Add Project</button>
         <button mat-menu-item routerLink="listProject"><mat-icon>cases</mat-icon>Projects</button>
       </mat-menu>
-      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="skillMenu" aria-label="icon-button with a menu">
+      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="skillMenu" aria-label="icon-button with a menu"
+       matTooltip="Skill" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
         <div class="sidenav-item">
           <mat-icon>insert_chart</mat-icon>
           <span *ngIf="isExpand">Skill</span>
@@ -41,7 +45,8 @@
         <button *ngIf="isAdmin | async" mat-menu-item (click)="addSkill()"><mat-icon>add_chart</mat-icon>Add Skill</button>
         <button mat-menu-item routerLink="listSkill"><mat-icon>library_books</mat-icon>Skills</button>
       </mat-menu>
-      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="imageMenu" aria-label="icon-button with a menu">
+      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="imageMenu" aria-label="icon-button with a menu"
+       matTooltip="Image" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
         <div class="sidenav-item">
           <mat-icon>photo</mat-icon>
           <span *ngIf="isExpand">Image</span>
@@ -51,21 +56,23 @@
         <button *ngIf="isAdmin | async" mat-menu-item (click)="addImage()"><mat-icon>add_photo_alternate</mat-icon>Add Image</button>
         <button mat-menu-item routerLink="listImage"><mat-icon>photo_library</mat-icon>Images</button>
       </mat-menu>
-      <mat-list-item role="listitem">
+      <mat-list-item role="listitem"
+       matTooltip="Blog" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
         <div class="sidenav-item">
           <mat-icon>wysiwyg</mat-icon>
           <span *ngIf="isExpand">Blog</span>
         </div>
       </mat-list-item>
-      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="pagetMenu" aria-label="icon-button with a menu">
+      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="pagetMenu" aria-label="icon-button with a menu"
+       matTooltip="Pages" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
         <div class="sidenav-item">
-          <mat-icon>wysiwyg</mat-icon>
-          <span *ngIf="isExpand">Pages</span>
+          <mat-icon>web</mat-icon>
+          <span *ngIf="isExpand">Page</span>
         </div>
       </mat-list-item>
       <mat-menu #pagetMenu="matMenu" xPosition="after">
-        <!-- <button *ngIf="isAdmin | async" mat-menu-item (click)="addProject()"><mat-icon>medical_services</mat-icon>Add Page</button> -->
-        <button mat-menu-item routerLink="listPage"><mat-icon>cases</mat-icon>Pages</button>
+        <button *ngIf="isAdmin | async" mat-menu-item (click)="addPage()"><mat-icon>add_to_queue</mat-icon>Add Page</button>
+        <button mat-menu-item routerLink="listPage"><mat-icon>dynamic_feed</mat-icon>Pages</button>
       </mat-menu>
     </mat-nav-list>
   </mat-sidenav>

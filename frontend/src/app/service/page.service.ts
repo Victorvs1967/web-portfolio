@@ -19,4 +19,16 @@ export class PageService {
     return this.http.get<Page>(environment.baseUrl.concat(environment.pageUrl, '/', name));
   }
 
+  addPage(page: Page): Observable<Page> {
+    return this.http.post<Page>(environment.baseUrl.concat(environment.pageUrl), page);
+  }
+
+  editPage(page: Page): Observable<Page> {
+    return this.http.put<Page>(environment.baseUrl.concat(environment.pageUrl), page);
+  }
+
+  deletePage(name: string): Observable<Page> {
+    return this.http.delete<Page>(environment.baseUrl.concat(environment.pageUrl, '/', name));
+  }
+
 }

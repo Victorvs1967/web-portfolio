@@ -8,6 +8,7 @@ import { modal } from 'src/app/service/dialog.decorator';
 import { AddImageComponent } from '../add-image/add-image.component';
 import { AddProjectComponent } from '../add-project/add-project.component';
 import { AddSkillComponent } from '../add-skill/add-skill.component';
+import { AddPageComponent } from '../add-page/add-page.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -34,7 +35,6 @@ export class DashboardComponent implements OnInit {
   @modal(SignupComponent)
   addUser() {
     this.router.navigate(['admin', 'listUser']);
-
   }
 
   @modal(AddProjectComponent)
@@ -50,5 +50,10 @@ export class DashboardComponent implements OnInit {
   @modal(AddImageComponent)
   addImage() {
     this.router.navigate(['admin', 'listImage']);
+  }
+
+  @modal(AddPageComponent)
+  addPage() {
+    this.router.navigate(['admin', 'listPage']);
   }
 }

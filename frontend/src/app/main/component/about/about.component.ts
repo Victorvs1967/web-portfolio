@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { map } from 'rxjs';
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
-import { MainDataService } from 'src/app/service/main-data.service';
+import { PageService } from 'src/app/service/page.service';
+import { Page } from 'src/app/model/page.model';
 
 @Component({
   selector: 'app-about',
@@ -10,17 +11,19 @@ import { MainDataService } from 'src/app/service/main-data.service';
 })
 export class AboutComponent {
 
-  data = inject(MainDataService);
+  pageService = inject(PageService);
 
-  heroPage: any;
+  heroPage?: Page;
 
   faBrifcace = faBriefcase;
 
   constructor() {
-    this.data.loadData()
-      .pipe(
-        map(data => this.heroPage = data[1].about)
-      )
+    this.getHero();
+  }
+
+  getHero() {
+    this.pageService.getPage('about')
+      .pipe(map(page => this.heroPage = page))
       .subscribe();
   }
 

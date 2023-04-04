@@ -1,5 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, Renderer2, inject } from '@angular/core';
 import { map } from 'rxjs';
+import { Page } from 'src/app/model/page.model';
 import { User } from 'src/app/model/user.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { AuthService } from 'src/app/service/auth.service';
@@ -13,27 +14,25 @@ import { PageService } from 'src/app/service/page.service';
 })
 export class HomeComponent {
 
-  pageService = inject(PageService);
-
   user?: User;
   style = `object-fit: cover; transition: all 0.4s ease-in-out 0s; width: 100%; height: 100%; border-radius: 0.5rem;`;
   hero = { username: 'hero', password: 'password' };
-  heroPage: any;
+  heroPage?: Page;
 
   constructor(
     private image: ImageService,
     private admin: AdminService,
     private auth: AuthService,
+    private pageService: PageService,
   ) {
     const style = { width: '100%', height: '100%', radius: '.5rem', filter: 'grayscale(100%)' };
     this.auth.login(this.hero).subscribe(() => {
       this.admin.getUser(this.hero.username).subscribe(user => {
         this.user = user;
         if (this.user) this.image.download(this.user.photo.id, style).subscribe();
+        this.getHero();
       });
     });
-
-    this.getHero();
   }
 
   inHover() {
