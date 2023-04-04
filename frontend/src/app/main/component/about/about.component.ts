@@ -1,17 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { AdminService } from 'src/app/service/admin.service';
+import { Component, inject } from '@angular/core';
+import { map } from 'rxjs';
+import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import { MainDataService } from 'src/app/service/main-data.service';
 
 @Component({
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss']
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent {
 
-  constructor(private admin: AdminService) {
-  }
+  data = inject(MainDataService);
 
-  ngOnInit(): void {
+  heroPage: any;
+
+  faBrifcace = faBriefcase;
+
+  constructor() {
+    this.data.loadData()
+      .pipe(
+        map(data => this.heroPage = data[1].about)
+      )
+      .subscribe();
   }
 
 }

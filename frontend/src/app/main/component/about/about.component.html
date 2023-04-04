@@ -3,16 +3,9 @@
     <h2>About <span>me</span><span class="bg-text">mystats</span></h2>
   </div>
   <div class="about-container">
-    <div class="left-about">
-      <h4>Information about&nbsp;me</h4>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis fuga dolorum non numquam illum ad cumque
-        dolor, adipisci molestiae maiores eum incidunt architecto enim, totam dolore libero esse quas aspernatur
-        voluptate voluptatum harum aut laborum? Nobis, totam molestias, molestiae repellendus quia quos unde debitis
-        eaque quo soluta est et adipisci nemo quibusdam nam. Deserunt ipsum, aperiam debitis rerum, reiciendis facilis
-        fuga ducimus excepturi veniam et optio mollitia, voluptatem ullam enim nihil architecto dolorem. Voluptatum
-        nulla aliquam praesentium explicabo, blanditiis cupiditate.
-      </p>
+    <div class="left-about" *ngIf="heroPage">
+      <h4>{{ heroPage.title }}</h4>
+      <p>{{ heroPage.description }}</p>
       <div class="btn-container">
         <a href="#" class="main-btn">
           <span class="btn-text">Download CV</span>
@@ -108,7 +101,7 @@
   </div>
   <div class="timeline">
     <div class="timeline-item">
-      <div class="timeline-icon"><i class="fa-solid fa-briefcase"></i></div>
+      <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
       <p class="timeline-duration">2013-2022</p>
       <h5>Project Manager<span> - MVHU</span></h5>
       <p>
@@ -118,7 +111,7 @@
       </p>
     </div>
     <div class="timeline-item">
-      <div class="timeline-icon"><i class="fa-solid fa-briefcase"></i></div>
+      <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
       <p class="timeline-duration">2012-2013</p>
       <h5>CEO<span> - Magnat</span></h5>
       <p>
@@ -128,7 +121,7 @@
       </p>
     </div>
     <div class="timeline-item">
-      <div class="timeline-icon"><i class="fa-solid fa-briefcase"></i></div>
+      <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
       <p class="timeline-duration">2010-2012</p>
       <h5>Chief of Quality Department<span> - Triada Print</span></h5>
       <p>
@@ -138,7 +131,7 @@
       </p>
     </div>
     <div class="timeline-item">
-      <div class="timeline-icon"><i class="fa-solid fa-briefcase"></i></div>
+      <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
       <p class="timeline-duration">2009-2010</p>
       <h5>CEO<span> - Media Print</span></h5>
       <p>
@@ -148,7 +141,7 @@
       </p>
     </div>
     <div class="timeline-item">
-      <div class="timeline-icon"><i class="fa-solid fa-briefcase"></i></div>
+      <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
       <p class="timeline-duration">1999-2010</p>
       <h5>CTO<span> - Waterpas Print</span></h5>
       <p>
@@ -158,7 +151,7 @@
       </p>
     </div>
     <div class="timeline-item">
-      <div class="timeline-icon"><i class="fa-solid fa-briefcase"></i></div>
+      <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
       <p class="timeline-duration">1993-1999</p>
       <h5>CTO<span> - Sobytie Publish</span></h5>
       <p>
