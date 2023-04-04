@@ -19,6 +19,12 @@ public class PageServiceImpl implements PageService {
   private final AppMapper mapper;
 
   @Override
+  public Flux<PageDto> getPages() {
+    return pageRepository.findAll()
+        .map(page -> mapper.convert(page, PageDto.class));
+  }
+
+  @Override
   public Mono<PageDto> getPage(String name) {
     return pageRepository.findPageByName(name)
       .switchIfEmpty(Mono.error(new RuntimeException("Page not found")))
@@ -40,6 +46,7 @@ public class PageServiceImpl implements PageService {
       .switchIfEmpty(Mono.error(new RuntimeException("Page not found...")))
       .map(page -> Page.builder()
         .id(page.getId())
+        .name(page.getName())
         .title(pageDto.getTitle())
         .subtitle(pageDto.getSubtitle())
         .description(pageDto.getDescription())
@@ -54,12 +61,6 @@ public class PageServiceImpl implements PageService {
     return pageRepository.findPageByName(name)
       .switchIfEmpty(Mono.error(new RuntimeException("Page not found...")))
       .flatMap(this::delete)
-      .map(page -> mapper.convert(page, PageDto.class));
-  }
-
-  @Override
-  public Flux<PageDto> getPages() {
-    return pageRepository.findAll()
       .map(page -> mapper.convert(page, PageDto.class));
   }
 

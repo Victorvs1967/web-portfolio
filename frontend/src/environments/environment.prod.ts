@@ -7,4 +7,5 @@ export const environment = {
   projectUrl: '/api/projects',
   imageUrl: '/api/images',
   skillUrl: '/api/skills',
+  pageUrl: '/api/pages',
 };

@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { map } from 'rxjs';
 import { User } from 'src/app/model/user.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { ImageService } from 'src/app/service/image.service';
-import { MainDataService } from 'src/app/service/main-data.service';
+import { PageService } from 'src/app/service/page.service';
 
 @Component({
   selector: 'app-home',
@@ -12,6 +12,8 @@ import { MainDataService } from 'src/app/service/main-data.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+
+  pageService = inject(PageService);
 
   user?: User;
   style = `object-fit: cover; transition: all 0.4s ease-in-out 0s; width: 100%; height: 100%; border-radius: 0.5rem;`;
@@ -22,7 +24,6 @@ export class HomeComponent {
     private image: ImageService,
     private admin: AdminService,
     private auth: AuthService,
-    private data: MainDataService,
   ) {
     const style = { width: '100%', height: '100%', radius: '.5rem', filter: 'grayscale(100%)' };
     this.auth.login(this.hero).subscribe(() => {
@@ -46,10 +47,8 @@ export class HomeComponent {
   }
 
   getHero() {
-    this.data.loadData()
-      .pipe(
-        map(data => this.heroPage = data[0].home)
-      )
+    this.pageService.getPage('home')
+      .pipe(map(page => this.heroPage = page))
       .subscribe();
   }
 }
