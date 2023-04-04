@@ -20,6 +20,9 @@ import { ViewImageComponent } from './component/view-image/view-image.component'
 import { ListProjectComponent } from './component/list-project/list-project.component';
 import { ListSkillComponent } from './component/list-skill/list-skill.component';
 import { StyleManagerService } from '../service/style-manager.service';
+import { ListPageComponent } from './component/list-page/list-page.component';
+import { EditPageComponent } from './component/edit-page/edit-page.component';
+import { AddPageComponent } from './component/add-page/add-page.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { StyleManagerService } from '../service/style-manager.service';
     ProjectListComponent,
     ListProjectComponent,
     ListSkillComponent,
+    ListPageComponent,
+    EditPageComponent,
+    AddPageComponent,
 ],
   imports: [
     CommonModule,

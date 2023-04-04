@@ -57,6 +57,16 @@
           <span *ngIf="isExpand">Blog</span>
         </div>
       </mat-list-item>
+      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="pagetMenu" aria-label="icon-button with a menu">
+        <div class="sidenav-item">
+          <mat-icon>wysiwyg</mat-icon>
+          <span *ngIf="isExpand">Pages</span>
+        </div>
+      </mat-list-item>
+      <mat-menu #pagetMenu="matMenu" xPosition="after">
+        <!-- <button *ngIf="isAdmin | async" mat-menu-item (click)="addProject()"><mat-icon>medical_services</mat-icon>Add Page</button> -->
+        <button mat-menu-item routerLink="listPage"><mat-icon>cases</mat-icon>Pages</button>
+      </mat-menu>
     </mat-nav-list>
   </mat-sidenav>
 

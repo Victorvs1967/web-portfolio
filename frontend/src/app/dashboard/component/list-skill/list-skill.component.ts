@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { AuthService } from './../../../service/auth.service';
+import { AuthService } from '../../../service/auth.service';
 import { modal } from 'src/app/service/dialog.decorator';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, inject, OnInit } from '@angular/core';

@@ -8,6 +8,7 @@ import { ListImageComponent } from './component/list-image/list-image.component'
 import { ListProjectComponent } from './component/list-project/list-project.component';
 import { ViewImageComponent } from './component/view-image/view-image.component';
 import { ListSkillComponent } from './component/list-skill/list-skill.component';
+import { ListPageComponent } from './component/list-page/list-page.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: '', component: GraphComponent },
       { path: 'listUser', component: ListUserComponent },
       { path: 'listProject', component: ListProjectComponent },
+      { path: 'listPage', component: ListPageComponent },
       { path: 'listSkill', component: ListSkillComponent },
       { path: 'listImage', component: ListImageComponent },
       { path: 'viewImage/:id', component: ViewImageComponent },
