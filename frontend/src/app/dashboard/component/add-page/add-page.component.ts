@@ -12,10 +12,11 @@ import { PageService } from 'src/app/service/page.service';
 export class AddPageComponent implements OnInit {
 
   createForm?: UntypedFormGroup;
+  page?: Page;
 
   constructor(
     private formBuilder: FormBuilder,
-    private page: PageService,
+    private pageService: PageService,
     @Inject(MAT_DIALOG_DATA) public data: Page,
   ) { }
 
@@ -30,8 +31,12 @@ export class AddPageComponent implements OnInit {
   }
 
   submitPage() {
-    this.page.addPage(this.createForm?.value)
-      .subscribe();
+    this.page = this.createForm?.value;
+    if (this.page) {
+      this.page.payload = JSON.parse(this.createForm?.value.payload);
+      this.pageService.addPage(this.page)
+        .subscribe();
+    }
   }
 
 }

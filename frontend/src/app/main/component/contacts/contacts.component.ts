@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { faGithub, faLinkedinIn, faTelegram, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faGlobe, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { map } from 'rxjs';
-import { MainDataService } from 'src/app/service/main-data.service';
+import { PageService } from 'src/app/service/page.service';
 
 @Component({
   selector: 'app-contacts',
@@ -11,9 +11,9 @@ import { MainDataService } from 'src/app/service/main-data.service';
 })
 export class ContactsComponent {
 
-  data = inject(MainDataService);
+  pageService = inject(PageService);
 
-  heroPage: any;
+  contactPage: any;
 
   locationDot = faLocationDot;
   envelope = faEnvelope;
@@ -24,10 +24,8 @@ export class ContactsComponent {
   facebook = faFacebook;
 
   constructor() {
-    this.data.loadData()
-      .pipe(
-        map(data => this.heroPage = data[2].contacts)
-      )
+    this.pageService.getPage('contacts')
+      .pipe(map(page => this.contactPage = page))
       .subscribe();
   }
 

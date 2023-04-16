@@ -24,7 +24,9 @@ export class AboutComponent {
   getHero() {
     this.pageService.getPage('about')
       .pipe(map(page => this.heroPage = page))
-      .subscribe();
+      .subscribe((_: any) => {
+        for (let skill in this.heroPage?.payload)
+          console.log(skill[0]);
+      });
   }
-
 }

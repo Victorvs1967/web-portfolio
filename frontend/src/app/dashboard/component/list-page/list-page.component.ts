@@ -5,7 +5,11 @@ import { AnyDataSource } from 'src/app/data/data-source';
 import { Page } from 'src/app/model/page.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { AuthService } from 'src/app/service/auth.service';
+import { modal } from 'src/app/service/dialog.decorator';
 import { PageService } from 'src/app/service/page.service';
+import { EditPageComponent } from '../edit-page/edit-page.component';
+import { AlertDialogData } from 'src/app/model/alert-dialog.model';
+import { AlertComponent } from 'src/app/component/alert/alert.component';
 
 @Component({
   selector: 'app-list-page',
@@ -32,6 +36,13 @@ export class ListPageComponent implements OnInit {
 
   isAdmin?: Observable<boolean>;
 
+  static page: Page;
+  static alert: AlertDialogData = {
+    title: "A you sure?",
+    subtitle: "You can't get access to this page content again.",
+    message: "If you realy want to delete this page content,",
+  };
+
   ngOnInit(): void {
     this.isAdmin = this.auth.isAdmin;
     this.reloadData();
@@ -42,6 +53,20 @@ export class ListPageComponent implements OnInit {
     this.pageService.getPageList()
       .pipe(map(data => this.dataSource = new AnyDataSource([ ...data ])))
       .subscribe();
+  }
+
+  editPage(page: Page) {
+    ListPageComponent.page = page;
+    this.getPage();
+  }
+
+  @modal(EditPageComponent, ListPageComponent.alert)
+  getPage() {
+  }
+
+  @modal(AlertComponent, ListPageComponent.alert)
+  deletePage(name: string) {
+    this.pageService.deletePage(name).subscribe();
   }
 
 }

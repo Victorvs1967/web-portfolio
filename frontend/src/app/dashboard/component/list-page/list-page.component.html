@@ -42,10 +42,10 @@
             <mat-card-header class="detail-header">
               <mat-card-title class="element-username"> {{ element.name }} </mat-card-title>
               <mat-card-actions class="btn-group">
-                <button mat-icon-button color="primary" (click)="null">
+                <button mat-icon-button color="primary" (click)="editPage(element)">
                   <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-icon-button color="warn" (click)="null">
+                <button mat-icon-button color="warn" (click)="deletePage(element.name)">
                   <mat-icon>delete</mat-icon>
                 </button>
               </mat-card-actions>
