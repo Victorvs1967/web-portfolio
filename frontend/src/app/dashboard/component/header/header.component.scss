@@ -1,6 +1,6 @@
 .mat-toolbar {
-  display: grid;
-  grid-template-columns: 92% 8%;
+  display: flex;
+  justify-content: space-between;
   padding: 0;
 }
 
