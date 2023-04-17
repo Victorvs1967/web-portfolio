@@ -4,7 +4,11 @@
   }
 }
 
-@media(max-width: 1280px) {
+@media(max-width: 1281px) {
+  section {
+    padding: 1rem 10rem;
+  }
+
   .blogs-container {
     grid-template-columns: 1fr 1fr;
   }
@@ -16,7 +20,7 @@
   }
 
   section {
-    padding: 1rem 6rem;
+    padding: 1rem 10rem;
   }
 
   .main-title {

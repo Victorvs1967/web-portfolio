@@ -1,23 +1,23 @@
 @media(max-width: 1432px) {
   section {
-    padding: 2rem 8rem;
+    padding: 2rem 10rem;
   }
 }
 
-@media(max-width: 1280px) {
+@media(max-width: 1281px) {
   .portfolios  {
     grid-template-columns: 1fr 1fr;
   }
 
 }
 
-@media(max-width: 970px) {
+@media(max-width: 968px) {
   body {
     font-size: 1em;
   }
 
   section {
-    padding: 1rem 6rem;
+    padding: 1rem 8rem;
   }
 
   .main-title {
@@ -35,7 +35,7 @@
   }
 }
 
-@media(max-width: 766px) {
+@media(max-width: 764px) {
   .portfolios {
     grid-template-columns: 1fr;
     padding-bottom: 6rem;

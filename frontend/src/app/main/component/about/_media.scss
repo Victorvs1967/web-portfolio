@@ -1,12 +1,21 @@
-@media(max-width: 1432px) {
+@media(max-width: 1430px) {
   section {
-    padding: 2rem 8rem;
+    padding: 2rem 10rem;
   }
 }
 
-@media(max-width: 1280px) {
+@media(max-width: 1278px) {
   .about-container {
     grid-template-columns: 1fr;
+
+    .left-about {
+      padding-right: 2rem;
+
+      p {
+        padding-left: 0;
+        line-height: 1.6 !important;
+      }
+    }
 
     .right-about {
       padding-top: 2.5rem;
@@ -14,13 +23,14 @@
   }
 }
 
-@media(max-width: 970px) {
+@media(max-width: 968px) {
   body {
-    font-size: 1em;
+    font-size: 1.1em;
+    line-height: 1.7;
   }
 
   section {
-    padding: 1rem 6rem;
+    padding: 1rem 8rem;
   }
 
   .main-title {
