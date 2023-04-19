@@ -30,7 +30,7 @@
       <!-- Links Column -->
       <ng-container matColumnDef="links">
         <th mat-header-cell *matHeaderCellDef> Links </th>
-        <td mat-cell *matCellDef="let element"> {{ element.links }} </td>
+        <td mat-cell *matCellDef="let element"> {{ element.links | json }} </td>
       </ng-container>
 
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
@@ -58,7 +58,7 @@
                 <div id="{{ element.image.id }}"></div>
               </div>
               <div class="element-phone"><strong>Skills:&nbsp;</strong><span *ngFor="let skill of element.skills"><span *ngIf="skill">{{ skill.name }},&nbsp;</span></span></div>
-              <div class="element-address"><strong>Links: </strong> {{ element.links }} </div>
+              <div class="element-address"><strong>Links: </strong> {{ element.links | json }} </div>
             </mat-card-content>
           </mat-card>
         </td>

@@ -47,7 +47,8 @@ export class AddProjectComponent implements OnInit {
     let project: Project = this.createForm?.value;
     project.name = this.createForm?.value.name;
     project.description = this.createForm?.value.description;
-    project.links = this.createForm?.value.links.split(',').map((link: string) => link.trim());
+    // project.links = this.createForm?.value.links.split(',').map((link: string) => link.trim());
+    project.links = JSON.parse(this.createForm?.value.links);
     project.image = this.createForm?.value.image || this.image;
     project.skills = [...this.createForm?.value.skills];
     this.admin.addProject(project).subscribe();

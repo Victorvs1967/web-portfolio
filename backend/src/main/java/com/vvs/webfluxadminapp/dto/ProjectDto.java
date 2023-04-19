@@ -22,5 +22,5 @@ public class ProjectDto {
   private Image image;
   private String description;
   private Skill[] skills;
-  private String[] links;
+  private Object links;
 }

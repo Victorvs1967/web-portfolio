@@ -44,56 +44,56 @@
     <h4 class="stats-title">My Skills</h4>
     <div class="progress-bars">
       <div class="progress-bar">
-        <p class="progress-title">html5</p>
+        <p class="progress-title">html</p>
         <div class="progress-container">
-          <p class="progress-text">90%</p>
+          <p class="progress-text">{{ heroPage?.payload.Skill.HTML }}%</p>
           <div class="progress">
-            <span class="html"></span>
+            <span [ngStyle]="{width: heroPage?.payload.Skill.HTML + '%'}"></span>
           </div>
         </div>
       </div>
       <div class="progress-bar">
-        <p class="progress-title">CSS3</p>
+        <p class="progress-title">CSS, SASS</p>
         <div class="progress-container">
-          <p class="progress-text">95%</p>
+          <p class="progress-text">{{ heroPage?.payload.Skill.CSS }}%</p>
           <div class="progress">
-            <span class="css"></span>
+            <span [ngStyle]="{width: heroPage?.payload.Skill.CSS + '%'}"></span>
           </div>
         </div>
       </div>
       <div class="progress-bar">
         <p class="progress-title">JavaScript</p>
         <div class="progress-container">
-          <p class="progress-text">75%</p>
+          <p class="progress-text">{{ heroPage?.payload.Skill.JavaScript }}%</p>
           <div class="progress">
-            <span class="js"></span>
-          </div>
-        </div>
-      </div>
-      <div class="progress-bar">
-        <p class="progress-title">Angular</p>
-        <div class="progress-container">
-          <p class="progress-text">75%</p>
-          <div class="progress">
-            <span class="angular"></span>
+            <span [ngStyle]="{width: heroPage?.payload.Skill.JavaScript + '%'}"></span>
           </div>
         </div>
       </div>
       <div class="progress-bar">
         <p class="progress-title">Java</p>
         <div class="progress-container">
-          <p class="progress-text">85%</p>
+          <p class="progress-text">{{ heroPage?.payload.Skill.Java }}%</p>
           <div class="progress">
-            <span class="java"></span>
+            <span [ngStyle]="{width: heroPage?.payload.Skill.Java + '%'}"></span>
           </div>
         </div>
       </div>
       <div class="progress-bar">
         <p class="progress-title">python</p>
         <div class="progress-container">
-          <p class="progress-text">80%</p>
+          <p class="progress-text">{{ heroPage?.payload.Skill.Python }}%</p>
           <div class="progress">
-            <span class="python"></span>
+            <span [ngStyle]="{width: heroPage?.payload.Skill.Python + '%'}"></span>
+          </div>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <p class="progress-title">Angular</p>
+        <div class="progress-container">
+          <p class="progress-text">{{ heroPage?.payload.Skill.Angular }}%</p>
+          <div class="progress">
+            <span [ngStyle]="{width: heroPage?.payload.Skill.Angular + '%'}"></span>
           </div>
         </div>
       </div>

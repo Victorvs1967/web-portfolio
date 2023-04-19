@@ -14,12 +14,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Document("projects")
 public class Project {
-  
+
   @Id
   private String id;
   private String name;
   private Image image;
   private String description;
   private Skill[] skills;
-  private String[] links;
+  private Object links;
 }

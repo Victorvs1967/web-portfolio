@@ -39,7 +39,7 @@ export class EditProjectComponent implements OnInit {
       name: [this.project.name, [Validators.required]],
       description: [this.project.description, [Validators.required]],
       image: [this.project.image],
-      links: [this.project.links.toString()],
+      links: [JSON.stringify(this.project.links)],
       skills: [this.project.skills],
       id: [this.project.id],
     });
@@ -49,7 +49,7 @@ export class EditProjectComponent implements OnInit {
     if (this.project) {
       this.project.name = this.editForm?.value.name;
       this.project.description = this.editForm?.value.description;
-      this.project.links = this.editForm?.value.links.split(',').map((link: string) => link.trim());
+      this.project.links = JSON.parse(this.editForm?.value.links);
       this.project.image = this.editForm?.value.image || this.image;
       this.project.skills = [ ...this.editForm?.value.skills ];
       this.admin.editProject(this.project).subscribe();

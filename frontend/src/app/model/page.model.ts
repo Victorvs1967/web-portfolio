@@ -4,5 +4,5 @@ export interface Page {
   title: string;
   subtitle: string;
   description: string;
-  payload: Object;
+  payload: any;
 }
