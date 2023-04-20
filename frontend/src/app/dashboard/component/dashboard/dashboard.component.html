@@ -5,15 +5,26 @@
       <mat-list-item role="listItem" (click)="isExpand = !isExpand;">
         <mat-icon class="sidenav-btn" [ngClass]="{ 'rotated': !isExpand }">chevron_left</mat-icon>
       </mat-list-item>
-      <mat-list-item role="listitem" routerLink="/admin"
-       matTooltip="Home" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
+      <mat-list-item
+          role="listitem"
+          routerLink="/admin"
+          matTooltip="Home"
+          matTooltipPosition="left"
+          [matTooltipDisabled]="isExpand"
+      >
         <div class="sidenav-item">
           <mat-icon>home</mat-icon>
           <span *ngIf="isExpand">Home</span>
         </div>
       </mat-list-item>
-      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="userMenu" aria-label="icon-button with a menu"
-       matTooltip="User" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
+      <mat-list-item mat-icon-button
+        role="listitem"
+        [matMenuTriggerFor]="userMenu"
+        aria-label="icon-button with a menu"
+        matTooltip="User"
+        matTooltipPosition="left"
+        [matTooltipDisabled]="isExpand"
+       >
         <div class="sidenav-item">
           <mat-icon>person</mat-icon>
           <span *ngIf="isExpand">User</span>
