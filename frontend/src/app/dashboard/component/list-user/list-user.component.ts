@@ -49,8 +49,8 @@ export class ListUserComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.auth.isAdmin;
-    // this.reloadData();
-    // this.admin._reloadCurrentRoute();
+    this.reloadData();
+    this.admin._reloadCurrentRoute();
   }
 
   editUser(user: User) {

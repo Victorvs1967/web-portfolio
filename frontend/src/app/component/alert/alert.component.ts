@@ -26,6 +26,6 @@ export class AlertComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.auth.isAdmin;
-    this.data = AlertComponent.defaultAlertData;
+    this.data = this.data ? this.data : AlertComponent.defaultAlertData;
   }
 }
