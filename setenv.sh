@@ -1,0 +1,2 @@
+export MAIL_PASSWORD=fwbnkqbdnqtvmdgo
+export MAIL_LOGIN=victorsmirnov0167@gmail.com

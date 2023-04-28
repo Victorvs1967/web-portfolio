@@ -21,8 +21,8 @@ public class SecurityConfig {
 
   @Value("${app.host.url}")
   private String hostUrl;
-  
-  private final static String[] WHITELIST_AUTH_URLS = {"/auth/signup", "/auth/login", "/api/images/upload"};
+
+  private final static String[] WHITELIST_AUTH_URLS = {"/mail/sendmail", "/auth/signup", "/auth/login", "/api/images/upload"};
 
   @Autowired
   private AuthenticationManager authenticationManager;
@@ -39,7 +39,7 @@ public class SecurityConfig {
     config.addAllowedHeader("*");
     config.addAllowedMethod("*");
     source.registerCorsConfiguration("/**", config);
-    
+
     return source;
   }
 
