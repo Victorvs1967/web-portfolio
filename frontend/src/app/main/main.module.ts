@@ -10,6 +10,7 @@ import { ControlsComponent } from './component/controls/controls.component';
 import { MainRoutingModule } from './main-routing.module';
 import { MainComponent } from './component/main/main.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     MainRoutingModule,
     MaterialUiModule,
     FontAwesomeModule,
+    ReactiveFormsModule,
   ]
 })
 export class MainModule { }

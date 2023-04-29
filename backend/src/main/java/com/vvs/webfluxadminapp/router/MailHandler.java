@@ -1,5 +1,7 @@
 package com.vvs.webfluxadminapp.router;
 
+import java.util.Map;
+
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -25,6 +27,6 @@ public class MailHandler {
       .flatMap(msg -> ServerResponse
         .ok()
         .contentType(MediaType.APPLICATION_JSON)
-        .body(Mono.just("Message sent successfully..."), String.class));
+        .body(Mono.just(Map.of("message", "Message sent successfully...")), Map.class));
   }
 }

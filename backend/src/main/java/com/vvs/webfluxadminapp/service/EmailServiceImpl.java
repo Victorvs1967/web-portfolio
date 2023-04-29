@@ -44,7 +44,7 @@ public class EmailServiceImpl implements EmailService {
     try {
       MimeMessage message = new MimeMessage(session);
       message.setFrom(new InternetAddress(config.getUsername()));
-      message.addRecipient(RecipientType.TO, new InternetAddress(email.getEmailTo()));
+      message.addRecipient(RecipientType.TO, new InternetAddress(config.getUsername()));
       message.setSubject(email.getSubject());
       message.setContent(email.getMessage(), "text/html");
 

@@ -62,22 +62,22 @@
         </div>
       </div>
       <div class="right-contact">
-        <form action="" class="contact-form">
+        <form class="contact-form" *ngIf="contactForm" [formGroup]="contactForm" (ngSubmit)="sendEmail()">
           <div class="input-control input-control-block">
-            <input type="text" placeholder="Your name" required>
-            <input type="text" placeholder="Your email" required>
+            <input type="text" placeholder="Your name" formControlName="name" required>
+            <input type="text" placeholder="Your email" formControlName="mailTo" required>
           </div>
           <div class="input-control">
-            <input type="text" placeholder="Your subject" required>
+            <input type="text" placeholder="Your subject" formControlName="subject" required>
           </div>
           <div class="input-control">
-            <textarea name="" id="" cols="15" rows="8" placeholder="Your message here..."></textarea>
+            <textarea name="" id="" cols="15" rows="8" placeholder="Your message here..." formControlName="message"></textarea>
           </div>
           <div class="submit-btn">
-            <a href="#" class="main-btn">
-              <span class="btn-text">Download CV</span>
-              <span mat-icon-button class="btn-icon"><mat-icon>download</mat-icon></span>
-            </a>
+            <button type="submit" class="main-btn">
+              <span class="btn-text">Send Message</span>
+              <fa-icon [icon]="faCheckCircle" class="btn-icon"></fa-icon>
+            </button>
           </div>
         </form>
       </div>

@@ -1,5 +1,4 @@
 .DS_Store
-.env
 HELP.md
 
 .vscode/
@@ -11,3 +10,4 @@ target/
 mongodb_data/
 dist/
 /backup
+.env
