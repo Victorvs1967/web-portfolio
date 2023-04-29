@@ -8,4 +8,5 @@ export const environment = {
   imageUrl: '/api/images',
   skillUrl: '/api/skills',
   pageUrl: '/api/pages',
+  mailUrl: '/mail/sendmail',
 };
