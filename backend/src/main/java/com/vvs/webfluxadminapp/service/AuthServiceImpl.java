@@ -27,13 +27,12 @@ public class AuthServiceImpl implements AuthService {
 
   @Override
   public Mono<UserDto> signUp(UserDto userDto) {
-    
     return isUserExist(userDto.getUsername())
       .filter(userExist -> !userExist)
       .switchIfEmpty(Mono.error(UserAlreadyExistException::new))
-      .doOnNext(_Boolean -> isEmailExist(userDto.getEmail()))
-      .filter(emailExist -> !emailExist)
-      .switchIfEmpty(Mono.error(EmailAlreadyExistException::new))
+      .flatMap(userExist -> isEmailExist(userDto.getEmail())
+        .filter(emailExist -> !emailExist)
+        .switchIfEmpty(Mono.error(EmailAlreadyExistException::new)))
       .map(aBoolean -> userDto)
       .map(usrDto -> appMapper.convert(usrDto, User.class))
       .doOnNext(user -> user.setPassword(passwordEncoder.encode(user.getPassword())))

@@ -2,7 +2,8 @@ package com.vvs.webfluxadminapp.security;
 
 import com.vvs.webfluxadminapp.error.exception.WrongCredentialException;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContext;
@@ -14,10 +15,10 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 @Component
+@RequiredArgsConstructor
 public class SecurityContextRepository implements ServerSecurityContextRepository {
 
-  @Autowired
-  private AuthenticationManager authenticationManager;
+  private final AuthenticationManager authenticationManager;
 
   private final String AUTH_TOKEN_PREFIX = "Bearer ";
 
@@ -37,5 +38,5 @@ public class SecurityContextRepository implements ServerSecurityContextRepositor
   public Mono<Void> save(ServerWebExchange exchange, SecurityContext context) {
     throw new UnsupportedOperationException("Not supported yet.");
   }
-  
+
 }

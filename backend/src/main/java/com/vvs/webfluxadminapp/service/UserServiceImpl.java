@@ -19,7 +19,7 @@ import reactor.core.publisher.Mono;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
-  
+
   private final UserRepository userRepository;
   private final AppMapper appMapper;
 
@@ -40,21 +40,22 @@ public class UserServiceImpl implements UserService {
   public Mono<UserDto> updateUserData(UserDto userDto) {
     return userRepository.findUserByUsername(userDto.getUsername())
       .switchIfEmpty(Mono.error(UserNotFoundException::new))
-      .map(user -> User.builder()
-        .id(user.getId())
-        .username(user.getUsername())
-        .password(user.getPassword())
-        .email(user.getEmail())
-        .firstName(userDto.getFirstName())
-        .lastName(userDto.getLastName())
-        .phone(userDto.getPhone())
-        .address(userDto.getAddress())
-        .photo(userDto.getPhoto())
-        .avatar(userDto.getAvatar())
-        .onCreate(user.getOnCreate())
-        .onUpdate(Date.from(Instant.now()))
-        .isActive(userDto.isActive())
-        .role(userDto.getRole())
+      .map(user -> User
+        .builder()
+          .id(user.getId())
+          .username(user.getUsername())
+          .password(user.getPassword())
+          .email(user.getEmail())
+          .firstName(userDto.getFirstName())
+          .lastName(userDto.getLastName())
+          .phone(userDto.getPhone())
+          .address(userDto.getAddress())
+          .photo(userDto.getPhoto())
+          .avatar(userDto.getAvatar())
+          .onCreate(user.getOnCreate())
+          .onUpdate(Date.from(Instant.now()))
+          .isActive(userDto.isActive())
+          .role(userDto.getRole())
         .build())
       .flatMap(userRepository::save)
       .map(user -> appMapper.convert(user, UserDto.class));

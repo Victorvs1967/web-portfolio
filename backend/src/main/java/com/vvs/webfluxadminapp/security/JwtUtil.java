@@ -19,11 +19,9 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
-
 @Component
 public class JwtUtil {
-  
+
   @Value("${jjwt.secret}")
   private String secret;
   @Value("${jjwt.expiration.in.hours}")
@@ -32,11 +30,6 @@ public class JwtUtil {
   private Key key;
 
   public static final String KEY_ROLE = "role";
-
-  @PostConstruct
-  public void init() {
-    key = Keys.hmacShaKeyFor(secret.getBytes());
-  }
 
   public String generateToken(UserDetails userDetails) {
 
@@ -67,7 +60,7 @@ public class JwtUtil {
     return Mono.just(
       Jwts
         .parserBuilder()
-        .setSigningKey(key)
+        .setSigningKey(getKey())
         .build()
         .parseClaimsJws(token)
         .getBody()

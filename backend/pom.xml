@@ -54,12 +54,6 @@
 			<version>0.11.5</version>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- not work without us!!!! (https://www.codejava.net/coding/solved-java-lang-noclassdeffounderror-javax-xml-bind-jaxbexception) -->
-		<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-		</dependency>
-		<!-- !!!!!! -->
 		<!-- Email Tools -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

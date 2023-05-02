@@ -1,6 +1,5 @@
 package com.vvs.webfluxadminapp.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -14,9 +13,11 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsConfigurationSource;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @EnableWebFluxSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
   @Value("${app.host.url}")
@@ -24,10 +25,8 @@ public class SecurityConfig {
 
   private final static String[] WHITELIST_AUTH_URLS = {"/mail/sendmail", "/auth/signup", "/auth/login", "/api/images/upload"};
 
-  @Autowired
-  private AuthenticationManager authenticationManager;
-  @Autowired
-  private SecurityContextRepository securityContextRepository;
+  private final AuthenticationManager authenticationManager;
+  private final SecurityContextRepository securityContextRepository;
 
   public CorsConfigurationSource creatConfigurationSource() {
     UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

@@ -19,7 +19,7 @@ import org.springframework.http.MediaType;
 @Component
 @RequiredArgsConstructor
 public class AuthHandler {
-  
+
   private final AuthService authService;
 
   public Mono<ServerResponse> signUp(ServerRequest request) {

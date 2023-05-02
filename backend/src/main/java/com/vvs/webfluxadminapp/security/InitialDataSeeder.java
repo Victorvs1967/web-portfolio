@@ -17,17 +17,17 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import reactor.core.publisher.Mono;
 
+@Slf4j
 @Component
 @RequiredArgsConstructor
-@Slf4j
 public class InitialDataSeeder implements ApplicationListener<ApplicationStartedEvent> {
-  
+
   @Value("${app.admin.username}")
   private String username;
 
   @Value("${app.admin.password}")
   private String password;
-  
+
   @Value("${app.admin.email}")
   private String email;
 
