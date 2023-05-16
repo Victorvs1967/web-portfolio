@@ -31,11 +31,23 @@
         </div>
       </mat-list-item>
       <mat-menu #userMenu="matMenu" xPosition="after">
-        <button *ngIf="isAdmin | async" mat-menu-item (click)="addUser()"><mat-icon>person_add</mat-icon>Add User</button>
-        <button mat-menu-item routerLink="listUser"><mat-icon>group</mat-icon>Users</button>
+        <button *ngIf="isAdmin | async" mat-menu-item (click)="addUser()">
+          <mat-icon>person_add</mat-icon>
+          Add User
+        </button>
+        <button mat-menu-item routerLink="listUser">
+          <mat-icon>group</mat-icon>
+          Users
+        </button>
       </mat-menu>
-      <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="projectMenu" aria-label="icon-button with a menu"
-       matTooltip="Portfolio" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
+      <mat-list-item mat-icon-button
+        role="listitem"
+        [matMenuTriggerFor]="projectMenu"
+        aria-label="icon-button with a menu"
+        matTooltip="Portfolio"
+        matTooltipPosition="left"
+        [matTooltipDisabled]="isExpand"
+       >
         <div class="sidenav-item">
           <mat-icon>work</mat-icon>
           <span *ngIf="isExpand">Project</span>
@@ -85,6 +97,13 @@
         <button *ngIf="isAdmin | async" mat-menu-item (click)="addPage()"><mat-icon>add_to_queue</mat-icon>Add Page</button>
         <button mat-menu-item routerLink="listPage"><mat-icon>dynamic_feed</mat-icon>Pages</button>
       </mat-menu>
+      <mat-list-item role="listitem" routerLink="/admin" matTooltip="Home" matTooltipPosition="left"
+        [matTooltipDisabled]="isExpand">
+        <div class="sidenav-item">
+          <mat-icon>settings</mat-icon>
+          <span *ngIf="isExpand">Settings</span>
+        </div>
+      </mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
 

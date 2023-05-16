@@ -17,9 +17,9 @@ import { ListUserComponent } from '../list-user/list-user.component';
 export class EditUserComponent implements OnInit {
 
   roles: UserRole[] = [
-    { value: Role.ADMIN, viewValue: 'ADMIN' },
-    { value: Role.USER, viewValue: 'USER' },
-    { value: Role.MANAGER, viewValue: 'MANAGER' },
+    { value: Role.ADMIN, viewValue: Role.ADMIN },
+    { value: Role.USER, viewValue: Role.USER },
+    { value: Role.MANAGER, viewValue: Role.MANAGER },
   ];
 
   editForm?: UntypedFormGroup;
@@ -27,8 +27,8 @@ export class EditUserComponent implements OnInit {
   isAdmin: Observable<boolean> | undefined;
 
   user?: User;
-  photo: Image = { id: '', name: ''};
-  avatar: Image = { id: '', name: ''};
+  photo: Image;
+  avatar: Image;
   currentPhoto?: File;
   currentAvatar?: File;
 
@@ -36,10 +36,11 @@ export class EditUserComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
     private admin: AdminService,
     private image: ImageService,
-  ) { }
-
-  ngOnInit(): void {
+  ) {
     this.user = ListUserComponent.user;
+    this.photo = this.user.photo;
+    this.avatar = this.user.avatar;
+
     this.editForm = this.formBuilder.group({
       username: [this.user.username, [Validators.required]],
       email: [this.user.email, [Validators.required, Validators.email]],
@@ -48,10 +49,12 @@ export class EditUserComponent implements OnInit {
       phone: [this.user.phone],
       address: [this.user.address],
       role: [this.user.role],
-      photo: this.photo,
-      avatar: this.avatar,
+      photo: [this.photo],
+      avatar: [this.avatar],
     });
   }
+
+  ngOnInit(): void { }
 
   submitEdit() {
     if (this.user) {
@@ -62,8 +65,8 @@ export class EditUserComponent implements OnInit {
       this.user.phone = this.editForm?.value.phone;
       this.user.address = this.editForm?.value.address;
       this.user.role = this.editForm?.value.role;
-      this.user.photo = this.editForm?.value.photo || this.photo;
-      this.user.avatar = this.editForm?.value.avatar || this.avatar;
+      this.user.photo = this.editForm?.value.photo;
+      this.user.avatar = this.editForm?.value.avatar;
       this.admin.editUser(this.user).subscribe();
     }
   }

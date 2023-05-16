@@ -28,6 +28,7 @@ public class InitialDataSeeder implements ApplicationListener<ApplicationStarted
   @Value("${app.admin.password}")
   private String password;
 
+
   @Value("${app.admin.email}")
   private String email;
 

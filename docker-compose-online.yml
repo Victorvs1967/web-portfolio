@@ -17,13 +17,16 @@ services:
   backend_spring:
     container_name: backend_container
     image: victorvsm/portfolio_backend:v01
+    env_file:
+      - ./.env
     environment:
-      HOST_URL: portfolio-dev.club
-      HOST_PORT: 4200
       MONGO_URI: database_mongo
-      ADMIN_USERNAME: admin
-      ADMIN_PASSWORD: admin
-      ADMIN_EMAIL: admin@mail.me
+      HOST_URL: ${HOST_URL}
+      ADMIN_USERNAME: ${ADMIN_USERNAME}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      MAIL_LOGIN: ${MAIL_LOGIN}
+      MAIL_PASSWORD: ${MAIL_PASSWORD}
     ports:
       - 8888:8080
     depends_on:

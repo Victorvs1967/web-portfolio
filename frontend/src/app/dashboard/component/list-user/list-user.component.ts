@@ -60,13 +60,11 @@ export class ListUserComponent implements OnInit {
 
   @modal(EditUserComponent, ListUserComponent.user)
   getUser() {
-    // this.reloadData();
   }
 
   @modal(AlertComponent, ListUserComponent.alert)
   deleteUser(user: User) {
     this.admin.deleteUser(user.username).subscribe();
-    // this.reloadData();
   }
 
   reloadData() {

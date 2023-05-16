@@ -93,12 +93,17 @@
         </td>
       </ng-container>
 
-      <tr class="row-header" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let element; columns: displayedColumns;" class="row"
+      <tr mat-header-row class="row-header"
+        *matHeaderRowDef="displayedColumns">
+      </tr>
+      <tr mat-row class="row"
+        *matRowDef="let element; columns: displayedColumns;"
         [class.expanded-row]="expandedElement === element"
         (click)="expandedElement = expandedElement === element ? null : element">
       </tr>
-      <tr class="detail-row" mat-row *matRowDef="let row; columns: ['expandedDetail'];"></tr>
+      <tr mat-row class="detail-row"
+        *matRowDef="let row; columns: ['expandedDetail'];">
+      </tr>
     </table>
   </mat-card-content>
 </mat-card>
