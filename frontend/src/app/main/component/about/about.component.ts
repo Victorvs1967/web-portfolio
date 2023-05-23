@@ -13,9 +13,8 @@ export class AboutComponent {
 
   pageService = inject(PageService);
 
-  heroPage?: Page;
-
   faBrifcace = faBriefcase;
+  heroPage?: Page;
 
   constructor() {
     this.getHero();

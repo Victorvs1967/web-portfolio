@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Page } from '../model/page.model';
+import { Title } from '@angular/platform-browser';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +11,14 @@ import { Page } from '../model/page.model';
 export class PageService {
 
   http = inject(HttpClient);
+  title = inject(Title);
 
   getPageList(): Observable<Page[]> {
     return this.http.get<Page[]>(environment.baseUrl.concat(environment.pageUrl));
   }
 
   getPage(name: string): Observable<Page> {
+    this.title.setTitle(this.capitalize(name));
     return this.http.get<Page>(environment.baseUrl.concat(environment.pageUrl, '/', name));
   }
 
@@ -29,6 +32,12 @@ export class PageService {
 
   deletePage(name: string): Observable<Page> {
     return this.http.delete<Page>(environment.baseUrl.concat(environment.pageUrl, '/', name));
+  }
+
+  private capitalize(str: string): string {
+    return str.toLowerCase()
+      .charAt(0).toUpperCase()
+      .concat(str.slice(1));
   }
 
 }

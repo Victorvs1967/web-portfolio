@@ -50,7 +50,6 @@ export class ListUserComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.auth.isAdmin;
     this.reloadData();
-    this.admin._reloadCurrentRoute();
   }
 
   editUser(user: User) {
@@ -60,6 +59,7 @@ export class ListUserComponent implements OnInit {
 
   @modal(EditUserComponent, ListUserComponent.user)
   getUser() {
+    this.admin._reloadCurrentRoute();
   }
 
   @modal(AlertComponent, ListUserComponent.alert)
@@ -73,11 +73,12 @@ export class ListUserComponent implements OnInit {
         data.filter(user =>
           user.avatar.id).map((user: any) =>
             this.image.img_download(user.avatar.id)
-              .pipe(tap(img => {
-                user = { ...user, avatar: { ...user.avatar, avatarImg: img } };
-                data = [ ...data.filter(item => item.id !== user.id), user ];
-                this.dataSource = new AnyDataSource([ ...data ]);
-              })).subscribe()
+              .pipe(
+                tap(img => {
+                  user = { ...user, avatar: { ...user.avatar, avatarImg: img } };
+                  data = [ ...data.filter(item => item.id !== user.id), user ];
+                  this.dataSource = new AnyDataSource([ ...data ]);
+                })).subscribe()
       ))).subscribe();
   }
 

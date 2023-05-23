@@ -57,21 +57,21 @@
     <div class="fields-group">
       <div class="file-field">
         <mat-form-field class="file-input" appearance="outline">
-          <input matInput style="display: none;">
-          <input class="file-upload" type="file" (change)="selectPhoto($event)">
-          <button mat-mini-fab color="primary" [disabled]="!currentPhoto" (click)="uploadPhoto($event)">
-            <mat-icon>upload</mat-icon>
-          </button>
+          <mat-toolbar>
+            <input matInput class="img-input" [value]="photo.name || 'File name'" />
+            <button class="img-btn" mat-mini-fab color="primary" [disabled]="!currentPhoto" (click)="uploadPhoto($event)"><mat-icon>upload</mat-icon></button>
+          </mat-toolbar>
+          <input type="file" id="fileInput" (change)="selectPhoto($event)" />
           <mat-hint>Photo image ID: {{ photo.id || 'Photo upload yet.' }}</mat-hint>
         </mat-form-field>
       </div>
       <div class="file-field">
         <mat-form-field class="file-input" appearance="outline">
-          <input matInput style="display: none;">
-          <input class="file-upload" type="file" (change)="selectAvatar($event)">
-          <button mat-mini-fab color="primary" [disabled]="!currentAvatar" (click)="uploadAvatar($event)">
-            <mat-icon>upload</mat-icon>
-          </button>
+          <mat-toolbar>
+            <input matInput class="img-input" [value]="avatar.name || 'File name'" />
+            <button class="img-btn" mat-mini-fab color="primary" [disabled]="!currentAvatar" (click)="uploadAvatar($event)"><mat-icon>upload</mat-icon></button>
+          </mat-toolbar>
+          <input type="file" id="fileInput" (change)="selectAvatar($event)" />
           <mat-hint>Avatar image ID: {{ avatar.id || 'Avatar upload yet.' }}</mat-hint>
         </mat-form-field>
       </div>

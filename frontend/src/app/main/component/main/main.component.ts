@@ -1,4 +1,4 @@
-import { Component, Output, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 
 @Component({
   selector: 'app-main',
@@ -7,7 +7,5 @@ import { Component, Output, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None,
 })
 export class MainComponent {
-
-  constructor() { }
 
 }
