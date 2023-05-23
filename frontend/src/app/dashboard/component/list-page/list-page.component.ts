@@ -60,7 +60,7 @@ export class ListPageComponent implements OnInit {
     this.getPage();
   }
 
-  @modal(EditPageComponent, ListPageComponent.alert)
+  @modal(EditPageComponent, ListPageComponent.alert, '800px')
   getPage() {
   }
 
