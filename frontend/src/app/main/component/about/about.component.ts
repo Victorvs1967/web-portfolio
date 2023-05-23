@@ -14,7 +14,10 @@ export class AboutComponent {
   pageService = inject(PageService);
 
   faBrifcace = faBriefcase;
+
   heroPage?: Page;
+  skills: string[] = [];
+  years: string[] = [];
 
   constructor() {
     this.getHero();
@@ -22,7 +25,12 @@ export class AboutComponent {
 
   getHero() {
     this.pageService.getPage('about')
-      .pipe(map(page => this.heroPage = page))
+      .pipe(
+        map(page => {
+          this.heroPage = page;
+          this.skills = Object.keys(this.heroPage?.payload.skills);
+          this.years = Object.keys(this.heroPage?.payload.cv);
+        }))
       .subscribe();
   }
 }

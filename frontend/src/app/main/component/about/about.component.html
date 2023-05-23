@@ -16,25 +16,25 @@
     <div class="right-about">
       <div class="about-item">
         <div class="about-text">
-          <p class="large-text">560+</p>
+          <p class="large-text">{{ heroPage?.payload.cards.projects }}</p>
           <p class="small-text">Projects<br />completed</p>
         </div>
       </div>
       <div class="about-item">
         <div class="about-text">
-          <p class="large-text">10+</p>
+          <p class="large-text">{{ heroPage?.payload.cards.years }}</p>
           <p class="small-text">Years<br />of experience</p>
         </div>
       </div>
       <div class="about-item">
         <div class="about-text">
-          <p class="large-text">300+</p>
+          <p class="large-text">{{ heroPage?.payload.cards.clients }}</p>
           <p class="small-text">Happy<br />clients</p>
         </div>
       </div>
       <div class="about-item">
         <div class="about-text">
-          <p class="large-text">400+</p>
+          <p class="large-text">{{ heroPage?.payload.cards.reviews }}</p>
           <p class="small-text">Customer<br />reviews</p>
         </div>
       </div>
@@ -43,122 +43,25 @@
   <div class="about-stats">
     <h4 class="stats-title">My Skills</h4>
     <div class="progress-bars">
-      <div class="progress-bar">
-        <p class="progress-title">html</p>
-        <div class="progress-container">
-          <p class="progress-text">{{ heroPage?.payload.Skill.HTML }}%</p>
-          <div class="progress">
-            <span [ngStyle]="{width: heroPage?.payload.Skill.HTML + '%'}"></span>
+      <figure *ngFor="let skill of skills">
+        <div class="progress-bar">
+          <p class="progress-title">{{ skill }}</p>
+          <div class="progress-container">
+            <p class="progress-text">{{ heroPage?.payload.skills[skill] }}%</p>
+            <div class="progress">
+              <span [ngStyle]="{width: heroPage?.payload.skills[skill] + '%'}"></span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="progress-bar">
-        <p class="progress-title">CSS, SASS</p>
-        <div class="progress-container">
-          <p class="progress-text">{{ heroPage?.payload.Skill.CSS }}%</p>
-          <div class="progress">
-            <span [ngStyle]="{width: heroPage?.payload.Skill.CSS + '%'}"></span>
-          </div>
-        </div>
-      </div>
-      <div class="progress-bar">
-        <p class="progress-title">JavaScript</p>
-        <div class="progress-container">
-          <p class="progress-text">{{ heroPage?.payload.Skill.JavaScript }}%</p>
-          <div class="progress">
-            <span [ngStyle]="{width: heroPage?.payload.Skill.JavaScript + '%'}"></span>
-          </div>
-        </div>
-      </div>
-      <div class="progress-bar">
-        <p class="progress-title">Java</p>
-        <div class="progress-container">
-          <p class="progress-text">{{ heroPage?.payload.Skill.Java }}%</p>
-          <div class="progress">
-            <span [ngStyle]="{width: heroPage?.payload.Skill.Java + '%'}"></span>
-          </div>
-        </div>
-      </div>
-      <div class="progress-bar">
-        <p class="progress-title">python</p>
-        <div class="progress-container">
-          <p class="progress-text">{{ heroPage?.payload.Skill.Python }}%</p>
-          <div class="progress">
-            <span [ngStyle]="{width: heroPage?.payload.Skill.Python + '%'}"></span>
-          </div>
-        </div>
-      </div>
-      <div class="progress-bar">
-        <p class="progress-title">Angular</p>
-        <div class="progress-container">
-          <p class="progress-text">{{ heroPage?.payload.Skill.Angular }}%</p>
-          <div class="progress">
-            <span [ngStyle]="{width: heroPage?.payload.Skill.Angular + '%'}"></span>
-          </div>
-        </div>
-      </div>
+      </figure>
     </div>
   </div>
   <div class="timeline">
-    <div class="timeline-item">
+    <div class="timeline-item" *ngFor="let year of years">
       <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
-      <p class="timeline-duration">2013-2022</p>
-      <h5>Project Manager<span> - MVHU</span></h5>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem officia architecto voluptas. Eligendi labore
-        odio dolorum, quod voluptas, adipisci quidem earum eum mollitia officiis vitae possimus ut nesciunt alias
-        optio!
-      </p>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
-      <p class="timeline-duration">2012-2013</p>
-      <h5>CEO<span> - Magnat</span></h5>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem officia architecto voluptas. Eligendi labore
-        odio dolorum, quod voluptas, adipisci quidem earum eum mollitia officiis vitae possimus ut nesciunt alias
-        optio!
-      </p>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
-      <p class="timeline-duration">2010-2012</p>
-      <h5>Chief of Quality Department<span> - Triada Print</span></h5>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem officia architecto voluptas. Eligendi labore
-        odio dolorum, quod voluptas, adipisci quidem earum eum mollitia officiis vitae possimus ut nesciunt alias
-        optio!
-      </p>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
-      <p class="timeline-duration">2009-2010</p>
-      <h5>CEO<span> - Media Print</span></h5>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem officia architecto voluptas. Eligendi labore
-        odio dolorum, quod voluptas, adipisci quidem earum eum mollitia officiis vitae possimus ut nesciunt alias
-        optio!
-      </p>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
-      <p class="timeline-duration">1999-2010</p>
-      <h5>CTO<span> - Waterpas Print</span></h5>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem officia architecto voluptas. Eligendi labore
-        odio dolorum, quod voluptas, adipisci quidem earum eum mollitia officiis vitae possimus ut nesciunt alias
-        optio!
-      </p>
-    </div>
-    <div class="timeline-item">
-      <div class="timeline-icon"><fa-icon [icon]="faBrifcace"></fa-icon></div>
-      <p class="timeline-duration">1993-1999</p>
-      <h5>CTO<span> - Sobytie Publish</span></h5>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem officia architecto voluptas. Eligendi labore
-        odio dolorum, quod voluptas, adipisci quidem earum eum mollitia officiis vitae possimus ut nesciunt alias
-        optio!
-      </p>
+      <p class="timeline-duration">{{ year }}</p>
+      <h5>{{ heroPage?.payload.cv[year].position }}<span> - {{ heroPage?.payload.cv[year].company }}</span></h5>
+      <p>{{ heroPage?.payload.cv[year].description }}</p>
     </div>
   </div>
 </section>
