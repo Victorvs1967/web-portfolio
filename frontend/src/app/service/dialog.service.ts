@@ -20,7 +20,7 @@ export class DialogService {
 
   openDialog<T>(data: any, component: ComponentType<T>, width: string) {
     return this.matDialog.open(component, {
-      maxWidth: width,
+      width: width,
       data: data,
       disableClose: true,
     })

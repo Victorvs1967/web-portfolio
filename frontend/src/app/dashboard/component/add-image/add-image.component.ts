@@ -1,6 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { Image } from 'src/app/model/image.model';
 import { ImageService } from 'src/app/service/image.service';
@@ -12,32 +11,30 @@ import { ImageService } from 'src/app/service/image.service';
 })
 export class AddImageComponent implements OnInit {
 
+  private formBuilder= inject(UntypedFormBuilder);
+  private images= inject(ImageService);
+  private router= inject(Router);
+
+  image: Image = { id: '', name: '' };
   currentFile?: File;
   imageForm?: UntypedFormGroup;
 
-  constructor(
-    private formBuilder: UntypedFormBuilder,
-    private images: ImageService,
-    @Inject(MAT_DIALOG_DATA) public data: Image,
-    private router: Router,
-  ) { }
-
   ngOnInit(): void {
     this.imageForm = this.formBuilder.group({
-      image: this.data,
+      image: this.image,
     });
   }
 
   selectFile(event: any) {
     this.currentFile = event.target.files[0];
-    if (this.currentFile) this.data.name = this.currentFile.name;
+    if (this.currentFile) this.image.name = this.currentFile.name;
   }
 
   upload(event: any) {
     event.preventDefault();
     if (this.currentFile) this.images.upload(this.currentFile).subscribe(response => {
-      this.data.id = response.id;
-      this.router.navigate(['/admin/listImage']);
+      this.image.id = response.id;
+      this.router.navigate(['/admin', 'images']);
     });
   }
 }

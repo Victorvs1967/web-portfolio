@@ -15,11 +15,11 @@ const routes: Routes = [
     path: '', component: DashboardComponent, canActivate: [AuthGuard], canDeactivate: [AuthGuard],
     children: [
       { path: '', component: GraphComponent },
-      { path: 'listUser', component: ListUserComponent },
-      { path: 'listProject', component: ListProjectComponent },
-      { path: 'listPage', component: ListPageComponent },
-      { path: 'listSkill', component: ListSkillComponent },
-      { path: 'listImage', component: ListImageComponent },
+      { path: 'users', component: ListUserComponent },
+      { path: 'projects', component: ListProjectComponent },
+      { path: 'pages', component: ListPageComponent },
+      { path: 'skills', component: ListSkillComponent },
+      { path: 'images', component: ListImageComponent },
       { path: 'viewImage/:id', component: ViewImageComponent },
     ]
   },

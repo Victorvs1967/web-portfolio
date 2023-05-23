@@ -10,10 +10,14 @@
       *ngIf="file; else placeholder"
       [ngStyle]="{'background-image': ' url(' + file  + ')'}">
     </div>
+    <div class="user-info" *ngIf="isUser">
+      <span class="user-name">{{isUser.firstName.concat(' ', isUser.lastName)}}</span>
+      <span class="user-email">{{isUser.email}}</span>
+    </div>
 
     <ng-template #placeholder>
       <div class="image-container avatar-placeholder"></div>
-    </ng-template>
+     </ng-template>
     <!-- Drop menu -->
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu">
       <mat-icon>more_vert</mat-icon>
@@ -23,8 +27,8 @@
         <mat-icon>{{ isDark ? 'light_mode' : 'dark_mode'}}</mat-icon>
         <span>Theme</span>
       </button>
-      <button mat-menu-item (click)="login()" [disabled]="isLogin | async"><mat-icon>login</mat-icon><span>Login</span></button>
-      <button mat-menu-item (click)="logout()" [disabled]="!(isLogin | async)"><mat-icon>logout</mat-icon><span>Logout</span></button>
+      <button mat-menu-item (click)="login()" *ngIf="!(isLogin | async)"><mat-icon>login</mat-icon><span>Login</span></button>
+      <button mat-menu-item (click)="logout()" *ngIf="(isLogin | async)"><mat-icon>logout</mat-icon><span>Logout</span></button>
     </mat-menu>
   </div>
 </mat-toolbar>

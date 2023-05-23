@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { map, tap } from 'rxjs';
+import { Image } from 'src/app/model/image.model';
 import { Project } from 'src/app/model/project.model';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
@@ -14,7 +15,7 @@ import { ImageService } from 'src/app/service/image.service';
 })
 export class AddProjectComponent implements OnInit {
 
-  image: any;
+  image: Image = { id: '', name: '' };
   skillsView: { value: Skill, viewValue: string }[] = [];
 
   currentFile?: File;
@@ -24,7 +25,6 @@ export class AddProjectComponent implements OnInit {
     private formBuilder: UntypedFormBuilder,
     private admin: AdminService,
     private images: ImageService,
-    @Inject(MAT_DIALOG_DATA) public data: Project,
   ) {
     this.admin.getSkillList()
       .pipe(
@@ -37,7 +37,7 @@ export class AddProjectComponent implements OnInit {
     this.createForm = this.formBuilder.group({
       name: ['', [Validators.required]],
       description: ['', [Validators.required]],
-      image: [this.image],
+      image: this.image,
       skills: [[]],
       links: [''],
     });
@@ -47,9 +47,8 @@ export class AddProjectComponent implements OnInit {
     let project: Project = this.createForm?.value;
     project.name = this.createForm?.value.name;
     project.description = this.createForm?.value.description;
-    // project.links = this.createForm?.value.links.split(',').map((link: string) => link.trim());
     project.links = JSON.parse(this.createForm?.value.links);
-    project.image = this.createForm?.value.image || this.image;
+    project.image = this.createForm?.value.image;
     project.skills = [...this.createForm?.value.skills];
     this.admin.addProject(project).subscribe();
   }
@@ -63,7 +62,7 @@ export class AddProjectComponent implements OnInit {
     event.preventDefault();
     if (this.currentFile) this.images.upload(this.currentFile)
     .pipe(
-      tap(response => this.image.id = response.id))
+      tap(response => this.image!.id = response.id))
     .subscribe();
   }
 }

@@ -84,10 +84,8 @@
                 <a mat-button (click)="readImg(element.avatar.id)">{{ element.avatar.name }}</a>
                 <div id="{{ element.avatar.id }}"></div>
               </div>
-              <div class="element-created"><strong>Created: </strong> {{ element.onCreate | date: "dd.MM.yyyy, HH:mm:ss" }}
-              </div>
-              <div class="element-created"><strong>Updated: </strong> {{ element.onUpdate | date: "dd.MM.yyyy, HH:mm:ss" }}
-              </div>
+              <div class="element-created"><strong>Created: </strong> {{ element.onCreate | date: "dd.MM.yyyy, HH:mm:ss" }}</div>
+              <div class="element-created"><strong>Updated: </strong> {{ element.onUpdate | date: "dd.MM.yyyy, HH:mm:ss" }}</div>
             </mat-card-content>
           </mat-card>
         </td>

@@ -32,28 +32,28 @@ export class DashboardComponent implements OnInit {
     this.admin._reloadCurrentRoute();
   }
 
-  @modal(SignupComponent)
+  @modal(SignupComponent, null, '700px')
   addUser() {
-    this.router.navigate(['admin', 'listUser']);
+    this.router.navigate(['admin', 'users']);
   }
 
-  @modal(AddProjectComponent)
+  @modal(AddProjectComponent, null, '700px')
   addProject() {
-    this.router.navigate(['admin', 'listProject']);
+    this.router.navigate(['admin', 'projects']);
   }
 
-  @modal(AddSkillComponent)
+  @modal(AddSkillComponent, null, '700px')
   addSkill() {
-    this.router.navigate(['admin', 'listSkill']);
+    this.router.navigate(['admin', 'skills']);
   }
 
-  @modal(AddImageComponent)
+  @modal(AddImageComponent, null, '700px')
   addImage() {
-    this.router.navigate(['admin', 'listImage']);
+    this.router.navigate(['admin', 'images']);
   }
 
-  @modal(AddPageComponent)
+  @modal(AddPageComponent, null, '700px')
   addPage() {
-    this.router.navigate(['admin', 'listPage']);
+    this.router.navigate(['admin', 'pages']);
   }
 }

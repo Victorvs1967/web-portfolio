@@ -1,6 +1,6 @@
 import { AuthService } from 'src/app/service/auth.service';
 import { modal } from 'src/app/service/dialog.decorator';
-import { map, tap, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Component, OnInit, inject } from '@angular/core';
 import { AdminService } from 'src/app/service/admin.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
@@ -69,12 +69,12 @@ export class ListUserComponent implements OnInit {
 
   reloadData() {
     this.admin.getUserList()
-      .pipe(map(data =>
-        data.filter(user =>
-          user.avatar.id).map((user: any) =>
+      .pipe(map(data => data
+        .filter(user => user.avatar.id)
+          .map((user: any) =>
             this.image.img_download(user.avatar.id)
               .pipe(
-                tap(img => {
+                map(img => {
                   user = { ...user, avatar: { ...user.avatar, avatarImg: img } };
                   data = [ ...data.filter(item => item.id !== user.id), user ];
                   this.dataSource = new AnyDataSource([ ...data ]);
@@ -84,8 +84,7 @@ export class ListUserComponent implements OnInit {
 
   readImg(id: string): void {
     const style = { width: '100%', height: 'auto', radius: '.5rem' };
-    this.image.download(id, style)
-      .subscribe();
+    this.image.download(id, style).subscribe();
   }
 
 }

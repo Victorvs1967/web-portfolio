@@ -14,8 +14,8 @@ export class SignupComponent implements OnInit {
 
   signupForm?: UntypedFormGroup;
 
-  photo = { id: '', name: '' }
-  avatar = { id: '', name: '' }
+  photo = { id: '', name: '' };
+  avatar = { id: '', name: '' };
   currentPhoto?: File;
   currentAvatar?: File;
 
@@ -49,7 +49,6 @@ export class SignupComponent implements OnInit {
     this.currentPhoto = event.target.files[0];
     if (this.currentPhoto) this.photo.name = this.currentPhoto.name;
   }
-
   uploadPhoto(event: any) {
     event.preventDefault();
     if (this.currentPhoto) this.image.upload(this.currentPhoto).subscribe(response => this.photo.id = response.id);

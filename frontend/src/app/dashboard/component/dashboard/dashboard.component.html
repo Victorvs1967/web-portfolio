@@ -35,7 +35,7 @@
           <mat-icon>person_add</mat-icon>
           Add User
         </button>
-        <button mat-menu-item routerLink="listUser">
+        <button mat-menu-item routerLink="users">
           <mat-icon>group</mat-icon>
           Users
         </button>
@@ -55,7 +55,7 @@
       </mat-list-item>
       <mat-menu #projectMenu="matMenu" xPosition="after">
         <button *ngIf="isAdmin | async" mat-menu-item (click)="addProject()"><mat-icon>medical_services</mat-icon>Add Project</button>
-        <button mat-menu-item routerLink="listProject"><mat-icon>cases</mat-icon>Projects</button>
+        <button mat-menu-item routerLink="projects"><mat-icon>cases</mat-icon>Projects</button>
       </mat-menu>
       <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="skillMenu" aria-label="icon-button with a menu"
        matTooltip="Skill" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
@@ -66,7 +66,7 @@
       </mat-list-item>
       <mat-menu #skillMenu="matMenu" xPosition="after">
         <button *ngIf="isAdmin | async" mat-menu-item (click)="addSkill()"><mat-icon>add_chart</mat-icon>Add Skill</button>
-        <button mat-menu-item routerLink="listSkill"><mat-icon>library_books</mat-icon>Skills</button>
+        <button mat-menu-item routerLink="skills"><mat-icon>library_books</mat-icon>Skills</button>
       </mat-menu>
       <mat-list-item mat-icon-button role="listitem" [matMenuTriggerFor]="imageMenu" aria-label="icon-button with a menu"
        matTooltip="Image" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
@@ -77,7 +77,7 @@
       </mat-list-item>
       <mat-menu #imageMenu="matMenu" xPosition="after">
         <button *ngIf="isAdmin | async" mat-menu-item (click)="addImage()"><mat-icon>add_photo_alternate</mat-icon>Add Image</button>
-        <button mat-menu-item routerLink="listImage"><mat-icon>photo_library</mat-icon>Images</button>
+        <button mat-menu-item routerLink="images"><mat-icon>photo_library</mat-icon>Images</button>
       </mat-menu>
       <mat-list-item role="listitem"
        matTooltip="Blog" matTooltipPosition="left" [matTooltipDisabled]="isExpand">
@@ -95,7 +95,7 @@
       </mat-list-item>
       <mat-menu #pagetMenu="matMenu" xPosition="after">
         <button *ngIf="isAdmin | async" mat-menu-item (click)="addPage()"><mat-icon>add_to_queue</mat-icon>Add Page</button>
-        <button mat-menu-item routerLink="listPage"><mat-icon>dynamic_feed</mat-icon>Pages</button>
+        <button mat-menu-item routerLink="pages"><mat-icon>dynamic_feed</mat-icon>Pages</button>
       </mat-menu>
       <mat-list-item role="listitem" routerLink="/admin" matTooltip="Setting" matTooltipPosition="left"
         [matTooltipDisabled]="isExpand">

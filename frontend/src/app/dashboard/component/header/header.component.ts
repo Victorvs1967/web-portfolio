@@ -8,6 +8,7 @@ import { StyleManagerService } from 'src/app/service/style-manager.service';
 import { AdminService } from 'src/app/service/admin.service';
 import { LoginComponent } from 'src/app/auth/component/login/login.component';
 import { AlertComponent } from 'src/app/component/alert/alert.component';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-header',
@@ -25,7 +26,7 @@ export class HeaderComponent implements OnInit {
   isLogin: Observable<boolean> | undefined;
 
   file: string | undefined;
-  isUser: string | undefined;
+  isUser: User | undefined;
 
   constructor(
     private image: ImageService,
@@ -40,11 +41,14 @@ export class HeaderComponent implements OnInit {
     this.isLogin = this.auth.isLoggedIn;
     this.admin.getUser(this.auth.getUser())
       .pipe(
-        map(user => this.image.img_download(user.avatar.id)
-          .pipe(
-            map(img => this.file = img)
-          )
-          .subscribe()
+        map(user => {
+          this.isUser = user;
+          this.image.img_download(user.avatar.id)
+            .pipe(
+              map(img => this.file = img)
+            )
+            .subscribe();
+          }
         )
       )
       .subscribe();
