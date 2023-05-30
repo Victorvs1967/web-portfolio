@@ -30,8 +30,7 @@
       <!-- Payload Column -->
       <ng-container matColumnDef="payload">
         <th mat-header-cell *matHeaderCellDef> Payload </th>
-        <td mat-cell *matCellDef="let element"><span><span *ngIf="element.payload">{{ element.payload | json }}</span></span>
-        <!-- <td mat-cell *matCellDef="let element"><span *ngFor="let item of element.payload"><span *ngIf="item">{{ item }},&nbsp;</span></span> -->
+        <td mat-cell *matCellDef="let element"><span *ngIf="element.payload">{{ element.payload | json }}</span></td>
       </ng-container>
 
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->

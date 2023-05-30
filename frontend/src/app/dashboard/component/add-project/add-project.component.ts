@@ -1,6 +1,5 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
+import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { map, tap } from 'rxjs';
 import { Image } from 'src/app/model/image.model';
 import { Project } from 'src/app/model/project.model';
@@ -21,6 +20,10 @@ export class AddProjectComponent implements OnInit {
   currentFile?: File;
   createForm?: UntypedFormGroup;
 
+  public get links() {
+    return this.createForm?.get('links') as FormArray;
+  }
+
   constructor(
     private formBuilder: UntypedFormBuilder,
     private admin: AdminService,
@@ -39,6 +42,16 @@ export class AddProjectComponent implements OnInit {
       description: ['', [Validators.required]],
       image: this.image,
       skills: [[]],
+      // links: this.formBuilder.array([
+      //   this.formBuilder.group({
+      //     name: ['web'],
+      //     link: [''],
+      //   }),
+      //   this.formBuilder.group({
+      //     name: ['github'],
+      //     link: [''],
+      //   }),
+      // ]),
       links: [''],
     });
   }
@@ -47,6 +60,7 @@ export class AddProjectComponent implements OnInit {
     let project: Project = this.createForm?.value;
     project.name = this.createForm?.value.name;
     project.description = this.createForm?.value.description;
+    // project.links = this.createForm?.getRawValue().links;
     project.links = JSON.parse(this.createForm?.value.links);
     project.image = this.createForm?.value.image;
     project.skills = [...this.createForm?.value.skills];

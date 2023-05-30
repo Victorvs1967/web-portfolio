@@ -24,13 +24,18 @@
       <!-- Skill Column -->
       <ng-container matColumnDef="skills">
         <th mat-header-cell *matHeaderCellDef> Skills </th>
-        <td mat-cell *matCellDef="let element"><span *ngFor="let skill of element.skills"><span *ngIf="skill">{{ skill.name }},&nbsp;</span></span>
+        <td mat-cell *matCellDef="let element">
+          <span *ngFor="let skill of element.skills"> {{ skill.name.concat(', ') }} </span>
+        </td>
       </ng-container>
 
       <!-- Links Column -->
       <ng-container matColumnDef="links">
         <th mat-header-cell *matHeaderCellDef> Links </th>
-        <td mat-cell *matCellDef="let element"> {{ element.links | json }} </td>
+        <td mat-cell *matCellDef="let element">
+          <span> {{ element.links | json }} </span>
+          <!-- <span *ngFor="let link of element.links"> {{ link.link }} </span> -->
+        </td>
       </ng-container>
 
       <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
