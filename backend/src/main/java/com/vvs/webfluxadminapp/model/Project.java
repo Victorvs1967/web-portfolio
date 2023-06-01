@@ -21,5 +21,5 @@ public class Project {
   private Image image;
   private String description;
   private Skill[] skills;
-  private Object links;
+  private Object[] links;
 }

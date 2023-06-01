@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { map, tap } from 'rxjs';
 import { Project } from 'src/app/model/project.model';
 import { Skill } from 'src/app/model/skill.model';
@@ -21,6 +21,10 @@ export class EditProjectComponent implements OnInit {
   currentFile?: File;
   editForm?: UntypedFormGroup;
 
+  public get links() {
+    return this.editForm?.get('links') as FormArray;
+  }
+
   constructor(
     private formBuilder: UntypedFormBuilder,
     private admin: AdminService,
@@ -39,7 +43,16 @@ export class EditProjectComponent implements OnInit {
       name: [this.project.name, [Validators.required]],
       description: [this.project.description, [Validators.required]],
       image: [this.project.image],
-      links: [JSON.stringify(this.project.links)],
+      links: this.formBuilder.array([
+        this.formBuilder.group({
+          name: ['web'],
+          url: [this.project.links[0].url],
+        }),
+        this.formBuilder.group({
+          name: ['github'],
+          url: [this.project.links[1].url],
+        }),
+      ]),
       skills: [this.project.skills],
       id: [this.project.id],
     });

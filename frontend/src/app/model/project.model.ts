@@ -1,5 +1,6 @@
 import { Skill } from "./skill.model";
 import { Image } from "./image.model";
+import { Link } from "./link.model";
 
 export interface Project {
   id: string | null;
@@ -7,5 +8,6 @@ export interface Project {
   description: string;
   image: Image;
   skills: Skill[];
-  links: any;
+  links: Link[];
+  // links: any;
 }

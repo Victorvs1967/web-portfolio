@@ -42,17 +42,16 @@ export class AddProjectComponent implements OnInit {
       description: ['', [Validators.required]],
       image: this.image,
       skills: [[]],
-      // links: this.formBuilder.array([
-      //   this.formBuilder.group({
-      //     name: ['web'],
-      //     link: [''],
-      //   }),
-      //   this.formBuilder.group({
-      //     name: ['github'],
-      //     link: [''],
-      //   }),
-      // ]),
-      links: [''],
+      links: this.formBuilder.array([
+        this.formBuilder.group({
+          name: ['web'],
+          url: [''],
+        }),
+        this.formBuilder.group({
+          name: ['github'],
+          url: [''],
+        }),
+      ]),
     });
   }
 
@@ -60,8 +59,7 @@ export class AddProjectComponent implements OnInit {
     let project: Project = this.createForm?.value;
     project.name = this.createForm?.value.name;
     project.description = this.createForm?.value.description;
-    // project.links = this.createForm?.getRawValue().links;
-    project.links = JSON.parse(this.createForm?.value.links);
+    project.links = this.createForm?.getRawValue().links;
     project.image = this.createForm?.value.image;
     project.skills = [...this.createForm?.value.skills];
     this.admin.addProject(project).subscribe();

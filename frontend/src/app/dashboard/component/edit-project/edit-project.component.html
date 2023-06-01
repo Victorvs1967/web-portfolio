@@ -26,11 +26,15 @@
       <mat-hint>skills</mat-hint>
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Links</mat-label>
-      <input matInput placeholder="Enter links..." type="text" formControlName="links">
-      <mat-hint>links</mat-hint>
-    </mat-form-field>
+    <ng-container class="links" formArrayName="links">
+      <ng-container class="links-list" *ngFor="let link of links.controls; let i = index" [formGroupName]="i">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ link.getRawValue()['name']}}</mat-label>
+          <input matInput placeholder="Enter links..." type="text" formControlName="url">
+          <mat-hint>{{ link.getRawValue()['name']}}</mat-hint>
+        </mat-form-field>
+      </ng-container>
+    </ng-container>
   </div>
 
   <mat-card-actions class="btn-group" [align]="'end'">

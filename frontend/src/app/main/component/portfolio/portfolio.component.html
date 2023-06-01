@@ -11,11 +11,11 @@
         <div class="image" id="{{ project.image.id }}"></div>
         <div class="hover-items">
           <h3>{{ project.name }}</h3>
-          <div class="icons">
-            <a class="icon" *ngIf="project.links.web" href="{{ project.links.web }}" target="_blank">
+          <div class="icons" >
+            <a class="icon" *ngIf="project.links" href="{{ project.links[0].url }}" target="_blank">
               <fa-icon [icon]="eye"></fa-icon>
             </a>
-            <a class="icon" *ngIf="project.links.github" href="{{ project.links.github }}" target="_blank">
+            <a class="icon" *ngIf="project.links" href="{{ project.links[1].url }}" target="_blank">
               <fa-icon [icon]="github"></fa-icon>
             </a>
           </div>
