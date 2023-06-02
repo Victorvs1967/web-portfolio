@@ -43,13 +43,14 @@ export class HeaderComponent implements OnInit {
       .pipe(
         map(user => {
           this.isUser = user;
-          this.image.img_download(user.avatar.id)
-            .pipe(
-              map(img => this.file = img)
-            )
-            .subscribe();
+          if (user.avatar) {
+            this.image.img_download(user.avatar.id)
+              .pipe(
+                map(img => this.file = img)
+              )
+             .subscribe();
           }
-        )
+        })
       )
       .subscribe();
   }

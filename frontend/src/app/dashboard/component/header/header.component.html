@@ -10,7 +10,7 @@
       *ngIf="file; else placeholder"
       [ngStyle]="{'background-image': ' url(' + file  + ')'}">
     </div>
-    <div class="user-info" *ngIf="isUser">
+    <div class="user-info" *ngIf="isUser && isUser.firstName">
       <span class="user-name">{{isUser.firstName.concat(' ', isUser.lastName)}}</span>
       <span class="user-email">{{isUser.email}}</span>
     </div>

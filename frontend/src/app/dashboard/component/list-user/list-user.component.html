@@ -9,7 +9,7 @@
         <th mat-header-cell *matHeaderCellDef> </th>
         <td class="avatar" mat-cell *matCellDef="let element">
           <div
-            *ngIf="element.avatar.avatarImg; else placeholder"
+            *ngIf="element.avatar; else placeholder"
             class="image-container"
             [ngStyle]="{'background-image': ' url(' + element.avatar.avatarImg + ')'}"
             >

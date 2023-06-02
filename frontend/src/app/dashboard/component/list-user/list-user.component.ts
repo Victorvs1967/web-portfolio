@@ -70,16 +70,17 @@ export class ListUserComponent implements OnInit {
   reloadData() {
     this.admin.getUserList()
       .pipe(map(data => data
-        .filter(user => user.avatar.id)
+        .filter(user => user.avatar)
           .map((user: any) =>
-            this.image.img_download(user.avatar.id)
-              .pipe(
-                map(img => {
-                  user = { ...user, avatar: { ...user.avatar, avatarImg: img } };
-                  data = [ ...data.filter(item => item.id !== user.id), user ];
-                  this.dataSource = new AnyDataSource([ ...data ]);
-                })).subscribe()
-      ))).subscribe();
+              this.image.img_download(user.avatar.id)
+                .pipe(
+                  map(img => {
+                    user = { ...user, avatar: { ...user.avatar, avatarImg: img } };
+                    data = [ ...data.filter(item => item.id !== user.id), user ];
+                    this.dataSource = new AnyDataSource([ ...data ]);
+                  })).subscribe()
+        ))
+      ).subscribe();
   }
 
   readImg(id: string): void {
