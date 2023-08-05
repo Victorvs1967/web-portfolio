@@ -49,7 +49,7 @@ public class User implements UserDetails {
 
   public String fullName() {
     return firstName != null ? firstName.concat(" ").concat(lastName) : "";
-  }  
+  }
 
   public void setOnUpdate() {
     onUpdate = Date.from(Instant.now());
@@ -89,5 +89,5 @@ public class User implements UserDetails {
   public boolean isEnabled() {
     return isActive;
   }
-  
+
 }

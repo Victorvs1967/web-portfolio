@@ -60,9 +60,11 @@ export class EditProjectComponent implements OnInit {
 
   submitProject() {
     if (this.project) {
+      console.log(...this.editForm?.value.links);
+      console.log(...this.editForm?.value.skills);
       this.project.name = this.editForm?.value.name;
       this.project.description = this.editForm?.value.description;
-      this.project.links = JSON.parse(this.editForm?.value.links);
+      this.project.links = this.editForm?.value.links;
       this.project.image = this.editForm?.value.image || this.image;
       this.project.skills = [ ...this.editForm?.value.skills ];
       this.admin.editProject(this.project).subscribe();
