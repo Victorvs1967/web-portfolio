@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class UserDto {
-  
+
   private String id;
   private String username;
   private String password;

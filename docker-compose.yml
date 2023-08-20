@@ -1,7 +1,6 @@
 version: "3.9"
 
 services:
-
   # Mongo DB
   database_mongo:
     container_name: mongo_container
