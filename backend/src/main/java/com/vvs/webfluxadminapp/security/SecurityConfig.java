@@ -34,7 +34,7 @@ public class SecurityConfig {
 
     config.setAllowCredentials(true);
     config.addAllowedOrigin(hostUrl);
-    config.addAllowedOrigin("http://portfolio-dev.club");
+    config.addAllowedOrigin("http://victors-dev.me");
     config.addAllowedHeader("*");
     config.addAllowedMethod("*");
     source.registerCorsConfiguration("/**", config);

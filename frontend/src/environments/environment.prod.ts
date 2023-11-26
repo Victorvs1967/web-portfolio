@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://portfolio-dev.club:8888',
+  baseUrl: 'http://victors-dev.me:8888',
   loginUrl: '/auth/login',
   signupUrl: '/auth/signup',
   userUrl: '/api/users',
