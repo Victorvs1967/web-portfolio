@@ -1,13 +1,20 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogTitle, MatDialogClose, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
 import { Page } from 'src/app/model/page.model';
 import { PageService } from 'src/app/service/page.service';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatDivider } from '@angular/material/list';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatFormField, MatLabel, MatHint } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
 
 @Component({
-  selector: 'app-add-page',
-  templateUrl: './add-page.component.html',
-  styleUrls: ['./add-page.component.sass']
+    selector: 'app-add-page',
+    templateUrl: './add-page.component.html',
+    styleUrls: ['./add-page.component.sass'],
+    imports: [MatDialogTitle, MatIconButton, MatDialogClose, MatIcon, MatDivider, ReactiveFormsModule, CdkScrollable, MatDialogContent, MatFormField, MatLabel, MatInput, MatHint, MatDialogActions, MatButton]
 })
 export class AddPageComponent implements OnInit {
 

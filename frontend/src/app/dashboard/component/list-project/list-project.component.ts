@@ -10,18 +10,25 @@ import { ImageService } from 'src/app/service/image.service';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 import { map, Observable } from 'rxjs';
 import { AlertComponent } from 'src/app/component/alert/alert.component';
+import { MatCard, MatCardContent, MatCardTitle, MatCardHeader, MatCardActions } from '@angular/material/card';
+import { MatDivider } from '@angular/material/list';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-list-project',
-  templateUrl: './list-project.component.html',
-  styleUrls: ['./list-project.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0', padding: '0', margin: '0' })),
-      state('expanded', style({ height: '*', margin: '*' })),
-      transition('expanded <=> collapsed', animate('400ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+    selector: 'app-list-project',
+    templateUrl: './list-project.component.html',
+    styleUrls: ['./list-project.component.scss'],
+    animations: [
+        trigger('detailExpand', [
+            state('collapsed', style({ height: '0px', minHeight: '0', padding: '0', margin: '0' })),
+            state('expanded', style({ height: '*', margin: '*' })),
+            transition('expanded <=> collapsed', animate('400ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        ]),
+    ],
+    imports: [MatCard, MatCardContent, MatCardTitle, MatDivider, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatCardHeader, MatCardActions, MatIconButton, MatIcon, MatButton, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, AsyncPipe]
 })
 export class ListProjectComponent implements OnInit {
 

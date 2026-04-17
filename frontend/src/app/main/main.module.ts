@@ -13,21 +13,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    MainComponent,
-    HomeComponent,
-    AboutComponent,
-    PortfolioComponent,
-    BlogsComponent,
-    ContactsComponent,
-    ControlsComponent
-  ],
-  imports: [
-    CommonModule,
-    MainRoutingModule,
-    MaterialUiModule,
-    FontAwesomeModule,
-    ReactiveFormsModule,
-  ]
+    imports: [
+        CommonModule,
+        MainRoutingModule,
+        MaterialUiModule,
+        FontAwesomeModule,
+        ReactiveFormsModule,
+        MainComponent,
+        HomeComponent,
+        AboutComponent,
+        PortfolioComponent,
+        BlogsComponent,
+        ContactsComponent,
+        ControlsComponent,
+    ]
 })
 export class MainModule { }

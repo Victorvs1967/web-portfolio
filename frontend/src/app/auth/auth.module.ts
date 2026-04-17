@@ -6,14 +6,12 @@ import { MaterialUiModule } from '../material-ui/material-ui.module';
 import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    LoginComponent,
-    SignupComponent,
-  ],
-  imports: [
-    CommonModule,
-    MaterialUiModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        CommonModule,
+        MaterialUiModule,
+        ReactiveFormsModule,
+        LoginComponent,
+        SignupComponent,
+    ],
 })
 export class AuthModule { }

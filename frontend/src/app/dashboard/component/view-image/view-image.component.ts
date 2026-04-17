@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ImageService } from 'src/app/service/image.service';
+import { MatCard, MatCardContent } from '@angular/material/card';
 
 @Component({
-  selector: 'app-view-image',
-  templateUrl: './view-image.component.html',
-  styleUrls: ['./view-image.component.scss']
+    selector: 'app-view-image',
+    templateUrl: './view-image.component.html',
+    styleUrls: ['./view-image.component.scss'],
+    imports: [MatCard, MatCardContent]
 })
 export class ViewImageComponent {
 

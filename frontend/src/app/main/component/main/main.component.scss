@@ -1,5 +1,6 @@
 // styling main page
-@import "/src/assets/themes/theme.scss";
+@use './media';
+@use "/src/assets/themes/theme.scss";
 
 :root {
   --color-primary: #02182b;
@@ -175,4 +176,4 @@ section {
   }
 }
 
-@import './media';
+// @import './media';

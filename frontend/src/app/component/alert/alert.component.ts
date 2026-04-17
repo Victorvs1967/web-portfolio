@@ -1,13 +1,19 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogContent, MatDialogTitle, MatDialogClose } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 import { AuthService } from 'src/app/service/auth.service';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatIcon } from '@angular/material/icon';
+import { MatIconButton } from '@angular/material/button';
+import { MatDivider } from '@angular/material/list';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-alert',
-  templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.scss']
+    selector: 'app-alert',
+    templateUrl: './alert.component.html',
+    styleUrls: ['./alert.component.scss'],
+    imports: [CdkScrollable, MatDialogContent, MatDialogTitle, MatIcon, MatIconButton, MatDialogClose, MatDivider, AsyncPipe]
 })
 export class AlertComponent implements OnInit {
 

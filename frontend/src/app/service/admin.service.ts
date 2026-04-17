@@ -19,7 +19,7 @@ export class AdminService {
 
   // User services
   public getUserList(): Observable<User[]> {
-    return this.http.get<User[]>(environment.baseUrl.concat(environment.userUrl))
+    return this.http.get<User[]>(environment.baseUrl.concat(environment.userUrl));
   }
 
   public getUser(username: string): Observable<User> {

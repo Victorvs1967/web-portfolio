@@ -6,11 +6,13 @@ import { AdminService } from 'src/app/service/admin.service';
 import { AuthService } from 'src/app/service/auth.service';
 import { ImageService } from 'src/app/service/image.service';
 import { PageService } from 'src/app/service/page.service';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    imports: [MatIcon]
 })
 export class HomeComponent {
 

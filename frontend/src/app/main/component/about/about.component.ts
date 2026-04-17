@@ -3,11 +3,15 @@ import { map } from 'rxjs';
 import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
 import { PageService } from 'src/app/service/page.service';
 import { Page } from 'src/app/model/page.model';
+import { MatIcon } from '@angular/material/icon';
+import { NgStyle } from '@angular/common';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
-  selector: 'app-about',
-  templateUrl: './about.component.html',
-  styleUrls: ['./about.component.scss']
+    selector: 'app-about',
+    templateUrl: './about.component.html',
+    styleUrls: ['./about.component.scss'],
+    imports: [MatIcon, NgStyle, FaIconComponent]
 })
 export class AboutComponent {
 

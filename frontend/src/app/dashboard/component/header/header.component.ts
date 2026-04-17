@@ -1,7 +1,7 @@
 import { modal } from 'src/app/service/dialog.decorator';
 import { ImageService } from 'src/app/service/image.service';
 import { Component, EventEmitter, inject, OnInit, Output, Renderer2 } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { AuthService } from 'src/app/service/auth.service';
 import { StyleManagerService } from 'src/app/service/style-manager.service';
@@ -9,11 +9,17 @@ import { AdminService } from 'src/app/service/admin.service';
 import { LoginComponent } from 'src/app/auth/component/login/login.component';
 import { AlertComponent } from 'src/app/component/alert/alert.component';
 import { User } from 'src/app/model/user.model';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { NgStyle, AsyncPipe } from '@angular/common';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.scss'],
+    imports: [MatToolbar, MatIconButton, MatIcon, RouterLink, NgStyle, MatMenuTrigger, MatMenu, MatMenuItem, AsyncPipe]
 })
 export class HeaderComponent implements OnInit {
 

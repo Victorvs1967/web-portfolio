@@ -1,4 +1,6 @@
 // Controlls
+@use './media';
+
 .controlls {
   position: fixed;
   z-index: 10;
@@ -50,7 +52,7 @@
   right: 3%;
   width: 70px;
   width: 70px;
-  padding: 1rem;
+  padding: 1.6rem; // change from 1ren
   z-index: 20;
   cursor: pointer;
   background-color: var(--color-grey-4);
@@ -58,7 +60,7 @@
   height: 55px;
   border-radius: 50%;
   display: flex;
-  justify-content: center;
+  justify-content: right;
   align-items: center;
   margin: 0.7rem 0;
   box-shadow: 0 3px 15px rgba(0, 0, 0, .3);
@@ -76,4 +78,4 @@
   }
 }
 
-@import './media';
+// @import './media';

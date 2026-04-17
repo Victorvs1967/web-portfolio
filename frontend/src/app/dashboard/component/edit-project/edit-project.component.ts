@@ -1,16 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { map, tap } from 'rxjs';
 import { Project } from 'src/app/model/project.model';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { ImageService } from 'src/app/service/image.service';
 import { ListProjectComponent } from '../list-project/list-project.component';
+import { MatDialogTitle, MatDialogClose, MatDialogContent } from '@angular/material/dialog';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatDivider } from '@angular/material/list';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatFormField, MatLabel, MatHint } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatSelect, MatOption } from '@angular/material/select';
+import { MatCardActions } from '@angular/material/card';
 
 @Component({
-  selector: 'app-edit-project',
-  templateUrl: './edit-project.component.html',
-  styleUrls: ['./edit-project.component.scss']
+    selector: 'app-edit-project',
+    templateUrl: './edit-project.component.html',
+    styleUrls: ['./edit-project.component.scss'],
+    imports: [MatDialogTitle, MatIconButton, MatDialogClose, MatIcon, MatDivider, ReactiveFormsModule, CdkScrollable, MatDialogContent, MatFormField, MatLabel, MatInput, MatHint, MatSelect, MatOption, MatCardActions, MatButton]
 })
 export class EditProjectComponent implements OnInit {
 

@@ -10,18 +10,25 @@ import { AnyDataSource } from 'src/app/data/data-source';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 import { AlertComponent } from 'src/app/component/alert/alert.component';
 import { EditUserComponent } from '../edit-user/edit-user.component';
+import { MatCard, MatCardContent, MatCardTitle, MatCardHeader, MatCardActions } from '@angular/material/card';
+import { MatDivider } from '@angular/material/list';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import { NgStyle, AsyncPipe, DatePipe } from '@angular/common';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-list-user',
-  templateUrl: './list-user.component.html',
-  styleUrls: ['./list-user.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0', padding: '0', margin: '0' })),
-      state('expanded', style({ height: '*', margin: '*' })),
-      transition('expanded <=> collapsed', animate('400ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+    selector: 'app-list-user',
+    templateUrl: './list-user.component.html',
+    styleUrls: ['./list-user.component.scss'],
+    animations: [
+        trigger('detailExpand', [
+            state('collapsed', style({ height: '0px', minHeight: '0', padding: '0', margin: '0' })),
+            state('expanded', style({ height: '*', margin: '*' })),
+            transition('expanded <=> collapsed', animate('400ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        ]),
+    ],
+    imports: [MatCard, MatCardContent, MatCardTitle, MatDivider, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, NgStyle, MatCardHeader, MatCardActions, MatIconButton, MatIcon, MatButton, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, AsyncPipe, DatePipe]
 })
 export class ListUserComponent implements OnInit {
 
@@ -44,7 +51,7 @@ export class ListUserComponent implements OnInit {
   constructor(
     private admin: AdminService,
   ) {
-    this.reloadData();
+    // this.reloadData();
   }
 
   ngOnInit(): void {

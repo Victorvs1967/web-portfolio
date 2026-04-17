@@ -1,13 +1,21 @@
 import { Component, OnInit, inject } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Image } from 'src/app/model/image.model';
 import { ImageService } from 'src/app/service/image.service';
+import { MatDialogTitle, MatDialogClose } from '@angular/material/dialog';
+import { MatIconButton, MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatDivider } from '@angular/material/list';
+import { MatFormField, MatHint } from '@angular/material/form-field';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatInput } from '@angular/material/input';
 
 @Component({
-  selector: 'app-add-image',
-  templateUrl: './add-image.component.html',
-  styleUrls: ['./add-image.component.scss']
+    selector: 'app-add-image',
+    templateUrl: './add-image.component.html',
+    styleUrls: ['./add-image.component.scss'],
+    imports: [MatDialogTitle, MatIconButton, MatDialogClose, MatIcon, MatDivider, ReactiveFormsModule, MatFormField, MatToolbar, MatInput, MatMiniFabButton, MatHint]
 })
 export class AddImageComponent implements OnInit {
 

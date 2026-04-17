@@ -6,18 +6,20 @@
     <span class="brand-title" routerLink="/admin">Admin dashboard</span>
   </div>
   <div class="avatar">
-    <div class="image-container"
-      *ngIf="file; else placeholder"
-      [ngStyle]="{'background-image': ' url(' + file  + ')'}">
-    </div>
-    <div class="user-info" *ngIf="isUser && isUser.firstName">
-      <span class="user-name">{{isUser.firstName.concat(' ', isUser.lastName)}}</span>
-      <span class="user-email">{{isUser.email}}</span>
-    </div>
-
-    <ng-template #placeholder>
+    @if (file) {
+      <div class="image-container"
+        [ngStyle]="{'background-image': ' url(' + file  + ')'}">
+      </div>
+    } @else {
       <div class="image-container avatar-placeholder"></div>
-     </ng-template>
+    }
+    @if (isUser && isUser.firstName) {
+      <div class="user-info">
+        <span class="user-name">{{isUser.firstName.concat(' ', isUser.lastName)}}</span>
+        <span class="user-email">{{isUser.email}}</span>
+      </div>
+    }
+
     <!-- Drop menu -->
     <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="icon-button with a menu">
       <mat-icon>more_vert</mat-icon>
@@ -27,8 +29,12 @@
         <mat-icon>{{ isDark ? 'light_mode' : 'dark_mode'}}</mat-icon>
         <span>Theme</span>
       </button>
-      <button mat-menu-item (click)="login()" *ngIf="!(isLogin | async)"><mat-icon>login</mat-icon><span>Login</span></button>
-      <button mat-menu-item (click)="logout()" *ngIf="(isLogin | async)"><mat-icon>logout</mat-icon><span>Logout</span></button>
+      @if (!(isLogin | async)) {
+        <button mat-menu-item (click)="login()"><mat-icon>login</mat-icon><span>Login</span></button>
+      }
+      @if ((isLogin | async)) {
+        <button mat-menu-item (click)="logout()"><mat-icon>logout</mat-icon><span>Logout</span></button>
+      }
     </mat-menu>
   </div>
 </mat-toolbar>

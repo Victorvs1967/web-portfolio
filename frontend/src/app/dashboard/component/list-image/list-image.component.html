@@ -3,14 +3,18 @@
     <mat-card-title>Images</mat-card-title>
     <mat-divider></mat-divider>
     <ul class="list-wrapper">
-      <li *ngFor="let image of images;">
-        <div class="img-container" id="{{ image.id }}"></div>
-        <div *ngIf="isAdmin | async" class="img-footer">
-          <a mat-button color="primary" routerLink="/admin/viewImage/{{ image.id }}">{{ image.name }}</a>
-          <a mat-button color="accent" (click)="toProject(image)">to project</a>
-          <a mat-button color="warn" (click)="delete(image.id)">delete</a>
-        </div>
-      </li>
+      @for (image of images; track image) {
+        <li>
+          <div class="img-container" id="{{ image.id }}"></div>
+          @if (isAdmin | async) {
+            <div class="img-footer">
+              <a mat-button color="primary" routerLink="/admin/viewImage/{{ image.id }}">{{ image.name }}</a>
+              <a mat-button color="accent" (click)="toProject(image)">to project</a>
+              <a mat-button color="warn" (click)="delete(image.id)">delete</a>
+            </div>
+          }
+        </li>
+      }
     </ul>
   </mat-card-content>
 </mat-card>

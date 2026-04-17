@@ -1,16 +1,26 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormArray, UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { map, tap } from 'rxjs';
 import { Image } from 'src/app/model/image.model';
 import { Project } from 'src/app/model/project.model';
 import { Skill } from 'src/app/model/skill.model';
 import { AdminService } from 'src/app/service/admin.service';
 import { ImageService } from 'src/app/service/image.service';
+import { MatDialogTitle, MatDialogClose, MatDialogContent, MatDialogActions } from '@angular/material/dialog';
+import { MatIconButton, MatMiniFabButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatDivider } from '@angular/material/list';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatFormField, MatLabel, MatHint } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatSelect, MatOption } from '@angular/material/select';
 
 @Component({
-  selector: 'app-add-project',
-  templateUrl: './add-project.component.html',
-  styleUrls: ['./add-project.component.scss']
+    selector: 'app-add-project',
+    templateUrl: './add-project.component.html',
+    styleUrls: ['./add-project.component.scss'],
+    imports: [MatDialogTitle, MatIconButton, MatDialogClose, MatIcon, MatDivider, ReactiveFormsModule, CdkScrollable, MatDialogContent, MatFormField, MatLabel, MatInput, MatHint, MatToolbar, MatMiniFabButton, MatSelect, MatOption, MatDialogActions, MatButton]
 })
 export class AddProjectComponent implements OnInit {
 

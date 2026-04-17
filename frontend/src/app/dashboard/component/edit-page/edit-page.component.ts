@@ -1,14 +1,23 @@
 import { Component } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { tap } from 'rxjs';
 import { Page } from 'src/app/model/page.model';
 import { ListPageComponent } from '../list-page/list-page.component';
 import { PageService } from 'src/app/service/page.service';
+import { MatDialogTitle, MatDialogClose, MatDialogContent } from '@angular/material/dialog';
+import { MatIconButton, MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatDivider } from '@angular/material/list';
+import { CdkScrollable } from '@angular/cdk/scrolling';
+import { MatFormField, MatLabel, MatHint } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatCardActions } from '@angular/material/card';
 
 @Component({
-  selector: 'app-edit-page',
-  templateUrl: './edit-page.component.html',
-  styleUrls: ['./edit-page.component.sass']
+    selector: 'app-edit-page',
+    templateUrl: './edit-page.component.html',
+    styleUrls: ['./edit-page.component.sass'],
+    imports: [MatDialogTitle, MatIconButton, MatDialogClose, MatIcon, MatDivider, ReactiveFormsModule, CdkScrollable, MatDialogContent, MatFormField, MatLabel, MatInput, MatHint, MatCardActions, MatButton]
 })
 export class EditPageComponent {
   page: Page;

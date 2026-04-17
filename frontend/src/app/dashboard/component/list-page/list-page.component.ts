@@ -10,19 +10,25 @@ import { PageService } from 'src/app/service/page.service';
 import { EditPageComponent } from '../edit-page/edit-page.component';
 import { AlertDialogData } from 'src/app/model/alert-dialog.model';
 import { AlertComponent } from 'src/app/component/alert/alert.component';
+import { MatCard, MatCardContent, MatCardTitle, MatCardHeader, MatCardActions } from '@angular/material/card';
+import { MatDivider } from '@angular/material/list';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { AsyncPipe, JsonPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-list-page',
-  templateUrl: './list-page.component.html',
-  styleUrls: ['./list-page.component.sass']
-  ,
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({ height: '0px', minHeight: '0', padding: '0', margin: '0' })),
-      state('expanded', style({ height: '*', margin: '*' })),
-      transition('expanded <=> collapsed', animate('400ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+    selector: 'app-list-page',
+    templateUrl: './list-page.component.html',
+    styleUrls: ['./list-page.component.sass'],
+    animations: [
+        trigger('detailExpand', [
+            state('collapsed', style({ height: '0px', minHeight: '0', padding: '0', margin: '0' })),
+            state('expanded', style({ height: '*', margin: '*' })),
+            transition('expanded <=> collapsed', animate('400ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        ]),
+    ],
+    imports: [MatCard, MatCardContent, MatCardTitle, MatDivider, MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatCardHeader, MatCardActions, MatIconButton, MatIcon, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow, AsyncPipe, JsonPipe]
 })
 export class ListPageComponent implements OnInit {
 

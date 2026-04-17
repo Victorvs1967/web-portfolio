@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterLinkActive, RouterLink } from '@angular/router';
+import { MatIconButton } from '@angular/material/button';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-controls',
-  templateUrl: './controls.component.html',
-  styleUrls: ['./controls.component.scss']
+    selector: 'app-controls',
+    templateUrl: './controls.component.html',
+    styleUrls: ['./controls.component.scss'],
+    imports: [RouterLinkActive, MatIconButton, MatTooltip, RouterLink, MatIcon]
 })
 export class ControlsComponent implements OnInit {
 

@@ -1,16 +1,18 @@
 import { Component, inject } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { faGithub, faLinkedinIn, faTelegram, faFacebook } from '@fortawesome/free-brands-svg-icons';
 import { faCheckCircle, faEnvelope, faGlobe, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { map } from 'rxjs';
 import { Mail } from 'src/app/model/mail.model';
 import { MailService } from 'src/app/service/mail.service';
 import { PageService } from 'src/app/service/page.service';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
-  selector: 'app-contacts',
-  templateUrl: './contacts.component.html',
-  styleUrls: ['./contacts.component.scss']
+    selector: 'app-contacts',
+    templateUrl: './contacts.component.html',
+    styleUrls: ['./contacts.component.scss'],
+    imports: [FaIconComponent, ReactiveFormsModule]
 })
 export class ContactsComponent {
 

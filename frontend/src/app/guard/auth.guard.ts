@@ -2,14 +2,14 @@ import { modal } from 'src/app/service/dialog.decorator';
 import { LoginComponent } from './../auth/component/login/login.component';
 import { DialogService } from './../service/dialog.service';
 import { Injectable, inject } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../service/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate, CanDeactivate<unknown> {
+export class AuthGuard  {
 
   auth = inject(AuthService);
   dialog = inject(DialogService);

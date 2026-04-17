@@ -1,11 +1,14 @@
 import { Component } from '@angular/core';
 import { ChartConfiguration, ChartOptions } from 'chart.js';
+import { MatCard, MatCardTitle, MatCardContent } from '@angular/material/card';
+import { NgChartsModule } from 'ng2-charts';
 // import { ChartData, ChartOption, DonutChartView, PieChartView } from 'ngx-chart';
 
 @Component({
-  selector: 'app-graph',
-  templateUrl: './graph.component.html',
-  styleUrls: ['./graph.component.scss']
+    selector: 'app-graph',
+    templateUrl: './graph.component.html',
+    styleUrls: ['./graph.component.scss'],
+    imports: [MatCard, MatCardTitle, MatCardContent, NgChartsModule]
 })
 export class GraphComponent {
 

@@ -4,11 +4,17 @@ import { Component, inject } from '@angular/core';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { ImageService } from 'src/app/service/image.service';
 import { ProjectListComponent } from './project-list/project-list.component';
+import { MatCard, MatCardContent, MatCardTitle } from '@angular/material/card';
+import { MatDivider } from '@angular/material/list';
+import { MatButton } from '@angular/material/button';
+import { RouterLink } from '@angular/router';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-list-image',
-  templateUrl: './list-image.component.html',
-  styleUrls: ['./list-image.component.scss']
+    selector: 'app-list-image',
+    templateUrl: './list-image.component.html',
+    styleUrls: ['./list-image.component.scss'],
+    imports: [MatCard, MatCardContent, MatCardTitle, MatDivider, MatButton, RouterLink, AsyncPipe]
 })
 export class ListImageComponent {
 

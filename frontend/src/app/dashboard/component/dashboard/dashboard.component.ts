@@ -1,6 +1,6 @@
 import { AuthService } from 'src/app/service/auth.service';
 import { Component, inject, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { Observable } from 'rxjs';
 import { SignupComponent } from 'src/app/auth/component/signup/signup.component';
 import { AdminService } from 'src/app/service/admin.service';
@@ -9,11 +9,19 @@ import { AddImageComponent } from '../add-image/add-image.component';
 import { AddProjectComponent } from '../add-project/add-project.component';
 import { AddSkillComponent } from '../add-skill/add-skill.component';
 import { AddPageComponent } from '../add-page/add-page.component';
+import { HeaderComponent } from '../header/header.component';
+import { MatSidenavContainer, MatSidenav } from '@angular/material/sidenav';
+import { MatNavList, MatListItem } from '@angular/material/list';
+import { MatIcon } from '@angular/material/icon';
+import { NgClass, AsyncPipe } from '@angular/common';
+import { MatTooltip } from '@angular/material/tooltip';
+import { MatMenuTrigger, MatMenu, MatMenuItem } from '@angular/material/menu';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    imports: [HeaderComponent, MatSidenavContainer, MatSidenav, MatNavList, MatListItem, MatIcon, NgClass, RouterLink, MatTooltip, MatMenuTrigger, MatMenu, MatMenuItem, RouterOutlet, AsyncPipe]
 })
 export class DashboardComponent implements OnInit {
 

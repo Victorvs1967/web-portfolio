@@ -7,20 +7,26 @@
   </p>
   <div class="portfolio-container">
     <div class="portfolios">
-      <div class="portfolio-item" *ngFor="let project of projects;">
-        <div class="image" id="{{ project.image.id }}"></div>
-        <div class="hover-items">
-          <h3>{{ project.name }}</h3>
-          <div class="icons" >
-            <a class="icon" *ngIf="project.links" href="{{ project.links[0].url }}" target="_blank">
-              <fa-icon [icon]="eye"></fa-icon>
-            </a>
-            <a class="icon" *ngIf="project.links" href="{{ project.links[1].url }}" target="_blank">
-              <fa-icon [icon]="github"></fa-icon>
-            </a>
+      @for (project of projects; track project) {
+        <div class="portfolio-item">
+          <div class="image" id="{{ project.image.id }}"></div>
+          <div class="hover-items">
+            <h3>{{ project.name }}</h3>
+            <div class="icons" >
+              @if (project.links) {
+                <a class="icon" href="{{ project.links[0].url }}" target="_blank">
+                  <fa-icon [icon]="eye"></fa-icon>
+                </a>
+              }
+              @if (project.links) {
+                <a class="icon" href="{{ project.links[1].url }}" target="_blank">
+                  <fa-icon [icon]="github"></fa-icon>
+                </a>
+              }
+            </div>
           </div>
         </div>
-      </div>
+      }
     </div>
   </div>
 </section>
