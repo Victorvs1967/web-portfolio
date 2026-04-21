@@ -1,37 +1,38 @@
 package com.vvs.webfluxadminapp.service;
 
-import javax.validation.constraints.NotNull;
+// import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import lombok.Data;
+import lombok.NonNull;
 
 @Data
 @Component
 public class EmailConfig {
 
-  @NotNull
+  // @NonNull
   @Value("${mail.smtp.host}")
   private String host;
 
-  @NotNull
+  // @NonNull
   @Value("${mail.smtp.port}")
   private int port;
 
-  @NotNull
+  // @NonNull
   @Value("${mail.smtp.username}")
   private String username;
 
-  @NotNull
+  // @NonNull
   @Value("${mail.smtp.password}")
   private String password;
 
-  @NotNull
+  // @NonNull
   @Value("${mail.smtp.auth}")
   private Boolean auth;
 
-  @NotNull
+  // @NonNull
   @Value("${mail.smtp.ssl.enable}")
   private Boolean ssl;
 
